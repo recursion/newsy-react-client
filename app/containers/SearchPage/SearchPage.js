@@ -32,13 +32,10 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
     return (
       <article>
         <Helmet>
-          <title>Search Page</title>
+          <title>Newsy: Search</title>
           <meta name="description" content="An easy way to search multiple news outlets for similar stories." />
         </Helmet>
         <div className="search-page">
-          <section className="centered">
-            <h2>Search for news stories!</h2>
-          </section>
           <section>
             <form onSubmit={this.props.onSubmitForm}>
               <label htmlFor="query">
