@@ -27,7 +27,9 @@ function searchReducer(state = initialState, action) {
     case CHANGE_SEARCHTERMS:
       return state.set('query', action.query);
     case LOAD_STORIES:
-      return state.set('loading', true);
+      return state
+              .set('loading', true)
+              .set('error', false);
     case LOAD_STORIES_SUCCESS:
       return state
               .setIn(['stories','totalResults'], action.stories.totalResults) 
