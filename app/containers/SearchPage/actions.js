@@ -45,15 +45,15 @@ export function loadStories() {
 /**
  * Dispatched when the stories are loaded by the request saga
  *
- * @param  {array} stories The repository data
- * @param  {string} query The current search query 
+ * @param  {array} stories The stories data
  *
  * @return {object}      An action object with a type of LOAD_STORIES passing the stories 
  */
 export function storiesLoaded(stories) {
+  console.log(typeof stories);
   return {
     type: LOAD_STORIES_SUCCESS,
-    stories
+    stories: JSON.parse(stories)
   };
 }
 

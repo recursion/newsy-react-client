@@ -66,7 +66,7 @@ SearchPage.propTypes = {
     PropTypes.bool,
   ]),
   stories: PropTypes.oneOfType([
-    PropTypes.array,
+    PropTypes.object,
     PropTypes.bool,
   ]),
   onSubmitForm: PropTypes.func,
