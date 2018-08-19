@@ -9,7 +9,10 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   render() {
     return (
       <div className="header">
+        <h2>Newsy: The neat little news crawler!</h2>
+        <h6>Powered by newsapi.org</h6>
         <div className="nav-bar">
+        {/*
           <Link className="router-link" to="/">
             Home
           </Link>
@@ -19,6 +22,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
           <Link className="router-link" to="/features">
             Features
           </Link>
+        */}
         </div>
       </div>
     );
