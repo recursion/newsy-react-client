@@ -26,6 +26,8 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       loading,
       error,
       stories: stories.get('articles'),
+      page: stories.get('page'),
+      totalStories: stories.get('totalResults'),
       query
     };
 
