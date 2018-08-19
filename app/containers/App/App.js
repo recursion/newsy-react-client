@@ -28,13 +28,18 @@ const App = () => (
     </Helmet>
     <Header />
     <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/search" component={SearchPage} />
-      <Route path="/features" component={FeaturePage} />
+      <Route exact path="/" component={SearchPage} />
       <Route path="" component={NotFoundPage} />
     </Switch>
     <Footer />
   </div>
 );
+
+/*
+      <Route exact path="/" component={HomePage} />
+      <Route path="/search" component={SearchPage} />
+      <Route path="/features" component={FeaturePage} />
+      <Route path="" component={NotFoundPage} />
+*/
 
 export default App;
