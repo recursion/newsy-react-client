@@ -40,11 +40,10 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
             <h2>Search for news stories!</h2>
           </section>
           <section>
-            <h2>Search!</h2>
             <form onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="searchNews">
+              <label htmlFor="query">
                 <input
-                  id="searchNews"
+                  id="query"
                   type="text"
                   placeholder="Enter search terms or headlines here."
                   value={this.props.query}
