@@ -8,18 +8,19 @@ import { storiesLoaded, storiesLoadingError } from './actions';
 
 import { makeSelectQuery } from 'containers/SearchPage/selectors';
 import request from 'utils/request';
+const requestURL = `http://localhost:3000/v1`;
 
 /**
  * Github repos request/response handler
  */
 export function* getStories() {
   // Select username from store
-  const searchTerm = yield select(makeSelectQuery());
-  const requestURL = `http://localhost:3000/v1/search?q=${searchTerm}`;
+  const query = yield select(makeSelectQuery());
+  const urlWithQuery = requestURL + `/search?q=${query}`;
 
   try {
     // Call our request helper (see 'utils/request')
-    const stories = yield call(request, requestURL);
+    const stories = yield call(request, urlWithQuery);
     yield put(storiesLoaded(stories));
   } catch (err) {
     yield put(storiesLoadingError(err));
