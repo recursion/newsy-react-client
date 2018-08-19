@@ -20,7 +20,7 @@ export function* getStories() {
   try {
     // Call our request helper (see 'utils/request')
     const stories = yield call(request, requestURL);
-    yield put(storiesLoaded(stories, searchTerm));
+    yield put(storiesLoaded(stories));
   } catch (err) {
     yield put(storiesLoadingError(err));
   }

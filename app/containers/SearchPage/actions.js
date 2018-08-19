@@ -50,13 +50,10 @@ export function loadStories() {
  *
  * @return {object}      An action object with a type of LOAD_STORIES passing the stories 
  */
-export function storiesLoaded(stories, query) {
-  console.log('GOT STORIES -> ');
-  console.log(JSON.parse(stories));
+export function storiesLoaded(stories) {
   return {
     type: LOAD_STORIES_SUCCESS,
-    stories,
-    query,
+    stories
   };
 }
 
