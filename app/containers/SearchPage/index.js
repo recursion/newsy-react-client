@@ -3,12 +3,13 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import {
+import { changeSearchTerms, loadStories } from './actions';
+import { 
+  makeSelectQuery, 
+  makeSelectStories,
   makeSelectLoading,
   makeSelectError
-} from 'containers/App/selectors';
-import { changeSearchTerms, loadStories } from './actions';
-import { makeSelectQuery, makeSelectStories } from './selectors';
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import SearchPage from './SearchPage';
