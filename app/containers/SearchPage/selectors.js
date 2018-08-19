@@ -4,22 +4,32 @@
 
 import { createSelector } from 'reselect';
 
-const selectQuery = (state) => state.get('search');
+const selectSearch = (state) => state.get('search');
 
 const makeSelectQuery = () => createSelector(
-  selectQuery,
+  selectSearch,
   (searchState) => searchState.get('query')
 );
 
-const selectStories = (state) => state.get('stories');
 const makeSelectStories = () => createSelector(
-  selectStories,
-  (storiesState) => storiesState
+  selectSearch,
+  (storiesState) => storiesState.get('stories')
+);
+
+const makeSelectLoading = () => createSelector(
+  selectSearch,
+  (searchState) => searchState.get('loading')
+);
+
+const makeSelectError = () => createSelector(
+  selectSearch,
+  (searchState) => searchState.get('error')
 );
 
 export {
-  selectQuery,
+  selectSearch,
   makeSelectQuery,
-  selectStories,
-  makeSelectStories
+  makeSelectStories,
+  makeSelectLoading,
+  makeSelectError
 };
