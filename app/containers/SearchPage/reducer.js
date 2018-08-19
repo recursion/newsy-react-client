@@ -17,8 +17,9 @@ const initialState = fromJS({
   error: false,
   query: '',
   stories: {
-    totalResults: 0,
-    articles: []
+    articles: [],
+    page: 0,
+    totalResults: 0
   }
 });
 
@@ -29,6 +30,7 @@ function searchReducer(state = initialState, action) {
     case LOAD_STORIES:
       return state
               .set('loading', true)
+              .setIn(['stories', 'page'], 1)
               .set('error', false);
     case LOAD_STORIES_SUCCESS:
       return state
