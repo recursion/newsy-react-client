@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import StoriesList from 'components/StoriesList';
 import './style.scss';
 
 export default class SearchPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -24,7 +25,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
     const searchListProps = {
       loading,
       error,
-      stories,
+      stories: stories.get('articles'),
       query
     };
 
@@ -51,7 +52,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
                 />
               </label>
             </form>
-            <div><p>Show results here!</p></div>
+            <StoriesList {...searchListProps} />
           </section>
         </div>
       </article>
