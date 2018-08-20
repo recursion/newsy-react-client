@@ -17,9 +17,9 @@ const Pagination = (page, totalStories, onGetPage) => {
   const totalPages = totalStories / 20;
   return (
     <div className="centerText">
-      {(page > 1) ? control('<<', page - 1) : ''} 
+      {(page > 1) ? control('Previous', page - 1) : ''} 
       {page}
-      {(page < totalPages) ? control('>>', page + 1) : ''} 
+      {(page < totalPages) ? control('Next', page + 1) : ''} 
     </div>
   );
 }
