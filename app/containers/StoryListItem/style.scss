@@ -42,6 +42,7 @@
     max-height: 100%;
     width: auto;
     height: auto;
+    object-fit: cover;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -54,7 +55,7 @@
 
     &__url-image {
       max-width: 160px;
-      max-height: 100%;
+      max-height: 200px;
     }
   }
 }
