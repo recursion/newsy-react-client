@@ -21,7 +21,7 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
 
     // setup placeholder images for those that dont exist or dont load.
     // TODO: Get a better placeholder image.
-    const placeHolderImage = 'https://via.placeholder.com/160x160';
+    const placeHolderImage = 'https://dummyimage.com/160x160/fff/fff';
     const urlImage = (!item.urlToImage) ? placeHolderImage : item.urlToImage;
 
     // create the storylist item content
