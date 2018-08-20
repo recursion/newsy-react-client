@@ -5,28 +5,17 @@ import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 import StoryListItem from 'containers/StoryListItem';
+import PaginationNavigator from 'components/PaginationNavigator';
+
 import './style';
 
-const PaginationControl = (page, totalStories, onGetPage) => {
-  // calculate how many pages are available
-  // and build a widget for navigating them.
-  const control = (str, p) => {
-    return (
-      // we likely want to change this to a link?
-      // either way it should probably be its own component.
-      <button onClick={() => onGetPage(p)}>{str}</button>
-    )
-  }
-  const totalPages = Math.round(totalStories / 20);
-  return (
-    <div className="centerText">
-      {(page > 1) ? control('Previous', page - 1) : ''} 
-      {page}
-      {(page < totalPages) ? control('Next', page + 1) : ''} 
-    </div>
-  );
-}
 const StoryList = ({ loading, error, stories, page, totalStories, onGetPage }) => {
+  const pageNavProps = {
+    onGetPage,
+    page,
+    totalStories
+  };
+
   if (loading) {
     return <List component={LoadingIndicator} />;
   }
@@ -49,13 +38,13 @@ const StoryList = ({ loading, error, stories, page, totalStories, onGetPage }) =
       stories = stories.toJS();
     }
     return (
-      <div>
+      <div className="storyList">
         {(totalStories > 0) ? 
-          <p className="storyList-results">{totalStories} Results</p> :
+          <p className="storyList__results">{totalStories} Results</p> :
           ''
         }
         <List items={stories} component={StoryListItem} />
-        { (page === 0) ? '' : PaginationControl(page, totalStories, onGetPage)}
+        { (page === 0) ? '' : <PaginationNavigator {...pageNavProps} />}
       </div>
     );
   }

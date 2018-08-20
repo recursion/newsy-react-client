@@ -1,0 +1,24 @@
+.pagination-nav {
+    &__control {
+        margin: 0;
+        font-size: .8em;
+        text-decoration: none;
+        color: blue;
+    }
+    &__control:hover {
+        text-decoration: underline;
+    }
+    .selected {
+        color: #000;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .pagination-nav {
+        &__control {
+            font-size: 1em;
+            margin: 3px;
+            text-decoration: none;
+            color: blue;
+        }
+    }
+}
