@@ -21,6 +21,10 @@ export function* getStories() {
   const urlWithQuery = `${requestURL}/search?q=${query}`;
 
   try {
+    if (query === '') {
+      yield put(storiesLoaded({ articles: [], totalResults: 0 }));
+      return;
+    }
     // Call our request helper (see 'utils/request')
     const stories = yield call(request, urlWithQuery);
     yield put(storiesLoaded(stories));
