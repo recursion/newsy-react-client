@@ -15,7 +15,7 @@ import {
 const initialState = fromJS({
   loading: false,
   error: false,
-  query: '',
+  query: false,
   stories: {
     articles: [],
     page: 0,

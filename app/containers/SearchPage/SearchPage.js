@@ -44,7 +44,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
                   id="query"
                   type="text"
                   placeholder="Enter search terms or headlines here."
-                  value={this.props.query}
+                  value={this.props.query || ''}
                   onChange={this.props.onChangeSearchTerms}
                 />
               </label>
@@ -68,6 +68,9 @@ SearchPage.propTypes = {
     PropTypes.bool,
   ]),
   onSubmitForm: PropTypes.func,
-  query: PropTypes.string,
+  query: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool
+  ]),
   onChangeSearchTerms: PropTypes.func,
 };
