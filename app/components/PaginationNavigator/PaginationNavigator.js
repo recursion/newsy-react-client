@@ -20,10 +20,12 @@ const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
     );
   };
 
+  // return an array of page navigation links
+  // based on how many pages, and what the current page is.
   const createLinks = (currentPage, totalPages) => {
-    const result = [];
+    const links = [];
     const addControl = (i) => {
-      result.push(control(`${i}`, i, (currentPage === i)));
+      links.push(control(`${i}`, i, (currentPage === i)));
     };
 
     if (totalPages <= 1) {
@@ -41,7 +43,7 @@ const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
         addControl(i);
       }
     }
-    return result;
+    return links;
   };
 
   const totalPages = Math.round(totalStories / 20) + 1;
