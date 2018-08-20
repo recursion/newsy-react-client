@@ -34,21 +34,30 @@ const StoryList = ({
     return <List component={ErrorComponent} />;
   }
 
-  if (stories && stories !== false) {
+  if (stories && stories.length !== 0) {
     // TODO: currently we are passing only the articles in
     // likely we want to pass the entire object instead
     // since we are using pretty much all of it at this point.
 
     // when stories is unpopulated it is an immutable object
     // so convert it to js first otherwise leave it.
+    // TODO: this is a bit hackish and needs a better solution.
     if (stories.toJS) {
       stories = stories.toJS();
     }
+    const calcResultsDisplayed = () => {
+      if (page === 1) {
+        return `${1} - ${stories.length}`;
+      }
+      const start = ((page - 1) * 20) + 1;
+      return `${start}-${(start + stories.length) - 1}`;
+    };
     return (
       <div className="storyList">
         {(totalStories > 0) ?
-          <p className="storyList__results">{totalStories} Results</p> :
-          ''
+          <div className="storyList__results">
+            Showing {calcResultsDisplayed()} of {totalStories} Results
+          </div> : ''
         }
         <List items={stories} component={StoryListItem} />
         { (page === 0) ? '' : <PaginationNavigator {...pageNavProps} />}
@@ -62,7 +71,10 @@ const StoryList = ({
 StoryList.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.any,
-  stories: PropTypes.any,
+  stories: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array
+  ]),
   page: PropTypes.any,
   totalStories: PropTypes.any,
   onGetPage: PropTypes.func
