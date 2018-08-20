@@ -9,9 +9,10 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_SEARCHTERMS = 'boilerplate/Home/CHANGE_SEARCHTERMS';
-export const LOAD_STORIES = 'boilerplate/Search/LOAD_STORIES';
-export const LOAD_STORIES_SUCCESS = 'boilerplate/Search/LOAD_STORIES_SUCCESS';
-export const LOAD_STORIES_ERROR = 'boilerplate/Search/LOAD_STORIES_ERROR';
-export const CHANGE_PAGE = 'boilerplate/Search/CHANGE_PAGE';
-export const CHANGE_PAGE_SUCCESS = 'boilerplate/Search/CHANGE_PAGE_SUCCESS';
+export const CHANGE_SEARCHTERMS = 'newsy/Home/CHANGE_SEARCHTERMS';
+export const LOAD_STORIES = 'newsy/Search/LOAD_STORIES';
+export const LOAD_STORIES_SUCCESS = 'newsy/Search/LOAD_STORIES_SUCCESS';
+export const LOAD_STORIES_ERROR = 'newsy/Search/LOAD_STORIES_ERROR';
+export const CHANGE_PAGE = 'newsy/Search/CHANGE_PAGE';
+export const CHANGE_PAGE_SUCCESS = 'newsy/Search/CHANGE_PAGE_SUCCESS';
+export const RESET = 'newsy/Search/RESET';

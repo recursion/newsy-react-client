@@ -7,7 +7,7 @@ import { makeSelectQuery, makeSelectGetPage } from 'containers/SearchPage/select
 import request from 'utils/request';
 
 import { LOAD_STORIES, CHANGE_PAGE } from './constants';
-import { storiesLoaded, storiesLoadingError, pageChangeLoaded } from './actions';
+import { resetSearch, storiesLoaded, storiesLoadingError, pageChangeLoaded } from './actions';
 
 
 const requestURL = 'http://localhost:3000/v1';
@@ -22,7 +22,7 @@ export function* getStories() {
 
   try {
     if (query === '') {
-      yield put(storiesLoaded({ articles: [], totalResults: 0 }));
+      yield put(resetSearch());
     } else {
       // Call our request helper (see 'utils/request')
       const stories = yield call(request, urlWithQuery);

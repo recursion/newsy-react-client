@@ -21,6 +21,7 @@ import {
   CHANGE_SEARCHTERMS,
   LOAD_STORIES,
   LOAD_STORIES_SUCCESS,
+  RESET,
   LOAD_STORIES_ERROR
 } from './constants';
 
@@ -35,6 +36,11 @@ export function changeSearchTerms(query) {
   return {
     type: CHANGE_SEARCHTERMS,
     query
+  };
+}
+export function resetSearch() {
+  return {
+    type: RESET
   };
 }
 

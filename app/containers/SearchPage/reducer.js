@@ -5,6 +5,7 @@
 import { fromJS } from 'immutable';
 
 import {
+  RESET,
   CHANGE_SEARCHTERMS,
   CHANGE_PAGE,
   CHANGE_PAGE_SUCCESS,
@@ -29,6 +30,8 @@ const initialState = fromJS({
 
 function searchReducer(state = initialState, action) {
   switch (action.type) {
+    case RESET:
+      return initialState;
     case CHANGE_SEARCHTERMS:
       return state.set('query', action.query);
     case CHANGE_PAGE:
