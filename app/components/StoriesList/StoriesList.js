@@ -12,10 +12,12 @@ const PaginationControl = (page, totalStories, onGetPage) => {
   // and build a widget for navigating them.
   const control = (str, p) => {
     return (
+      // we likely want to change this to a link?
+      // either way it should probably be its own component.
       <button onClick={() => onGetPage(p)}>{str}</button>
     )
   }
-  const totalPages = totalStories / 20;
+  const totalPages = Math.round(totalStories / 20);
   return (
     <div className="centerText">
       {(page > 1) ? control('Previous', page - 1) : ''} 
@@ -37,6 +39,10 @@ const StoryList = ({ loading, error, stories, page, totalStories, onGetPage }) =
   }
 
   if (stories && stories !== false) {
+    // TODO: currently we are passing only the articles in
+    // likely we want to pass the entire object instead
+    // since we are using pretty much all of it at this point.
+
     // when stories is unpopulated it is an immutable object
     // so convert it to js first otherwise leave it.
     if (stories.toJS) {
