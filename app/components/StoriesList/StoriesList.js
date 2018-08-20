@@ -12,14 +12,11 @@ const Pagination = (page, totalStories) => {
   const totalPages = totalStories / 20;
   return (
     <div className="centerText">
-      {(page > 1) ? '<<' : '1'} 
-      {(totalPages > 1) ? page + 1 : ''} 
-      {(totalPages > 1) ? page + 2 : ''} 
-      {(totalPages > 1) ? page + 3 : ''} 
+      {(page > 1) ? '<<' : ''} 
+      {page}
       {(page < totalPages) ? '>>' : ''} 
     </div>
   );
-
 }
 const StoryList = ({ loading, error, stories, page, totalStories }) => {
   if (loading) {
@@ -54,8 +51,8 @@ StoryList.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.any,
   stories: PropTypes.any,
-  page: PropTypes.int,
-  totalStories: PropTypes.int
+  page: PropTypes.any,
+  totalStories: PropTypes.any
 };
 
 export default StoryList;

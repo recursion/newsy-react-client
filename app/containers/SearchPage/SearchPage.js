@@ -27,8 +27,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       error,
       stories: stories.get('articles'),
       page: stories.get('page'),
-      totalStories: stories.get('totalResults'),
-      query
+      totalStories: stories.get('totalResults')
     };
 
     return (
