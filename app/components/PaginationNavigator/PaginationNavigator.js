@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
+/* Creates navigation links for multiple story pages. */
 const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
   const control = (str, pageNumber, selected) => {
     if (selected) {
