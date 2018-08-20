@@ -1,7 +1,7 @@
 /*
- * HomePage
+ * SearchPage
  *
- * This is the first thing users see of our App, at the '/' route
+ * Main page - display search and results.
  */
 
 import React from 'react';
