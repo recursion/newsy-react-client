@@ -11,15 +11,6 @@ import StoriesList from 'components/StoriesList';
 import './style.scss';
 
 export default class SearchPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  /**
-   * when initial state query is not null, submit the form to load repos
-   */
-  componentDidMount() {
-    if (this.props.query && this.props.query.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
-  }
-
   render() {
     const {
       loading,
