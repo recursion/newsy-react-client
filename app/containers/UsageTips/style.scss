@@ -1,9 +1,15 @@
 .usage-tips {
-    &__tips {
-      font-size: .85em;
-      padding-right: 5px;
+  font-size: .85em;
+  padding-right: 5px;
+
+  h4 {
+    margin: 1px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    ul {
+      width: 50%;
+      margin: auto;
     }
-    h4 {
-      margin: 1px;
-    }
+  }
 }
