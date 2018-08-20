@@ -12,6 +12,9 @@
     .selected {
         color: #000;
     }
+    .selected:hover {
+        text-decoration: none;
+    }
 }
 @media only screen and (min-width: 768px) {
     .pagination-nav {
