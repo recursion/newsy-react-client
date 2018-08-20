@@ -23,11 +23,11 @@ export function* getStories() {
   try {
     if (query === '') {
       yield put(storiesLoaded({ articles: [], totalResults: 0 }));
-      return;
+    } else {
+      // Call our request helper (see 'utils/request')
+      const stories = yield call(request, urlWithQuery);
+      yield put(storiesLoaded(stories));
     }
-    // Call our request helper (see 'utils/request')
-    const stories = yield call(request, urlWithQuery);
-    yield put(storiesLoaded(stories));
   } catch (err) {
     yield put(storiesLoadingError(err));
   }
