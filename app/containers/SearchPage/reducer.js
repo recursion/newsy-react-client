@@ -6,6 +6,8 @@ import { fromJS } from 'immutable';
 
 import { 
   CHANGE_SEARCHTERMS,
+  CHANGE_PAGE,
+  CHANGE_PAGE_SUCCESS,
   LOAD_STORIES,
   LOAD_STORIES_SUCCESS,
   LOAD_STORIES_ERROR,
@@ -18,6 +20,7 @@ const initialState = fromJS({
   query: false,
   stories: {
     articles: [],
+    getPage: 1,
     page: 0,
     totalResults: 0
   }
@@ -27,6 +30,16 @@ function searchReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_SEARCHTERMS:
       return state.set('query', action.query);
+    case CHANGE_PAGE:
+      return state
+              .setIn(['stories', 'getPage'], action.page)
+              .set('loading', true);
+    case CHANGE_PAGE_SUCCESS:
+      return state
+              .setIn(['stories', 'articles'], action.stories.articles)
+              .setIn(['stories', 'page'], state.getIn(['stories', 'getPage']))
+              .setIn(['stories', 'getPage'], 1)
+              .set('loading', false);
     case LOAD_STORIES:
       return state
               .set('loading', true)

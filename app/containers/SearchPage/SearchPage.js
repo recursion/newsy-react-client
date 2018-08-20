@@ -21,13 +21,14 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
   }
 
   render() {
-    const { loading, error, stories, query} = this.props;
+    const { loading, error, stories, onGetPage } = this.props;
     const searchListProps = {
       loading,
       error,
       stories: stories.get('articles'),
       page: stories.get('page'),
-      totalStories: stories.get('totalResults')
+      totalStories: stories.get('totalResults'),
+      onGetPage
     };
 
     return (

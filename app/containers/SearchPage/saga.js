@@ -3,10 +3,10 @@
  */
 
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
-import { LOAD_STORIES } from './constants';
-import { storiesLoaded, storiesLoadingError } from './actions';
+import { LOAD_STORIES, CHANGE_PAGE } from './constants';
+import { storiesLoaded, storiesLoadingError, pageChangeLoaded } from './actions';
 
-import { makeSelectQuery } from 'containers/SearchPage/selectors';
+import { makeSelectQuery, makeSelectGetPage } from 'containers/SearchPage/selectors';
 import request from 'utils/request';
 const requestURL = `http://localhost:3000/v1`;
 
@@ -27,6 +27,20 @@ export function* getStories() {
   }
 }
 
+export function* getPage() {
+  // Select username from store
+  const query = yield select(makeSelectQuery());
+  const page = yield select(makeSelectGetPage());
+  const urlWithQuery = requestURL + `/search?q=${query}&page=${page}`;
+
+  try {
+    // Call our request helper (see 'utils/request')
+    const stories = yield call(request, urlWithQuery);
+    yield put(pageChangeLoaded(stories));
+  } catch (err) {
+    yield put(storiesLoadingError(err));
+  }
+}
 /**
  * Root saga manages watcher lifecycle
  */
@@ -35,5 +49,8 @@ export default function* watchAll () {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield all([takeLatest(LOAD_STORIES, getStories)]);
+  yield all([
+    takeLatest(LOAD_STORIES, getStories),
+    takeLatest(CHANGE_PAGE, getPage),
+  ]);
 }

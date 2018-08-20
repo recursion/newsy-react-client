@@ -11,6 +11,11 @@ const makeSelectQuery = () => createSelector(
   (searchState) => searchState.get('query')
 );
 
+const makeSelectGetPage = () => createSelector(
+  selectSearch,
+  (getPageState) => getPageState.getIn(['stories', 'getPage'])
+);
+
 const makeSelectStories = () => createSelector(
   selectSearch,
   (storiesState) => storiesState.get('stories')
@@ -31,5 +36,6 @@ export {
   makeSelectQuery,
   makeSelectStories,
   makeSelectLoading,
+  makeSelectGetPage,
   makeSelectError
 };

@@ -15,7 +15,14 @@
  *    }
  */
 
-import { CHANGE_SEARCHTERMS, LOAD_STORIES, LOAD_STORIES_SUCCESS, LOAD_STORIES_ERROR } from './constants';
+import { 
+  CHANGE_PAGE, 
+  CHANGE_PAGE_SUCCESS,
+  CHANGE_SEARCHTERMS, 
+  LOAD_STORIES, 
+  LOAD_STORIES_SUCCESS, 
+  LOAD_STORIES_ERROR 
+} from './constants';
 
 /**
  * Changes the input field of the form
@@ -42,6 +49,20 @@ export function loadStories() {
   };
 }
 
+export function getPage(page) {
+  return {
+    type: CHANGE_PAGE,
+    page
+  };
+}
+
+export function pageChangeLoaded(stories) {
+  return {
+    type: CHANGE_PAGE_SUCCESS,
+    stories
+  };
+}
+
 /**
  * Dispatched when the stories are loaded by the request saga
  *
@@ -52,7 +73,7 @@ export function loadStories() {
 export function storiesLoaded(stories) {
   return {
     type: LOAD_STORIES_SUCCESS,
-    stories: stories
+    stories
   };
 }
 

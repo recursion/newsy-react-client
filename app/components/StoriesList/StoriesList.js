@@ -6,19 +6,24 @@ import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 import StoryListItem from 'containers/StoryListItem';
 
-const Pagination = (page, totalStories) => {
+const Pagination = (page, totalStories, onGetPage) => {
   // calculate how many pages are available
   // and build a widget for navigating them.
+  const control = (str, p) => {
+    return (
+      <button onClick={() => onGetPage(p)}>{str}</button>
+    )
+  }
   const totalPages = totalStories / 20;
   return (
     <div className="centerText">
-      {(page > 1) ? '<<' : ''} 
+      {(page > 1) ? control('<<', page - 1) : ''} 
       {page}
-      {(page < totalPages) ? '>>' : ''} 
+      {(page < totalPages) ? control('>>', page + 1) : ''} 
     </div>
   );
 }
-const StoryList = ({ loading, error, stories, page, totalStories }) => {
+const StoryList = ({ loading, error, stories, page, totalStories, onGetPage }) => {
   if (loading) {
     return <List component={LoadingIndicator} />;
   }
@@ -39,7 +44,7 @@ const StoryList = ({ loading, error, stories, page, totalStories }) => {
     return (
       <div>
         <List items={stories} component={StoryListItem} />
-        { (page === 0) ? '' : Pagination(page, totalStories)}
+        { (page === 0) ? '' : Pagination(page, totalStories, onGetPage)}
       </div>
     );
   }
@@ -52,7 +57,8 @@ StoryList.propTypes = {
   error: PropTypes.any,
   stories: PropTypes.any,
   page: PropTypes.any,
-  totalStories: PropTypes.any
+  totalStories: PropTypes.any,
+  onGetPage: PropTypes.func
 };
 
 export default StoryList;
