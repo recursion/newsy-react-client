@@ -33,8 +33,8 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
         </div>
         <div className="story-list-item__content">
           <a className="story-list-item__title" href={item.url}>{item.title}</a>
-          <span className="story-list-item__source">{item.source.name}</span>
           <div className="story-list-item__meta">
+            <span className="story-list-item__source">Source: {item.source.name}</span>
             <span className="story-list-item__author">Authored By: {item.author}</span>
             <span className="story-list-item__date">Date: {day} at {time} </span>
           </div>
