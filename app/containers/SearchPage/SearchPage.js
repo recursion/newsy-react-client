@@ -12,7 +12,7 @@ import './style.scss';
 
 export default class SearchPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
-   * when initial state username is not null, submit the form to load repos
+   * when initial state query is not null, submit the form to load repos
    */
   componentDidMount() {
     if (this.props.query && this.props.query.trim().length > 0) {
