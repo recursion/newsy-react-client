@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
+// create a button or a span based on the current pageNumber
 const LinkControl = (str, pageNumber, selected, onGetPage) => {
   if (selected) {
     return (
