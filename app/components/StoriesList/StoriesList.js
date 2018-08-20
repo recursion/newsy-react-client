@@ -59,7 +59,18 @@ const StoryList = ({
             Showing {calcResultsDisplayed()} of {totalStories} Results
           </div> : ''
         }
-        <List items={stories} component={StoryListItem} />
+        {(totalStories > 0) ?
+          <List items={stories} component={StoryListItem} /> :
+          <div className="storyList__tips">
+            <h5 className="centerText">Search Tips</h5>
+            <ul>
+              <li>Surround phrases with quotes (&quot;) for exact match.</li>
+              <li>Prepend words or phrases that <em>must</em> appear with a + symbol. Eg: +bitcoin</li>
+              <li>Prepend words that <em>must not</em> appear with a - symbol. Eg: -bitcoin</li>
+              <li>Alternatively you can use the AND / OR / NOT keywords, and optionally group these with parenthesis. Eg: crypto AND (ethereum OR litecoin) NOT bitcoin.</li>
+            </ul>
+          </div>
+        }
         { (page === 0) ? '' : <PaginationNavigator {...pageNavProps} />}
       </div>
     );
