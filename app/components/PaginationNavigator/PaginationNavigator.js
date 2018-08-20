@@ -33,7 +33,11 @@ const createLinks = (currentPage, totalPages, control) => {
 const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
   const control = (str, pageNumber, selected) => {
     if (selected) {
-      return <span key={pageNumber} className="pagination-nav__control selected">{str}</span>;
+      return (
+        <span key={pageNumber} className="pagination-nav__control selected">
+          {str}
+        </span>
+      );
     }
     return (
       <button
