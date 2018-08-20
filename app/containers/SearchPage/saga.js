@@ -3,12 +3,14 @@
  */
 
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
+import { makeSelectQuery, makeSelectGetPage } from 'containers/SearchPage/selectors';
+import request from 'utils/request';
+
 import { LOAD_STORIES, CHANGE_PAGE } from './constants';
 import { storiesLoaded, storiesLoadingError, pageChangeLoaded } from './actions';
 
-import { makeSelectQuery, makeSelectGetPage } from 'containers/SearchPage/selectors';
-import request from 'utils/request';
-const requestURL = `http://localhost:3000/v1`;
+
+const requestURL = 'http://localhost:3000/v1';
 
 /**
  * Github repos request/response handler
@@ -16,7 +18,7 @@ const requestURL = `http://localhost:3000/v1`;
 export function* getStories() {
   // Select username from store
   const query = yield select(makeSelectQuery());
-  const urlWithQuery = requestURL + `/search?q=${query}`;
+  const urlWithQuery = `${requestURL}/search?q=${query}`;
 
   try {
     // Call our request helper (see 'utils/request')
@@ -31,7 +33,8 @@ export function* getPage() {
   // Select username from store
   const query = yield select(makeSelectQuery());
   const page = yield select(makeSelectGetPage());
-  const urlWithQuery = requestURL + `/search?q=${query}&page=${page}`;
+
+  const urlWithQuery = `${requestURL}/search?q=${query}&page=${page}`;
 
   try {
     // Call our request helper (see 'utils/request')
@@ -44,7 +47,7 @@ export function* getPage() {
 /**
  * Root saga manages watcher lifecycle
  */
-export default function* watchAll () {
+export default function* watchAll() {
   // Watches for LOAD_STORIES actions and calls getRepos when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution

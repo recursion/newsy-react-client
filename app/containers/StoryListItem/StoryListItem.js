@@ -12,7 +12,6 @@ import './style.scss';
 export default class StoryListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { item } = this.props;
-    let nameprefix = '';
 
     // get our time strings from the published date
     const d = new Date(item.publishedAt);
@@ -24,14 +23,16 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
     const placeHolderImage = 'https://dummyimage.com/160x160/fff/fff';
     const urlImage = (!item.urlToImage) ? placeHolderImage : item.urlToImage;
 
+
     // create the storylist item content
     const content = (
       <div className="story-list-item">
         <div className="story-list-item__imageContainer">
-          <img 
-            src={urlImage} 
-            className="story-list-item__url-image" 
-            onError={(e)=>{e.target.src=placeHolderImage}} 
+          <img
+            src={urlImage}
+            className="story-list-item__url-image"
+            onError={(e) => { e.target.src = placeHolderImage; }}
+            alt={`${item.url}`}
           />
         </div>
         <div className="story-list-item__content">

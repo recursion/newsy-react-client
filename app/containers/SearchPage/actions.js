@@ -15,13 +15,13 @@
  *    }
  */
 
-import { 
-  CHANGE_PAGE, 
+import {
+  CHANGE_PAGE,
   CHANGE_PAGE_SUCCESS,
-  CHANGE_SEARCHTERMS, 
-  LOAD_STORIES, 
-  LOAD_STORIES_SUCCESS, 
-  LOAD_STORIES_ERROR 
+  CHANGE_SEARCHTERMS,
+  LOAD_STORIES,
+  LOAD_STORIES_SUCCESS,
+  LOAD_STORIES_ERROR
 } from './constants';
 
 /**
@@ -68,7 +68,7 @@ export function pageChangeLoaded(stories) {
  *
  * @param  {array} stories The stories data
  *
- * @return {object}      An action object with a type of LOAD_STORIES passing the stories 
+ * @return {object}      An action object with a type of LOAD_STORIES passing the stories
  */
 export function storiesLoaded(stories) {
   return {

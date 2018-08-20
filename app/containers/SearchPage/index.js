@@ -4,8 +4,8 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { changeSearchTerms, loadStories, getPage } from './actions';
-import { 
-  makeSelectQuery, 
+import {
+  makeSelectQuery,
   makeSelectStories,
   makeSelectLoading,
   makeSelectError

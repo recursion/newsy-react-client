@@ -21,7 +21,13 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
   }
 
   render() {
-    const { loading, error, stories, onGetPage } = this.props;
+    const {
+      loading,
+      error,
+      stories,
+      onGetPage
+    } = this.props;
+
     const searchListProps = {
       loading,
       error,

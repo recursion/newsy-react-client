@@ -4,7 +4,7 @@
  */
 import { fromJS } from 'immutable';
 
-import { 
+import {
   CHANGE_SEARCHTERMS,
   CHANGE_PAGE,
   CHANGE_PAGE_SUCCESS,
@@ -26,30 +26,31 @@ const initialState = fromJS({
   }
 });
 
+
 function searchReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_SEARCHTERMS:
       return state.set('query', action.query);
     case CHANGE_PAGE:
       return state
-              .setIn(['stories', 'getPage'], action.page)
-              .set('loading', true);
+        .setIn(['stories', 'getPage'], action.page)
+        .set('loading', true);
     case CHANGE_PAGE_SUCCESS:
       return state
-              .setIn(['stories', 'articles'], action.stories.articles)
-              .setIn(['stories', 'page'], state.getIn(['stories', 'getPage']))
-              .setIn(['stories', 'getPage'], 1)
-              .set('loading', false);
+        .setIn(['stories', 'articles'], action.stories.articles)
+        .setIn(['stories', 'page'], state.getIn(['stories', 'getPage']))
+        .setIn(['stories', 'getPage'], 1)
+        .set('loading', false);
     case LOAD_STORIES:
       return state
-              .set('loading', true)
-              .setIn(['stories', 'page'], 1)
-              .set('error', false);
+        .set('loading', true)
+        .setIn(['stories', 'page'], 1)
+        .set('error', false);
     case LOAD_STORIES_SUCCESS:
       return state
-              .setIn(['stories','totalResults'], action.stories.totalResults) 
-              .setIn(['stories','articles'], action.stories.articles) 
-              .set('loading', false);
+        .setIn(['stories', 'totalResults'], action.stories.totalResults)
+        .setIn(['stories', 'articles'], action.stories.articles)
+        .set('loading', false);
     case LOAD_STORIES_ERROR:
       return state.set('error', true);
     default:

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import Banner from './images/banner.jpg';
 import './style.scss';
 
@@ -12,17 +12,17 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
         <h2>Newsy</h2>
         <h6>Search the news in style.</h6>
         <div className="nav-bar">
-        {/*
-          <Link className="router-link" to="/">
-            Home
-          </Link>
-          <Link className="router-link" to="/search">
-            Search 
-          </Link>
-          <Link className="router-link" to="/features">
-            Features
-          </Link>
-        */}
+          {/*
+            <Link className="router-link" to="/">
+              Home
+            </Link>
+            <Link className="router-link" to="/search">
+              Search
+            </Link>
+            <Link className="router-link" to="/features">
+              Features
+            </Link>
+          */}
         </div>
       </div>
     );

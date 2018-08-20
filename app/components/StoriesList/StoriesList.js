@@ -7,9 +7,16 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import StoryListItem from 'containers/StoryListItem';
 import PaginationNavigator from 'components/PaginationNavigator';
 
-import './style';
+import './style.scss';
 
-const StoryList = ({ loading, error, stories, page, totalStories, onGetPage }) => {
+const StoryList = ({
+  loading,
+  error,
+  stories,
+  page,
+  totalStories,
+  onGetPage
+}) => {
   const pageNavProps = {
     onGetPage,
     page,
@@ -39,7 +46,7 @@ const StoryList = ({ loading, error, stories, page, totalStories, onGetPage }) =
     }
     return (
       <div className="storyList">
-        {(totalStories > 0) ? 
+        {(totalStories > 0) ?
           <p className="storyList__results">{totalStories} Results</p> :
           ''
         }
