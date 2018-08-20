@@ -8,7 +8,7 @@ describe('<Footer />', () => {
     const renderedComponent = shallow(<Footer />);
     expect(
       renderedComponent.contains(
-        <section>This project is licensed under the MIT license.</section>
+        <section>Licensed under the MIT license.</section>
       )
     ).toBe(true);
   });
