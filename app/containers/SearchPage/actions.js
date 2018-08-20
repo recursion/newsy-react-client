@@ -18,7 +18,7 @@
 import {
   CHANGE_PAGE,
   CHANGE_PAGE_SUCCESS,
-  CHANGE_SEARCHTERMS,
+  CHANGE_QUERY,
   LOAD_STORIES,
   LOAD_STORIES_SUCCESS,
   RESET,
@@ -34,7 +34,7 @@ import {
  */
 export function changeSearchTerms(query) {
   return {
-    type: CHANGE_SEARCHTERMS,
+    type: CHANGE_QUERY,
     query
   };
 }

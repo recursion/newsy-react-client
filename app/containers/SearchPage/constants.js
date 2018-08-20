@@ -9,7 +9,7 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_SEARCHTERMS = 'newsy/Home/CHANGE_SEARCHTERMS';
+export const CHANGE_QUERY = 'newsy/Home/CHANGE_QUERY';
 export const LOAD_STORIES = 'newsy/Search/LOAD_STORIES';
 export const LOAD_STORIES_SUCCESS = 'newsy/Search/LOAD_STORIES_SUCCESS';
 export const LOAD_STORIES_ERROR = 'newsy/Search/LOAD_STORIES_ERROR';
