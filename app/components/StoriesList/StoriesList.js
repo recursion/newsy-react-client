@@ -6,6 +6,21 @@ import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 import StoryListItem from 'containers/StoryListItem';
 
+const Pagination = (page, totalStories) => {
+  // calculate how many pages are available
+  // and build a widget for navigating them.
+  const totalPages = totalStories / 20;
+  return (
+    <div className="centerText">
+      {(page > 1) ? '<<' : '1'} 
+      {(totalPages > 1) ? page + 1 : ''} 
+      {(totalPages > 1) ? page + 2 : ''} 
+      {(totalPages > 1) ? page + 3 : ''} 
+      {(page < totalPages) ? '>>' : ''} 
+    </div>
+  );
+
+}
 const StoryList = ({ loading, error, stories, page, totalStories }) => {
   if (loading) {
     return <List component={LoadingIndicator} />;
@@ -18,19 +33,6 @@ const StoryList = ({ loading, error, stories, page, totalStories }) => {
     return <List component={ErrorComponent} />;
   }
 
-  // calculate how many pages are available
-  // and build a widget for navigating them.
-  const totalPages = totalStories / 20;
-  const pages = () => (
-    <div className="centerText">
-      {(page > 1) ? '<<' : '1'} 
-      {page + 1} 
-      {page + 2} 
-      {page + 3} 
-      {(page < totalPages) ? '>>' : ''} 
-    </div>
-  );
-
   if (stories && stories !== false) {
     // when stories is unpopulated it is an immutable object
     // so convert it to js first otherwise leave it.
@@ -40,7 +42,7 @@ const StoryList = ({ loading, error, stories, page, totalStories }) => {
     return (
       <div>
         <List items={stories} component={StoryListItem} />
-        {pages()}
+        { (page === 0) ? '' : Pagination(page, totalStories)}
       </div>
     );
   }
@@ -52,7 +54,8 @@ StoryList.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.any,
   stories: PropTypes.any,
-  query: PropTypes.any
+  page: PropTypes.int,
+  totalStories: PropTypes.int
 };
 
 export default StoryList;
