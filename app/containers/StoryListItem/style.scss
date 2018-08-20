@@ -1,6 +1,7 @@
 .story-list-item {
   width: 100%;
   height: 100%;
+  margin: 5px 0;
   display: flex;
   flex-direction: column;
   align-items: space-between;
@@ -42,20 +43,20 @@
     max-height: 100%;
     width: auto;
     height: auto;
-    object-fit: cover;
   }
 }
 @media only screen and (min-width: 768px) {
   .story-list-item {
     flex-direction: row;
     &__imageContainer {
-      width: 160px;
+      width: 20%;
       margin-right: 20px;
     }
 
     &__url-image {
-      max-width: 160px;
-      max-height: 200px;
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
     }
   }
 }
