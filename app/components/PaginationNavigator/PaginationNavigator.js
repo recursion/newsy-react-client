@@ -3,6 +3,32 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
+// return an array of page navigation links
+// based on how many pages, and what the current page is.
+const createLinks = (currentPage, totalPages, control) => {
+  const links = [];
+  const addControl = (i) => {
+    links.push(control(`${i}`, i, (currentPage === i)));
+  };
+
+  if (totalPages <= 1) {
+    addControl(1);
+  } else if (totalPages < 10) {
+    for (let i = 1; i < totalPages; i += 1) {
+      addControl(i);
+    }
+  } else if (totalPages >= 10 && currentPage < 6) {
+    for (let i = 1; i < 11; i += 1) {
+      addControl(i);
+    }
+  } else {
+    for (let i = currentPage - 5; i < currentPage + 5; i += 1) {
+      addControl(i);
+    }
+  }
+  return links;
+};
+
 /* Creates navigation links for multiple story pages. */
 const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
   const control = (str, pageNumber, selected) => {
@@ -20,41 +46,16 @@ const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
     );
   };
 
-  // return an array of page navigation links
-  // based on how many pages, and what the current page is.
-  const createLinks = (currentPage, totalPages) => {
-    const links = [];
-    const addControl = (i) => {
-      links.push(control(`${i}`, i, (currentPage === i)));
-    };
-
-    if (totalPages <= 1) {
-      addControl(1);
-    } else if (totalPages < 10) {
-      for (let i = 1; i < totalPages; i += 1) {
-        addControl(i);
-      }
-    } else if (totalPages >= 10 && currentPage < 6) {
-      for (let i = 1; i < 11; i += 1) {
-        addControl(i);
-      }
-    } else {
-      for (let i = currentPage - 5; i < currentPage + 5; i += 1) {
-        addControl(i);
-      }
-    }
-    return links;
-  };
-
   const totalPages = Math.round(totalStories / 20) + 1;
   return (
     <div className="pagination-nav centerText">
       {(page > 1) ? control('Previous', page - 1) : ''}
-      {createLinks(page, totalPages)}
+      {createLinks(page, totalPages, control)}
       {(page < totalPages) ? control('Next', page + 1) : ''}
     </div>
   );
 };
+
 
 PaginationNavigator.propTypes = {
   onGetPage: PropTypes.func,
