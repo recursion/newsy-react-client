@@ -7,7 +7,7 @@ import './style.scss';
 const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
   const control = (str, pageNumber, selected) => {
     if (selected) {
-      return <span className="pagination-nav__control selected">{str}</span>;
+      return <span key={pageNumber} className="pagination-nav__control selected">{str}</span>;
     }
     return (
       <button
