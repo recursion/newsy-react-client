@@ -6,30 +6,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListItem from 'components/ListItem';
-import { IssueIcon } from 'components/Icons';
+// import { IssueIcon } from 'components/Icons';
 import './style.scss';
 
 export default class StoryListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { item } = this.props;
     let nameprefix = '';
+
+    // get our time strings from the published date
     const d = new Date(item.publishedAt);
     const day = d.toLocaleDateString();
     const time = d.toLocaleTimeString();
+
+    // setup placeholder images for those that dont exist or dont load.
+    // TODO: Get a better placeholder image.
+    const placeHolderImage = 'https://via.placeholder.com/160x160';
+    const urlImage = (!item.urlToImage) ? placeHolderImage : item.urlToImage;
+
+    // create the storylist item content
     const content = (
       <div className="story-list-item">
-        {/* we need to handle images that fail to load here 
-            perhaps with something like this:
-
-              function imgError(image) {
-                image.onerror = "";
-                image.src = "/images/noimage.gif";
-                return true;
-              }
-              <img src="image.png" onerror="imgError(this);"/>
-        */}
         <div className="story-list-item__imageContainer">
-          <img src={item.urlToImage} className="story-list-item__url-image"/>
+          <img 
+            src={urlImage} 
+            className="story-list-item__url-image" 
+            onError={(e)=>{e.target.src=placeHolderImage}} 
+          />
         </div>
         <div className="story-list-item__content">
           <a className="story-list-item__title" href={item.url}>{item.title}</a>
@@ -42,6 +45,7 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
         </div>
       </div>
     );
+
     // Render the content into a list item
     return (
       <ListItem key={`story-list-item-${item.title}-${item.author}`} item={content} />
@@ -50,6 +54,5 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
 }
 
 StoryListItem.propTypes = {
-  item: PropTypes.object,
-  query: PropTypes.string,
+  item: PropTypes.object
 };
