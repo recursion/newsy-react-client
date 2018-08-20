@@ -27,8 +27,7 @@ const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
 
     if (totalPages <= 1) {
       addControl(1);
-    }
-    if (totalPages < 10) {
+    } else if (totalPages < 10) {
       for (let i = 1; i < totalPages; i += 1) {
         addControl(i);
       }
