@@ -2,7 +2,7 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest, all } from 'redux-saga/effects';
 import { LOAD_STORIES } from './constants';
 import { storiesLoaded, storiesLoadingError } from './actions';
 
@@ -35,5 +35,5 @@ export default function* watchAll () {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield [takeLatest(LOAD_STORIES, getStories)];
+  yield all([takeLatest(LOAD_STORIES, getStories)]);
 }
