@@ -6,8 +6,17 @@ import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 import StoryListItem from 'containers/StoryListItem';
 import PaginationNavigator from 'components/PaginationNavigator';
+import UsageTips from 'containers/UsageTips';
 
 import './style.scss';
+
+const calcResultsDisplayed = (page, stories) => {
+  if (page === 1) {
+    return `${1} - ${stories.length}`;
+  }
+  const start = ((page - 1) * 20) + 1;
+  return `${start}-${(start + stories.length) - 1}`;
+};
 
 const StoryList = ({
   loading,
@@ -45,31 +54,17 @@ const StoryList = ({
     if (stories.toJS) {
       stories = stories.toJS();
     }
-    const calcResultsDisplayed = () => {
-      if (page === 1) {
-        return `${1} - ${stories.length}`;
-      }
-      const start = ((page - 1) * 20) + 1;
-      return `${start}-${(start + stories.length) - 1}`;
-    };
+
     return (
       <div className="storyList">
         {(totalStories > 0) ?
           <div className="storyList__results">
-            Showing {calcResultsDisplayed()} of {totalStories} Results
+            Showing {calcResultsDisplayed(page, stories)} of {totalStories} Results
           </div> : ''
         }
         {(totalStories > 0) ?
           <List items={stories} component={StoryListItem} /> :
-          <div className="storyList__tips">
-            <h4 className="centerText">Advanced Search Tips</h4>
-            <ul>
-              <li>Surround phrases with quotes (&quot;) for exact match.</li>
-              <li>Prepend words or phrases that <em>must</em> appear with a + symbol. Eg: +bitcoin</li>
-              <li>Prepend words that <em>must not</em> appear with a - symbol. Eg: -bitcoin</li>
-              <li>Alternatively you can use the AND / OR / NOT keywords, and optionally group these with parenthesis. Eg: crypto AND (ethereum OR litecoin) NOT bitcoin.</li>
-            </ul>
-          </div>
+          <UsageTips />
         }
         { (page === 0) ? '' : <PaginationNavigator {...pageNavProps} />}
       </div>
