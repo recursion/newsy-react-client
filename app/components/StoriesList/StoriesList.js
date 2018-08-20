@@ -5,6 +5,7 @@ import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 import StoryListItem from 'containers/StoryListItem';
+import './style';
 
 const PaginationControl = (page, totalStories, onGetPage) => {
   // calculate how many pages are available
@@ -43,6 +44,10 @@ const StoryList = ({ loading, error, stories, page, totalStories, onGetPage }) =
     }
     return (
       <div>
+        {(totalStories > 0) ? 
+          <p className="storyList-results">{totalStories} Results</p> :
+          ''
+        }
         <List items={stories} component={StoryListItem} />
         { (page === 0) ? '' : PaginationControl(page, totalStories, onGetPage)}
       </div>
