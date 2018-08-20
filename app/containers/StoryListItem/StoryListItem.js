@@ -28,7 +28,9 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
               }
               <img src="image.png" onerror="imgError(this);"/>
         */}
-        <img src={item.urlToImage} className="story-list-item__url-image"/>
+        <div className="story-list-item__imageContainer">
+          <img src={item.urlToImage} className="story-list-item__url-image"/>
+        </div>
         <div className="story-list-item__content">
           <a className="story-list-item__title" href={item.url}>{item.title}</a>
           <span className="story-list-item__source">{item.source.name}</span>
