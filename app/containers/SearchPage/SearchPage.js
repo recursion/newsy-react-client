@@ -19,7 +19,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       onGetPage
     } = this.props;
 
-    const searchListProps = {
+    const storiesListProps = {
       loading,
       error,
       stories: stories.get('articles'),
@@ -47,7 +47,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
                 />
               </label>
             </form>
-            <StoriesList {...searchListProps} />
+            <StoriesList {...storiesListProps} />
           </section>
         </div>
       </article>
