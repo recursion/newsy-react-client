@@ -11,3 +11,6 @@ npm-debug.log
 
 # Logs
 yarn-error.log
+
+# vscode files
+.vscode
