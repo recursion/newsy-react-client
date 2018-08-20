@@ -34,7 +34,7 @@ const StoryList = ({
     return <List component={ErrorComponent} />;
   }
 
-  if (stories && stories.length !== 0) {
+  if (stories.length !== 0) {
     // TODO: currently we are passing only the articles in
     // likely we want to pass the entire object instead
     // since we are using pretty much all of it at this point.
@@ -62,7 +62,7 @@ const StoryList = ({
         {(totalStories > 0) ?
           <List items={stories} component={StoryListItem} /> :
           <div className="storyList__tips">
-            <h5 className="centerText">Search Tips</h5>
+            <h4 className="centerText">Advanced Search Tips</h4>
             <ul>
               <li>Surround phrases with quotes (&quot;) for exact match.</li>
               <li>Prepend words or phrases that <em>must</em> appear with a + symbol. Eg: +bitcoin</li>
