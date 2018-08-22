@@ -6,6 +6,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListItem from 'components/ListItem';
+import StoryImage from 'components/StoryImage';
+
 // import { IssueIcon } from 'components/Icons';
 import './style.scss';
 
@@ -20,21 +22,19 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
 
     // setup placeholder images for those that dont exist or dont load.
     // TODO: Get a better placeholder image.
-    const placeHolderImage = 'https://dummyimage.com/160x160/fff/fff';
-    const urlImage = (!item.urlToImage) ? placeHolderImage : item.urlToImage;
+    // const placeHolderImage = 'https://dummyimage.com/160x160/fff/fff';
+    // const urlImage = (!item.urlToImage) ? placeHolderImage : item.urlToImage;
 
+
+    const imageProps = {
+      urlImage: item.urlToImage,
+      item
+    };
 
     // create the storylist item content
     const content = (
       <div className="story-list-item">
-        <div className="story-list-item__imageContainer">
-          <img
-            src={urlImage}
-            className="story-list-item__url-image"
-            onError={(e) => { e.target.src = placeHolderImage; }}
-            alt={`${item.url}`}
-          />
-        </div>
+        <StoryImage {...imageProps} />
         <div className="story-list-item__content">
           <a className="story-list-item__title" href={item.url}>{item.title}</a>
           <div className="story-list-item__meta">
