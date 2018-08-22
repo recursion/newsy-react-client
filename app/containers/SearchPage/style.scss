@@ -1,9 +1,14 @@
 .search-page {
-  
+
+  &__title {
+    text-align: center;
+    margin: 0 0;
+  }
+
   h2 {
     font-size: 1.5em;
   }
-  
+
   section {
     margin: 0;
 
@@ -17,14 +22,13 @@
   }
 
   form {
-    margin-bottom: 1em;
-
     input {
       outline: none;
       width: 100%;
       border-top: 1px dotted #999;
       border-bottom: 1px dotted #999;
       text-align: center;
+      background-color: lightgrey;
     }
   }
 

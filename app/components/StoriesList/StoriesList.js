@@ -6,7 +6,6 @@ import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 import StoryListItem from 'containers/StoryListItem';
 import PaginationNavigator from 'components/PaginationNavigator';
-import ResultsCounter from 'components/ResultsCounter';
 
 import './style.scss';
 
@@ -44,15 +43,9 @@ const StoryList = ({
       totalStories
     };
 
-    const resultsCounterProps = {
-      page,
-      numStories: stories.length,
-      totalStories
-    };
 
     return (
       <div className="storyList">
-        {(totalStories > 0) ? <ResultsCounter {...resultsCounterProps} /> : ''}
         <List items={stories} component={StoryListItem} />
         { (page === 0) ? '' : <PaginationNavigator {...pageNavProps} />}
       </div>

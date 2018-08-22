@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import StoriesList from 'components/StoriesList';
 import SearchOptions from 'components/SearchOptions';
+import ResultsCounter from 'components/ResultsCounter';
 
 import './style.scss';
 
@@ -35,6 +36,16 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       onGetPage
     };
 
+    const resultsCounterProps = {
+      page: stories.get('page'),
+      totalStories: stories.get('totalResults'),
+      numStories: stories.get('articles').length,
+    };
+
+    const resultsCounter = (resultsCounterProps.totalStories > 0) ?
+      <ResultsCounter {...resultsCounterProps} /> :
+      '';
+
     return (
       <article>
         <Helmet>
@@ -54,6 +65,10 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
               />
             </label>
           </form>
+          { (this.props.query === false) ?
+            <h3 className="search-page__title">Top Stories</h3> :
+            resultsCounter
+          }
           <StoriesList {...storiesListProps} />
         </section>
       </article>
