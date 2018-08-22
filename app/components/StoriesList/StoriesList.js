@@ -9,6 +9,12 @@ import PaginationNavigator from 'components/PaginationNavigator';
 
 import './style.scss';
 
+/* calculate the results being display
+ *  i.e. 1-20 or 21-40
+ *  @number page    - the current page
+ *  @number stories - the total number of stories
+ *   returns @string
+ */
 const calcResultsDisplayed = (page, stories) => {
   if (page === 1) {
     return `${1} - ${stories.length}`;
