@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-export default class StoryImage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export default class StoryImage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = { errored: false };
