@@ -6,7 +6,6 @@ import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 import StoryListItem from 'containers/StoryListItem';
 import PaginationNavigator from 'components/PaginationNavigator';
-import UsageTips from 'containers/UsageTips';
 
 import './style.scss';
 
@@ -62,10 +61,7 @@ const StoryList = ({
             Showing {calcResultsDisplayed(page, stories)} of {totalStories} Results
           </div> : ''
         }
-        {(totalStories > 0) ?
-          <List items={stories} component={StoryListItem} /> :
-          <UsageTips />
-        }
+        <List items={stories} component={StoryListItem} />
         { (page === 0) ? '' : <PaginationNavigator {...pageNavProps} />}
       </div>
     );
