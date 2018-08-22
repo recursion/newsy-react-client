@@ -52,11 +52,12 @@ const createLinks = (currentPage, totalPages, onGetPage) => {
 /* Creates navigation links for multiple story pages. */
 const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
   const totalPages = Math.round(totalStories / 20) + 1;
+  // TODO: previous and next are not currently creating links - find out why.
   return (
     <div className="pagination-nav centerText">
-      {(page > 1) ? LinkControl('Previous', page - 1, onGetPage) : ''}
+      {(page > 1) ? LinkControl('Previous', page - 1, false, onGetPage) : ''}
       {createLinks(page, totalPages, onGetPage, onGetPage)}
-      {(page < totalPages) ? LinkControl('Next', page + 1, onGetPage) : ''}
+      {(page < totalPages) ? LinkControl('Next', page + 1, false, onGetPage) : ''}
     </div>
   );
 };
