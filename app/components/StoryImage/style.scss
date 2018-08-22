@@ -6,7 +6,7 @@
     align-items: center;
   }
 
-  &__-image {
+  &__image {
     max-width: 100%;
     max-height: 100%;
     width: auto;
@@ -24,6 +24,10 @@
       width: 160px;
       height: 160px;
       object-fit: cover;
+    }
+
+    &__filler {
+      width: 160px;
     }
   }
 }

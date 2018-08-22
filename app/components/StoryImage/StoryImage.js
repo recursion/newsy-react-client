@@ -27,7 +27,7 @@ export default class StoryImage extends React.Component { // eslint-disable-line
     return (
       <div className="story-image__container">
         {(this.state.errored || !this.props.urlImage) ?
-          null :
+          <div className="story-image__filler"></div> :
           <img
             src={this.props.urlImage}
             className="story-image__image"
