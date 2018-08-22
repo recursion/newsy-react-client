@@ -8,6 +8,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import StoriesList from 'components/StoriesList';
+import SearchOptions from 'components/SearchOptions';
+
 import './style.scss';
 
 export default class SearchPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -39,22 +41,21 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
           <title>Newsy: Search</title>
           <meta name="description" content="An easy way to search multiple news outlets for similar stories." />
         </Helmet>
-        <div className="search-page">
-          <section>
-            <form onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="query">
-                <input
-                  id="query"
-                  type="text"
-                  placeholder="Enter search terms or headlines here."
-                  value={this.props.query || ''}
-                  onChange={this.props.onChangeSearchTerms}
-                />
-              </label>
-            </form>
-            <StoriesList {...storiesListProps} />
-          </section>
-        </div>
+        <SearchOptions />
+        <section className="search-page">
+          <form onSubmit={this.props.onSubmitForm}>
+            <label htmlFor="query">
+              <input
+                id="query"
+                type="text"
+                placeholder="Enter search terms or headlines here."
+                value={this.props.query || ''}
+                onChange={this.props.onChangeSearchTerms}
+              />
+            </label>
+          </form>
+          <StoriesList {...storiesListProps} />
+        </section>
       </article>
     );
   }
