@@ -34,7 +34,7 @@ const createLinks = (currentPage, totalPages, onGetPage) => {
   if (totalPages <= 1) {
     addControl(1);
   } else if (totalPages < 10) {
-    for (let i = 1; i < totalPages; i += 1) {
+    for (let i = 1; i <= totalPages; i += 1) {
       addControl(i);
     }
   } else if (totalPages >= 10 && currentPage < 6) {
@@ -51,7 +51,7 @@ const createLinks = (currentPage, totalPages, onGetPage) => {
 
 /* Creates navigation links for multiple story pages. */
 const PaginationNavigator = ({ page, totalStories, onGetPage }) => {
-  const totalPages = (totalStories <= 20) ? 1 : Math.round(totalStories / 20) + 1;
+  const totalPages = (totalStories <= 20) ? 1 : Math.round(totalStories / 20);
   // TODO: previous and next are not currently creating links - find out why.
   return (
     <div className="pagination-nav centerText">
