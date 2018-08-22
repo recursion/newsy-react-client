@@ -3,7 +3,12 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import { changeSearchTerms, loadStories, getPage } from './actions';
+import {
+  changeSearchTerms,
+  loadHeadlines,
+  loadStories,
+  getPage
+} from './actions';
 import {
   makeSelectQuery,
   makeSelectStories,
@@ -20,7 +25,8 @@ const mapDispatchToProps = (dispatch) => ({
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     dispatch(loadStories());
   },
-  onGetPage: (page) => dispatch(getPage(page))
+  onGetPage: (page) => dispatch(getPage(page)),
+  loadHeadlines: () => dispatch(loadHeadlines())
 });
 
 const mapStateToProps = createStructuredSelector({

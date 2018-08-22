@@ -11,6 +11,11 @@ import StoriesList from 'components/StoriesList';
 import './style.scss';
 
 export default class SearchPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    if (!this.props.query) {
+      this.props.loadHeadlines();
+    }
+  }
   render() {
     const {
       loading,

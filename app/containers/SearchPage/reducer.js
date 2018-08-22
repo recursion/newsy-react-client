@@ -12,6 +12,7 @@ import {
   LOAD_STORIES,
   LOAD_STORIES_SUCCESS,
   LOAD_STORIES_ERROR,
+  LOAD_HEADLINES
 } from './constants';
 
 // The initial state of the App
@@ -30,6 +31,11 @@ const initialState = fromJS({
 
 function searchReducer(state = initialState, action) {
   switch (action.type) {
+    case LOAD_HEADLINES:
+      return state
+        .set('loading', true)
+        .setIn(['stories', 'page'], 1)
+        .set('error', false);
     case RESET:
       return initialState;
     case CHANGE_QUERY:
