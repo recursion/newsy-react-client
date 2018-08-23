@@ -61,7 +61,9 @@ function searchReducer(state = initialState, action) {
         .setIn(['stories', 'articles'], action.stories.articles)
         .set('loading', false);
     case LOAD_STORIES_ERROR:
-      return state.set('error', true);
+      return state
+        .set('error', action.error)
+        .set('loading', false);
     default:
       return state;
   }
