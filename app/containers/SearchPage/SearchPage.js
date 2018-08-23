@@ -10,15 +10,11 @@ import { Helmet } from 'react-helmet';
 import StoriesList from 'components/StoriesList';
 import SearchOptions from 'containers/SearchOptions';
 import ResultsCounter from 'components/ResultsCounter';
+import UsageTips from 'containers/UsageTips';
 
 import './style.scss';
 
 export default class SearchPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  componentDidMount() {
-    if (!this.props.query) {
-      this.props.loadHeadlines();
-    }
-  }
   render() {
     const {
       loading,
@@ -44,7 +40,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
 
     const resultsCounter = (resultsCounterProps.totalStories > 0) ?
       <ResultsCounter {...resultsCounterProps} /> :
-      '';
+      <UsageTips />;
 
     return (
       <article>
@@ -65,10 +61,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
               />
             </label>
           </form>
-          { (this.props.query === false) ?
-            <h3 className="search-page__title">Top Stories</h3> :
-            resultsCounter
-          }
+          { resultsCounter }
           <StoriesList {...storiesListProps} />
         </section>
       </article>
