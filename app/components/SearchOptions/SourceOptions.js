@@ -20,19 +20,10 @@ class StatefulMultiSelect extends Component {
       selected: [],
     };
     this.handleSelectedChange = this.handleSelectedChanged.bind(this);
-    this.valueRenderer = this.valueRenderer.bind(this);
   }
 
   handleSelectedChanged(selected) {
     this.setState({ selected });
-  }
-
-  valueRenderer(selected, options) {
-    return (
-      (this.state.selected.length === 0) ?
-        'Sources' :
-        renderSources(selected, options)
-    );
   }
 
   render() {
@@ -59,7 +50,7 @@ class StatefulMultiSelect extends Component {
         options={options}
         onSelectedChanged={this.handleSelectedChange}
         selected={selected}
-        valueRenderer={this.valueRenderer}
+        valueRenderer={renderSources}
         ItemRenderer={ItemRenderer}
         selectAllLabel={selectAllLabel}
         isLoading={isLoading}

@@ -1,5 +1,5 @@
 /**
- *  Helper function for the SourceOptions component.
+ * Function for rendering selected sources into a string
  */
 
 /**
@@ -32,5 +32,17 @@ const renderSources = (selected, options) => (
     `Sources: ${compileSources(selected, options)}`
 );
 
-export default renderSources;
+/**
+ * sourceRenderer
+ * @param {array} selected
+ * @param {array} options
+ * @returns {string}
+ */
+const sourceRenderer = (selected, options) => (
+  (selected.length === 0) ?
+    'Sources' :
+    renderSources(selected, options)
+);
+
+export default sourceRenderer;
 
