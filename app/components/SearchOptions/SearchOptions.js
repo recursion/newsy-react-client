@@ -13,6 +13,8 @@ import './style.scss';
 
 const options = [
   { label: 'NBC', value: 'nbc' },
+  { label: 'Al-Jazeera', value: 'al-jazeera' },
+  { label: 'Zerohedge', value: 'zerohedge' },
   { label: 'BBC', value: 'bbc' }
 ];
 

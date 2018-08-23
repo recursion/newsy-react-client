@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MultiSelect from '@khanacademy/react-multi-select';
 import PropTypes from 'prop-types';
-
+import renderSources from './SourceRenderer';
 
 /**
  *  StatefulMultiSelect
@@ -21,26 +21,17 @@ class StatefulMultiSelect extends Component {
     };
     this.handleSelectedChange = this.handleSelectedChanged.bind(this);
     this.valueRenderer = this.valueRenderer.bind(this);
-    this.renderSources = this.renderSources.bind(this);
   }
 
   handleSelectedChanged(selected) {
     this.setState({ selected });
   }
 
-  valueRenderer() {
+  valueRenderer(selected, options) {
     return (
       (this.state.selected.length === 0) ?
         'Sources' :
-        this.renderSources(this.state.selected)
-    );
-  }
-
-  renderSources(sources) {
-    return (
-      (sources.length === this.props.options.length) ?
-        'Sources: All' :
-        `Sources: ${sources.map((source) => source.label).join(', ')}`
+        renderSources(selected, options)
     );
   }
 
@@ -64,20 +55,18 @@ class StatefulMultiSelect extends Component {
     const { selected } = this.state;
 
     return (
-      <div>
-        <MultiSelect
-          options={options}
-          onSelectedChanged={this.handleSelectedChange}
-          selected={selected}
-          valueRenderer={this.valueRenderer}
-          ItemRenderer={ItemRenderer}
-          selectAllLabel={selectAllLabel}
-          isLoading={isLoading}
-          disabled={disabled}
-          disableSearch={disableSearch}
-          filterOptions={filterOptions}
-        />
-      </div>
+      <MultiSelect
+        options={options}
+        onSelectedChanged={this.handleSelectedChange}
+        selected={selected}
+        valueRenderer={this.valueRenderer}
+        ItemRenderer={ItemRenderer}
+        selectAllLabel={selectAllLabel}
+        isLoading={isLoading}
+        disabled={disabled}
+        disableSearch={disableSearch}
+        filterOptions={filterOptions}
+      />
     );
   }
 }
