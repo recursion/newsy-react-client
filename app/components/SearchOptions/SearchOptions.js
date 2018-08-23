@@ -7,8 +7,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import StatefulMultiSelect from './SourceOptions';
 
 import './style.scss';
+
+const options = [
+  { label: 'NBC', value: 'nbc' },
+  { label: 'BBC', value: 'bbc' }
+];
+
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -32,6 +39,7 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
             <option value="technology">Technology</option>
           </select>
         </label>
+        <StatefulMultiSelect options={options} />
       </section>
     );
   }
