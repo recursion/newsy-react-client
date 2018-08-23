@@ -7,7 +7,7 @@
 
 import React from 'react';
 // import PropTypes from 'prop-types';
-import StatefulMultiSelect from './SourceOptions';
+import StatefulMultiSelect from 'containers/SourceOptions';
 
 import './style.scss';
 

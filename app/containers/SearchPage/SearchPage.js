@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import StoriesList from 'components/StoriesList';
-import SearchOptions from 'components/SearchOptions';
+import SearchOptions from 'containers/SearchOptions';
 import ResultsCounter from 'components/ResultsCounter';
 
 import './style.scss';
