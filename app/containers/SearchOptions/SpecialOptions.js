@@ -11,6 +11,17 @@ const SpecialOptions = ({
 }) => (
   <div>
     {(target !== 'everything') ?
+      <div className="has-text-centered">
+        <button
+          className="button is-small is-primary"
+          onClick={toggleUseSources}
+        >
+            Search by Sources
+        </button>
+      </div> :
+      ''
+    }
+    {(target !== 'everything') ?
       <div className="search-options__options">
         <CountryOptions
           country={country}
@@ -18,18 +29,6 @@ const SpecialOptions = ({
         />
         <CategoryOptions />
       </div> :
-      ''
-    }
-    {(target !== 'everything') ?
-      <div className="has-text-centered">
-        <button
-          className="button is-small"
-          onClick={toggleUseSources}
-        >
-            Switch to Search by Sources
-        </button>
-      </div> :
-
       ''
     }
   </div>

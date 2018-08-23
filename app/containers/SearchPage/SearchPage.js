@@ -52,7 +52,6 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
           <title>Newsy: Search</title>
           <meta name="description" content="An easy way to search multiple news outlets for similar stories." />
         </Helmet>
-        <SearchOptions />
         <section className="search-page">
           <form onSubmit={this.props.onSubmitForm}>
             <label htmlFor="query">
@@ -65,6 +64,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
               />
             </label>
           </form>
+          <SearchOptions />
           { resultsCounter }
           <StoriesList {...storiesListProps} />
         </section>

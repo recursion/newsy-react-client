@@ -12,18 +12,18 @@ const options = [
 
 const SourceOptions = ({ target, toggleUseSources }) => (
   <div>
-    <StatefulMultiSelect options={options} />
     {(target !== 'everything') ?
-      <div className="has-text-centered">
+      <div className="field has-text-centered">
         <button
-          className="button is-small"
+          className="button is-small is-primary"
           onClick={toggleUseSources}
         >
-          Switch to Search by Country and Category
+          Search by Country and Category
         </button>
       </div> :
       ''
     }
+    <StatefulMultiSelect options={options} />
   </div>
 );
 
