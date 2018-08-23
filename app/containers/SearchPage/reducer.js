@@ -51,6 +51,9 @@ function searchReducer(state = initialState, action) {
         .setIn(['stories', 'getPage'], 1)
         .set('loading', false);
     case LOAD_STORIES:
+      if (state.get('query') === '' || state.get('query') === false) {
+        return state;
+      }
       return state
         .set('loading', true)
         .setIn(['stories', 'page'], 1)

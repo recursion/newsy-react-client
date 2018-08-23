@@ -38,9 +38,13 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       numStories: stories.get('articles').length,
     };
 
+    const renderTips = () => (
+      (loading) ? '' : <UsageTips />
+    );
+
     const resultsCounter = (resultsCounterProps.totalStories > 0) ?
       <ResultsCounter {...resultsCounterProps} /> :
-      <UsageTips />;
+      renderTips();
 
     return (
       <article>
