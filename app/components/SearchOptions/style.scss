@@ -1,6 +1,11 @@
 .search-options {
   text-align: center;
+  font-size: .9em;
   &__control {
     padding: 5px;
+    font-weight: bold;
+  }
+  select {
+    margin-left: 5px;
   }
 }
