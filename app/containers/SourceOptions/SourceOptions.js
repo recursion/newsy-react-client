@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MultiSelect from '@khanacademy/react-multi-select';
 import PropTypes from 'prop-types';
 import renderSources from './SourceRenderer';
-
+import './style.scss';
 /**
  *  StatefulMultiSelect
  *
