@@ -11,7 +11,12 @@ const makeSelectSearchType = () => createSelector(
   (searchState) => searchState.get('advanced')
 );
 
+const makeSelectUseSources = () => createSelector(
+  selectSearchOptions,
+  (searchState) => searchState.get('useSources')
+);
 export {
   selectSearchOptions,
   makeSelectSearchType,
+  makeSelectUseSources,
 };
