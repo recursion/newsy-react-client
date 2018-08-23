@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
  * that will enable uses to select from multiple choices.
  * or all choices.
  *
+ *  TODO: Currently just using flux (setState) for state management
+ *  but will need to move to full redux usage for state.
  * */
 class StatefulMultiSelect extends Component {
   constructor() {
