@@ -19,6 +19,14 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
     if (this.props.advanced) {
       return (
         <section className="search-options">
+          <div className="has-text-centered">
+            <button
+              className="button"
+              onClick={() => this.props.toggleSearchType()}
+            >
+                Return to Simple Search
+            </button>
+          </div>
           <TargetOptions
             target={this.props.target}
             onChangeTarget={this.props.onChangeTarget}
@@ -35,20 +43,14 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
               toggleUseSources={this.props.toggleUseSources}
             />
           }
-          <button
-            className="search-options__type"
-            onClick={() => this.props.toggleSearchType()}
-          >
-              Return to Simple Search
-          </button>
         </section>
       );
     }
     return (
-      <section className="search-options">
+      <section className="has-text-centered">
         <button
           onClick={() => this.props.toggleSearchType()}
-          className="search-options__type"
+          className="button"
         >
           Advanced Search Options
         </button>

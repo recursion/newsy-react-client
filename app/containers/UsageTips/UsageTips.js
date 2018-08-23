@@ -10,10 +10,9 @@ import './style.scss';
 export default function UsageTips() {
   return (
     <div className="usage-tips">
-      <h4 className="centerText">Simple Search</h4>
       <ul>
         <p className="usage-tips__info">
-          Uses your query string to search all sources, categories, and dates - sorted by date.
+          Enter your query string to search all sources, categories, and dates - sorted by date.
           For more specific results try:
         </p>
         <li>Surround phrases with quotes (&quot;) for exact match.</li>

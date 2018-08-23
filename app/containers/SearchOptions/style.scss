@@ -1,32 +1,19 @@
 .search-options {
+  padding: 10px;
   font-size: .9em;
-  text-align: center;
   margin-bottom: 5px;
   border-bottom: 1px dashed black;
 
-  &__options {
-    display: flex;
-    justify-content: space-around;
-    label {
-      text-align: center;
-    }
-  }
-  &__control {
-    padding: 5px;
-    font-weight: bold;
+  label {
     text-align: left;
-    height: 10%;
+  }
+  .field {
+    border: 1px solid grey;
+    padding: 5px;
+    border-radius: 5px;
   }
   &__type {
-    margin: 0;
-    color: darkblue;
-    margin: 5px;
-  }
-  &__type-selector {
-    border: 1px solid black;
-    font-size: .9em;
-    font-style: italic;
-    margin: 0;
+    margin: auto;
     color: darkblue;
     margin: 5px;
   }

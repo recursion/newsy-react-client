@@ -9,6 +9,15 @@
     padding: 10px;
   }
 
+  ul:not(.browser-default) {
+    padding-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+
+  ul:not(.browser-default) li {
+    list-style-type: disc;
+  }
   span {
     font-weight: bold;
     margin-right: 5px;

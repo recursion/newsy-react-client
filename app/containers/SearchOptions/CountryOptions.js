@@ -12,16 +12,19 @@ const buildCountryOption = (country) => (
 );
 
 const CountryOptions = ({ country, onChangeCountry }) => (
-  <label htmlFor="country" className="search-options__control">Country
-    <select
-      name="country"
-      value={country || 'all'}
-      onChange={(e) => onChangeCountry(e.target.value)}
-    >
-      <option value="all" defaultValue>All</option>
-      { countryCodes.map((c) => buildCountryOption(c)) }
-    </select>
-  </label>
+  <div className="field">
+    <label className="label" htmlFor="country">Country:</label>
+    <div className="select">
+      <select
+        name="country"
+        value={country || 'all'}
+        onChange={(e) => onChangeCountry(e.target.value)}
+      >
+        <option value="all" defaultValue>All</option>
+        { countryCodes.map((c) => buildCountryOption(c)) }
+      </select>
+    </div>
+  </div>
 );
 
 CountryOptions.propTypes = {
