@@ -15,8 +15,20 @@ const makeSelectUseSources = () => createSelector(
   selectSearchOptions,
   (searchState) => searchState.get('useSources')
 );
+
+const makeSelectCountry = () => createSelector(
+  selectSearchOptions,
+  (searchState) => searchState.get('country')
+);
+
+const makeSelectSearchTarget = () => createSelector(
+  selectSearchOptions,
+  (searchState) => searchState.get('target')
+);
 export {
   selectSearchOptions,
   makeSelectSearchType,
   makeSelectUseSources,
+  makeSelectSearchTarget,
+  makeSelectCountry,
 };

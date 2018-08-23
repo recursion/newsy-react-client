@@ -3,7 +3,7 @@
  *
  */
 
-import { CHANGE_SEARCH_TYPE, CHANGE_USE_SOURCES } from './constants';
+import { CHANGE_TARGET, CHANGE_COUNTRY, CHANGE_SEARCH_TYPE, CHANGE_USE_SOURCES } from './constants';
 
 /**
  * Changes the input field of the form
@@ -21,5 +21,18 @@ export function changeSearchType() {
 export function changeUseSources() {
   return {
     type: CHANGE_USE_SOURCES,
+  };
+}
+
+export function changeCountry(country) {
+  return {
+    type: CHANGE_COUNTRY,
+    country
+  };
+}
+export function changeTarget(target) {
+  return {
+    type: CHANGE_TARGET,
+    target
   };
 }

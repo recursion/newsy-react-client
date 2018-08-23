@@ -57,3 +57,4 @@ export const countryCodes = [
   { code: 'US', name: 'United States' },
   { code: 'VE', name: 'Venezuela, Bolivarian Republic of' }
 ];
+export const getCountryByCode = (code) => countryCodes.filter((c) => c.code.toLowerCase() === code.toLowerCase())[0];
