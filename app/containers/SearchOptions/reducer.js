@@ -4,11 +4,13 @@
  */
 import { fromJS } from 'immutable';
 
-import { SEARCH_TYPE_SIMPLE, CHANGE_SEARCH_TYPE } from './constants';
+import { CHANGE_SEARCH_TYPE } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-  searchType: SEARCH_TYPE_SIMPLE, // simple or advanced
+  advanced: false, // simple or advanced
+  searchTarget: false, // everything or headlines
+  detailsOrSources: false, // we can only use country/category OR sources - not both.
   country: false, // all or a selected country code
   category: false, // all or a selected category
   sources: [], // list of selected sources, or all - empty = all
@@ -21,7 +23,7 @@ function searchOptionsReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_SEARCH_TYPE:
       return state
-        .set('searchType', action.searchType);
+        .set('advanced', !state.get('advanced'));
     default:
       return state;
   }

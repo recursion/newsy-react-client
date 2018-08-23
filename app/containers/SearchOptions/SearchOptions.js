@@ -31,7 +31,7 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
         {country.name}
       </option>
     );
-    if (this.props.searchType === SEARCH_TYPE_ADVANCED) {
+    if (this.props.advanced) {
       return (
         <section className="search-options">
           <div className="search-options__options">
@@ -54,14 +54,14 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
             </label>
           </div>
           <StatefulMultiSelect options={options} />
-          <button className="search-options__type" onClick={() => this.props.toggleSearchType(this.props.searchType)}>Return to Simple Search</button>
+          <button className="search-options__type" onClick={() => this.props.toggleSearchType()}>Return to Simple Search</button>
         </section>
       );
     }
     return (
       <section className="search-options">
         <button
-          onClick={() => this.props.toggleSearchType(this.props.searchType)}
+          onClick={() => this.props.toggleSearchType()}
           className="search-options__type"
         >
           Advanced Search Options
@@ -72,6 +72,6 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
 }
 
 SearchOptions.propTypes = {
-  searchType: PropTypes.string,
+  advanced: PropTypes.bool,
   toggleSearchType: PropTypes.func
 };

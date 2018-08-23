@@ -8,7 +8,7 @@ const selectSearchOptions = (state) => state.get('searchOptions');
 
 const makeSelectSearchType = () => createSelector(
   selectSearchOptions,
-  (searchState) => searchState.get('searchType')
+  (searchState) => searchState.get('advanced')
 );
 
 export {

@@ -12,9 +12,8 @@ import { CHANGE_SEARCH_TYPE } from './constants';
  *
  * @return {object}    An action object with a type of CHANGE_USERNAME
  */
-export function changeSearchType(searchType) {
+export function changeSearchType() {
   return {
     type: CHANGE_SEARCH_TYPE,
-    searchType
   };
 }
