@@ -12,8 +12,10 @@ export default function UsageTips() {
     <div className="usage-tips">
       <ul>
         <p className="usage-tips__info">
-          Enter your query string to search all sources, categories, and dates - sorted by date.
-          For more specific results try:
+          Enter your query string to search across everything: <em>All</em> sources, categories, and dates - sorted by date.
+        </p>
+        <p className="usage-tips__info">
+          For more specific results you can try:
         </p>
         <li>Surround phrases with quotes (&quot;) for exact match.</li>
         <li>Prepend words or phrases that <em>must</em> appear with a + symbol. Eg: +bitcoin</li>
@@ -21,7 +23,7 @@ export default function UsageTips() {
         <li>Alternatively you can use the AND / OR / NOT keywords, and optionally group these with parenthesis. Eg: crypto AND (ethereum OR litecoin) NOT bitcoin.</li>
       </ul>
       <div className="has-text-centered">
-        <h4 className=".subtitle">Advanced Search Options</h4>
+        <h4 className=".subtitle">Advanced Option Settings</h4>
       </div>
       <ul>
         <li><span>Target:</span>Top stories/headlines or everything.</li>
