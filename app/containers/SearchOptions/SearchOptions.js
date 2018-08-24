@@ -8,7 +8,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import PropTypes from 'prop-types';
-import SmallCenteredButton from 'components/SmallCenteredButton';
 import {} from './constants';
 import './style.scss';
 import TargetOptions from './TargetOptions';
