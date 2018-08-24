@@ -45,6 +45,7 @@ const makeSelectHideAdvanced = () => createSelector(
   selectSearchOptions,
   (searchState) => searchState.get('hideAdvanced')
 );
+
 export {
   selectSearchOptions,
   makeSelectAdvanced,
