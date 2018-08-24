@@ -20,7 +20,9 @@ export default function UsageTips() {
         <li>Prepend words that <em>must not</em> appear with a - symbol. Eg: -bitcoin</li>
         <li>Alternatively you can use the AND / OR / NOT keywords, and optionally group these with parenthesis. Eg: crypto AND (ethereum OR litecoin) NOT bitcoin.</li>
       </ul>
-      <h4 className="centerText">Advanced Search Options</h4>
+      <div className="has-text-centered">
+        <h4 className=".subtitle">Advanced Search Options</h4>
+      </div>
       <ul>
         <li><span>Target:</span>Top stories/headlines or everything.</li>
         <li><span>Country:</span>Select the country you want news from. (cannot be used with sources)</li>
