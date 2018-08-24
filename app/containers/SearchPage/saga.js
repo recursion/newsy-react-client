@@ -15,16 +15,15 @@ import { resetSearch, storiesLoaded, storiesLoadingError, pageChangeLoaded } fro
 const requestURL = 'http://localhost:3000/v1';
 
 /**
- * Get stories based on search query
+ * Creates a &sources=sources string from seleted sources
+ * where sources is a comma seperated string
+ * if All sources are selected, then an empty string is returned
+ * since the api just assumes all sources if none are sent.
  */
-export function* getStories() {
-  // Select username from store
-  const query = yield select(makeSelectQuery());
+function* addSources() {
   const advancedSearch = yield select(makeSelectAdvanced());
   const selectedSources = yield select(makeSelectSelected());
   const allSources = yield select(makeSelectSources());
-
-  const withQuery = `${requestURL}/news/search?q=${query}`;
 
   let withAdvancedOptions = '';
   if (advancedSearch) {
@@ -32,8 +31,19 @@ export function* getStories() {
       withAdvancedOptions = `&sources=${selectedSources.toJS().join(',')}`;
     }
   }
+  return withAdvancedOptions;
+}
 
-  const finalUrl = withQuery + withAdvancedOptions;
+/**
+ * Get stories based on search query
+ */
+export function* getStories() {
+  // Select username from store
+  const query = yield select(makeSelectQuery());
+  const withQuery = `${requestURL}/news/search?q=${query}`;
+  const sources = yield addSources();
+
+  const finalUrl = `${withQuery}${sources}`;
 
   try {
     if (query === '') {
@@ -73,8 +83,9 @@ export function* getPage() {
   // Select username from store
   const query = yield select(makeSelectQuery());
   const page = yield select(makeSelectGetPage());
+  const sources = yield addSources();
 
-  const urlWithQuery = `${requestURL}/news/search?q=${query}&page=${page}`;
+  const urlWithQuery = `${requestURL}/news/search?q=${query}&page=${page}${sources}`;
 
   try {
     // Call our request helper (see 'utils/request')
