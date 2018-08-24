@@ -31,8 +31,14 @@ const makeSelectError = () => createSelector(
   (searchState) => searchState.get('error')
 );
 
+const makeSelectLoaded = () => createSelector(
+  selectSearch,
+  (searchState) => searchState.get('loaded')
+);
+
 export {
   selectSearch,
+  makeSelectLoaded,
   makeSelectQuery,
   makeSelectStories,
   makeSelectLoading,

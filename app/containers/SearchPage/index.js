@@ -13,6 +13,7 @@ import {
   makeSelectQuery,
   makeSelectStories,
   makeSelectLoading,
+  makeSelectLoaded,
   makeSelectError
 } from './selectors';
 import reducer from './reducer';
@@ -36,6 +37,7 @@ const mapStateToProps = createStructuredSelector({
   stories: makeSelectStories(),
   query: makeSelectQuery(),
   loading: makeSelectLoading(),
+  loaded: makeSelectLoaded(),
   error: makeSelectError()
 });
 

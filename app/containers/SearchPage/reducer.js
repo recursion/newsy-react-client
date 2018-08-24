@@ -20,6 +20,7 @@ const initialState = fromJS({
   loading: false,
   error: false,
   query: false,
+  loaded: false, // needed to track empty results
   stories: {
     articles: [],
     getPage: 1,
@@ -53,12 +54,13 @@ function searchReducer(state = initialState, action) {
     case LOAD_STORIES:
       return state
         .set('loading', true)
-        .setIn(['stories', 'page'], 1)
         .set('error', false);
     case LOAD_STORIES_SUCCESS:
       return state
         .setIn(['stories', 'totalResults'], action.stories.totalResults)
         .setIn(['stories', 'articles'], action.stories.articles)
+        .setIn(['stories', 'page'], (action.stories.totalResults > 0) ? 1 : 0)
+        .set('loaded', true)
         .set('loading', false);
     case LOAD_STORIES_ERROR:
       return state

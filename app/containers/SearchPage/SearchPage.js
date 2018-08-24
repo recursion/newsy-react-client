@@ -38,13 +38,31 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       numStories: stories.get('articles').length,
     };
 
-    const renderTips = () => (
-      (loading) ? '' : <UsageTips />
-    );
+    const determineRenderType = () => {
+      if (loading) {
+        return '';
+      } else if (this.props.loaded && resultsCounterProps.totalStories === 0) {
+        return (
+          <div className="has-text-centered">
+            <div className="title">
+              0 Results found.
+            </div>
+            <div className="subtitle">
+              Try less specific search terms.
+            </div>
+          </div>
+        );
+      }
+      return <UsageTips />;
+    };
 
+    // TODO:
+    // We need to check for results with no stories
+    // so we can let the user there were no results
+    // instead of just re-rendering the tips.
     const resultsCounter = (resultsCounterProps.totalStories > 0) ?
       <ResultsCounter {...resultsCounterProps} /> :
-      renderTips();
+      determineRenderType();
 
     return (
       <article>
@@ -81,6 +99,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
 
 SearchPage.propTypes = {
   loading: PropTypes.bool,
+  loaded: PropTypes.bool,
   error: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool,
