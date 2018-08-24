@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSubmitForm: (evt) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     const query = makeSelectQuery();
-    if (!query && query === '') {
+    if (query && query !== '') {
       dispatch(loadStories());
     }
   },
