@@ -19,7 +19,6 @@ const initialState = fromJS({
   useSources: true, // we can only use country/category OR sources - not both.
   country: false, // all or a selected country code
   category: false, // all or a selected category
-  sources: [], // list of selected sources, or all - empty = all
   dateState: false, // date to start the search
   dateEnd: false // date to end the search
 });

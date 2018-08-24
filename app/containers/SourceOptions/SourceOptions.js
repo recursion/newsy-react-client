@@ -10,20 +10,12 @@ import './style.scss';
  * that will enable uses to select from multiple choices.
  * or all choices.
  *
- *  TODO: Currently just using flux (setState) for state management
- *  but will need to move to full redux usage for state.
  * */
 class StatefulMultiSelect extends Component {
-  constructor() {
-    super();
-    this.state = {
-      selected: [],
-    };
-    this.handleSelectedChange = this.handleSelectedChanged.bind(this);
-  }
-
-  handleSelectedChanged(selected) {
-    this.setState({ selected });
+  componentDidMount() {
+    if (this.props.sources.size === 0) {
+      this.props.loadSources();
+    }
   }
 
   render() {
@@ -37,19 +29,20 @@ class StatefulMultiSelect extends Component {
 
     const {
       ItemRenderer,
-      options,
+      sources,
       selectAllLabel,
       isLoading,
       disabled,
       disableSearch,
+      selected,
+      onChangeSelection
     } = this.props;
-    const { selected } = this.state;
 
     return (
       <MultiSelect
-        options={options}
-        onSelectedChanged={this.handleSelectedChange}
-        selected={selected}
+        options={sources}
+        onSelectedChanged={onChangeSelection}
+        selected={selected.toJS()}
         valueRenderer={renderSources}
         ItemRenderer={ItemRenderer}
         selectAllLabel={selectAllLabel}
@@ -63,7 +56,13 @@ class StatefulMultiSelect extends Component {
 }
 
 StatefulMultiSelect.propTypes = {
-  options: PropTypes.array,
+  sources: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array
+  ]),
+  selected: PropTypes.object,
+  onChangeSelection: PropTypes.func,
+  loadSources: PropTypes.func,
   ItemRenderer: PropTypes.func,
   selectAllLabel: PropTypes.func,
   isLoading: PropTypes.bool,

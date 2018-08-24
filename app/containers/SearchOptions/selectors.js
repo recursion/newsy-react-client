@@ -26,6 +26,11 @@ const makeSelectCategory = () => createSelector(
   (searchState) => searchState.get('category')
 );
 
+const makeSelectSources = () => createSelector(
+  selectSearchOptions,
+  (searchState) => searchState.get('sources')
+);
+
 const makeSelectSearchTarget = () => createSelector(
   selectSearchOptions,
   (searchState) => searchState.get('target')
@@ -37,5 +42,6 @@ export {
   makeSelectUseSources,
   makeSelectSearchTarget,
   makeSelectCountry,
+  makeSelectSources,
   makeSelectCategory,
 };
