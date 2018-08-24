@@ -10,8 +10,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
-// import HomePage from 'containers/HomePage/Loadable';
-// import FeaturePage from 'containers/FeaturePage/Loadable';
 import SearchPage from 'containers/SearchPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
@@ -34,12 +32,4 @@ const App = () => (
     <Footer />
   </div>
 );
-
-/*
-      <Route exact path="/" component={HomePage} />
-      <Route path="/search" component={SearchPage} />
-      <Route path="/features" component={FeaturePage} />
-      <Route path="" component={NotFoundPage} />
-*/
-
 export default App;
