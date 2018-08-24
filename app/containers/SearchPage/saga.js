@@ -15,23 +15,34 @@ import { resetSearch, storiesLoaded, storiesLoadingError, pageChangeLoaded } fro
 const requestURL = 'http://localhost:3000/v1';
 
 /**
- * Creates a &sources=sources string from seleted sources
+ * Creates an &sources=sources string from seleted sources
  * where sources is a comma seperated string
  * if All sources are selected, then an empty string is returned
  * since the api just assumes all sources if none are sent.
+ *
+ * It is possible for this to be called without the sources store
+ * being preset. So - if we dont find the sources store, we just send
+ * back an empty string.
  */
 function* addSources() {
   const advancedSearch = yield select(makeSelectAdvanced());
-  const selectedSources = yield select(makeSelectSelected());
-  const allSources = yield select(makeSelectSources());
-
+  let selectedSources;
+  let allSources;
   let withAdvancedOptions = '';
-  if (advancedSearch) {
-    if (selectedSources.toJS().length !== allSources.length) {
-      withAdvancedOptions = `&sources=${selectedSources.toJS().join(',')}`;
+  try {
+    selectedSources = yield select(makeSelectSelected());
+    allSources = yield select(makeSelectSources());
+    if (advancedSearch) {
+      if (selectedSources.toJS().length !== allSources.length) {
+        withAdvancedOptions = `&sources=${selectedSources.toJS().join(',')}`;
+      }
     }
+    return withAdvancedOptions;
+  } catch (err) {
+    // Most likely because sources hasnt been loaded
+    // TODO: More error handling here?
+    return '';
   }
-  return withAdvancedOptions;
 }
 
 /**
