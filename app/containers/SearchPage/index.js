@@ -23,7 +23,10 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeSearchTerms: (evt) => dispatch(changeSearchTerms(evt.target.value)),
   onSubmitForm: (evt) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    dispatch(loadStories());
+    const query = makeSelectQuery();
+    if (!query && query === '') {
+      dispatch(loadStories());
+    }
   },
   onGetPage: (page) => dispatch(getPage(page)),
   loadHeadlines: () => dispatch(loadHeadlines())

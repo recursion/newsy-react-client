@@ -54,8 +54,8 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
         </Helmet>
         <section className="search-page">
           <form onSubmit={this.props.onSubmitForm}>
-            <div className="field">
-              <div className="control">
+            <div className="field has-addons">
+              <div className="control is-expanded">
                 <input
                   className="input"
                   id="query"
@@ -64,6 +64,9 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
                   value={this.props.query || ''}
                   onChange={this.props.onChangeSearchTerms}
                 />
+              </div>
+              <div className="control">
+                <button className="button is-info">Submit</button>
               </div>
             </div>
           </form>
