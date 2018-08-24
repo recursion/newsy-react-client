@@ -1,9 +1,6 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
-// import Banner from './images/banner.jpg';
 import './style.scss';
-
-//          <img src={Banner} alt="react-redux-boilerplate - Logo" />
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -12,16 +9,9 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
         <h2 className="title">Newsy</h2>
         <h6 className="subtitle">Search the news in style.</h6>
         <div className="nav-bar">
-          {/*
+          {/* example router link
             <Link className="router-link" to="/">
               Home
-            </Link>
-            <Link className="router-link" to="/search">
-              Search
-            </Link>
-            <Link className="router-link" to="/features">
-              Features
-            </Link>
           */}
         </div>
       </div>
