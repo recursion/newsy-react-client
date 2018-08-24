@@ -8,6 +8,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import PropTypes from 'prop-types';
+import SmallCenteredButton from 'components/SmallCenteredButton';
 import {} from './constants';
 import './style.scss';
 import TargetOptions from './TargetOptions';
@@ -19,14 +20,10 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
     if (this.props.advanced) {
       return (
         <section className="search-options">
-          <div className="has-text-centered">
-            <button
-              className="button is-small"
-              onClick={() => this.props.toggleSearchType()}
-            >
-                Return to Simple Search
-            </button>
-          </div>
+          <SmallCenteredButton
+            text="Return to Simple Search"
+            clickHandler={this.props.toggleSearchType}
+          />
           <TargetOptions
             target={this.props.target}
             onChangeTarget={this.props.onChangeTarget}
@@ -48,14 +45,10 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
     }
     return (
       <section className="search-options">
-        <div className="has-text-centered">
-          <button
-            onClick={() => this.props.toggleSearchType()}
-            className="button is-small"
-          >
-            Advanced Search Options
-          </button>
-        </div>
+        <SmallCenteredButton
+          text="Advanced Search Options"
+          clickHandler={this.props.toggleSearchType}
+        />
       </section>
     );
   }
