@@ -19,11 +19,17 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
   render() {
     if (this.props.advanced) {
       return (
-        <section className="search-options">
-          <SmallCenteredButton
-            text="Return to Simple Search"
-            clickHandler={this.props.toggleSearchType}
-          />
+        <section className="">
+          <div className="field">
+            <div className="control">
+              <button
+                className="button is-small"
+                onClick={this.props.toggleSearchType}
+              >
+                Use Simple Search
+              </button>
+            </div>
+          </div>
           <TargetOptions
             target={this.props.target}
             onChangeTarget={this.props.onChangeTarget}
@@ -46,12 +52,16 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       );
     }
     return (
-      <section className="search-options">
-        <SmallCenteredButton
-          text="Advanced Search Options"
-          clickHandler={this.props.toggleSearchType}
-        />
-      </section>
+      <div className="field">
+        <div className="control">
+          <button
+            className="button is-small"
+            onClick={this.props.toggleSearchType}
+          >
+              Advanced
+          </button>
+        </div>
+      </div>
     );
   }
 }
