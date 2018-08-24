@@ -47,13 +47,15 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       );
     }
     return (
-      <section className="has-text-centered">
-        <button
-          onClick={() => this.props.toggleSearchType()}
-          className="button is-small"
-        >
-          Advanced Search Options
-        </button>
+      <section className="search-options">
+        <div className="has-text-centered">
+          <button
+            onClick={() => this.props.toggleSearchType()}
+            className="button is-small"
+          >
+            Advanced Search Options
+          </button>
+        </div>
       </section>
     );
   }

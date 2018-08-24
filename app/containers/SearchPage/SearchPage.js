@@ -54,15 +54,18 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
         </Helmet>
         <section className="search-page">
           <form onSubmit={this.props.onSubmitForm}>
-            <label htmlFor="query">
-              <input
-                id="query"
-                type="text"
-                placeholder="Enter search terms or headlines here."
-                value={this.props.query || ''}
-                onChange={this.props.onChangeSearchTerms}
-              />
-            </label>
+            <div className="field">
+              <div className="control">
+                <input
+                  className="input"
+                  id="query"
+                  type="text"
+                  placeholder="Enter search terms or headlines here."
+                  value={this.props.query || ''}
+                  onChange={this.props.onChangeSearchTerms}
+                />
+              </div>
+            </div>
           </form>
           <SearchOptions />
           { resultsCounter }

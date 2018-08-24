@@ -23,12 +23,13 @@
 
   form {
     input {
-      outline: none;
-      width: 100%;
-      border-top: 1px dotted #999;
-      border-bottom: 1px dotted #999;
       text-align: center;
       background-color: lightgrey;
+    }
+    input::placeholder {
+      font-weight: bold;
+      font-style: italic;
+      color: black;
     }
   }
 
