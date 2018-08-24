@@ -8,7 +8,8 @@ import {
   CHANGE_COUNTRY,
   CHANGE_SEARCH_TYPE,
   CHANGE_CATEGORY,
-  CHANGE_USE_SOURCES
+  CHANGE_USE_SOURCES,
+  TOGGLE_HIDE_ADVANCED
 } from './constants';
 
 /**
@@ -23,7 +24,11 @@ export function changeSearchType() {
     type: CHANGE_SEARCH_TYPE,
   };
 }
-
+export function toggleHideAdvanced() {
+  return {
+    type: TOGGLE_HIDE_ADVANCED
+  };
+}
 export function changeUseSources() {
   return {
     type: CHANGE_USE_SOURCES,

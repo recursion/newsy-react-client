@@ -16,16 +16,22 @@ import SpecialOptions from './SpecialOptions';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    if (this.props.advanced) {
+    if (this.props.advanced && !this.props.hideAdvanced) {
       return (
         <section className="">
           <div className="field">
             <div className="control">
               <button
-                className="button is-small"
+                className="button is-small is-primary is-inverted"
                 onClick={this.props.toggleSearchType}
               >
-                Use Simple Search
+                &lt;&lt; Switch to Simple Search
+              </button>
+              <button
+                className="button is-pulled-right is-small is-outlined"
+                onClick={this.props.toggleHideAdvanced}
+              >
+                Hide Advanced Options
               </button>
             </div>
           </div>
@@ -50,14 +56,40 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
         </section>
       );
     }
+    if (this.props.hideAdvanced) {
+      return (
+        <div className="field">
+          <div className="control">
+            <div className="button is-small is-danger is-inverted is-static">
+              Using Advanced Settings
+            </div>
+            <button
+              className="button is-small is-primary is-inverted"
+              onClick={this.props.toggleHideAdvanced}
+            >
+                Show
+            </button>
+            <button
+              className="button is-pulled-right is-small is-primary is-inverted"
+              onClick={() => {
+                this.props.toggleHideAdvanced();
+                this.props.toggleSearchType();
+              }}
+            >
+              Switch To Simple Search
+            </button>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="field">
         <div className="control">
           <button
-            className="button is-small"
+            className="button is-small is-primary is-inverted"
             onClick={this.props.toggleSearchType}
           >
-              Advanced
+              Advanced Settings
           </button>
         </div>
       </div>
@@ -67,6 +99,8 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
 
 SearchOptions.propTypes = {
   advanced: PropTypes.bool,
+  hideAdvanced: PropTypes.bool,
+  toggleHideAdvanced: PropTypes.func,
   toggleSearchType: PropTypes.func,
   useSources: PropTypes.bool,
   toggleUseSources: PropTypes.func,

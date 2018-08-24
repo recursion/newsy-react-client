@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import {
+  toggleHideAdvanced,
   changeTarget,
   changeSearchType,
   changeUseSources,
@@ -14,6 +15,7 @@ import {
   makeSelectCountry,
   makeSelectUseSources,
   makeSelectCategory,
+  makeSelectHideAdvanced,
   makeSelectSearchTarget
 } from './selectors';
 import reducer from './reducer';
@@ -34,11 +36,15 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onChangeTarget: (target) => {
     dispatch(changeTarget(target));
+  },
+  toggleHideAdvanced: () => {
+    dispatch(toggleHideAdvanced());
   }
 });
 
 const mapStateToProps = createStructuredSelector({
   advanced: makeSelectSearchType(),
+  hideAdvanced: makeSelectHideAdvanced(),
   useSources: makeSelectUseSources(),
   country: makeSelectCountry(),
   category: makeSelectCategory(),

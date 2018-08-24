@@ -9,12 +9,14 @@ import {
   CHANGE_COUNTRY,
   CHANGE_USE_SOURCES,
   CHANGE_SEARCH_TYPE,
-  CHANGE_CATEGORY
+  CHANGE_CATEGORY,
+  TOGGLE_HIDE_ADVANCED
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   advanced: false, // simple or advanced
+  hideAdvanced: false, // use advanced search, but hide the form.
   target: 'everything', // everything or headlines
   useSources: true, // we can only use country/category OR sources - not both.
   country: false, // all or a selected country code
@@ -26,6 +28,9 @@ const initialState = fromJS({
 
 function searchOptionsReducer(state = initialState, action) {
   switch (action.type) {
+    case TOGGLE_HIDE_ADVANCED:
+      return state
+        .set('hideAdvanced', !state.get('hideAdvanced'));
     case CHANGE_TARGET:
       if (action.target === 'everything') {
         return state

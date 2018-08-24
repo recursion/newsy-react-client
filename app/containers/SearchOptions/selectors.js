@@ -41,6 +41,10 @@ const makeSelectAdvanced = () => createSelector(
   (searchState) => searchState.get('advanced')
 );
 
+const makeSelectHideAdvanced = () => createSelector(
+  selectSearchOptions,
+  (searchState) => searchState.get('hideAdvanced')
+);
 export {
   selectSearchOptions,
   makeSelectAdvanced,
@@ -50,4 +54,5 @@ export {
   makeSelectCountry,
   makeSelectSources,
   makeSelectCategory,
+  makeSelectHideAdvanced,
 };
