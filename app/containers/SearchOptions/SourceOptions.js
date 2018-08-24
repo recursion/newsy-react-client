@@ -18,7 +18,7 @@ const SourceOptions = ({ target, toggleUseSources }) => (
           className="button is-small is-primary"
           onClick={toggleUseSources}
         >
-          Search by Country and Category
+          Switch to Country and Category
         </button>
       </div> :
       ''

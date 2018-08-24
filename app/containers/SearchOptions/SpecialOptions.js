@@ -16,13 +16,13 @@ const SpecialOptions = ({
           className="button is-small is-primary"
           onClick={toggleUseSources}
         >
-            Search by Sources
+            Switch to Sources
         </button>
       </div> :
       ''
     }
     {(target !== 'everything') ?
-      <div className="search-options__options">
+      <div className="">
         <CountryOptions
           country={country}
           onChangeCountry={onChangeCountry}
