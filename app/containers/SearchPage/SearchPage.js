@@ -83,6 +83,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
                   placeholder="Enter search terms or headlines here."
                   value={this.props.query || ''}
                   onChange={this.props.onChangeSearchTerms}
+                  autoComplete="off"
                 />
               </div>
               <div className="control">
