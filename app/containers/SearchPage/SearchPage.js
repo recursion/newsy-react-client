@@ -38,7 +38,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       numStories: stories.get('articles').length,
     };
 
-    const determineRenderType = () => {
+    const renderTipsOrNoResultsMsg = () => {
       if (loading) {
         return '';
       } else if (this.props.loaded && resultsCounterProps.totalStories === 0) {
@@ -56,13 +56,15 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       return <UsageTips />;
     };
 
-    // TODO:
-    // We need to check for results with no stories
-    // so we can let the user there were no results
-    // instead of just re-rendering the tips.
+    /**
+     *  resultsCounter
+     *
+     *  renders the resultsCounter if there are results
+     *  or displays UsageTips, or a message stating no results found
+     */
     const resultsCounter = (resultsCounterProps.totalStories > 0) ?
       <ResultsCounter {...resultsCounterProps} /> :
-      determineRenderType();
+      renderTipsOrNoResultsMsg();
 
     return (
       <article>
@@ -75,7 +77,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
             <div className="field has-addons">
               <div className="control is-expanded">
                 <input
-                  className="input"
+                  className="input has-text-centered"
                   id="query"
                   type="text"
                   placeholder="Enter search terms or headlines here."
