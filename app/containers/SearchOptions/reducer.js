@@ -4,7 +4,13 @@
  */
 import { fromJS } from 'immutable';
 
-import { CHANGE_TARGET, CHANGE_COUNTRY, CHANGE_USE_SOURCES, CHANGE_SEARCH_TYPE } from './constants';
+import {
+  CHANGE_TARGET,
+  CHANGE_COUNTRY,
+  CHANGE_USE_SOURCES,
+  CHANGE_SEARCH_TYPE,
+  CHANGE_CATEGORY
+} from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -38,6 +44,9 @@ function searchOptionsReducer(state = initialState, action) {
     case CHANGE_COUNTRY:
       return state
         .set('country', action.country);
+    case CHANGE_CATEGORY:
+      return state
+        .set('category', action.category);
     default:
       return state;
   }

@@ -2,13 +2,18 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
-import { changeTarget, changeSearchType, changeUseSources, changeCountry } from './actions';
 import {
-} from './constants';
+  changeTarget,
+  changeSearchType,
+  changeUseSources,
+  changeCategory,
+  changeCountry
+} from './actions';
 import {
   makeSelectSearchType,
   makeSelectCountry,
   makeSelectUseSources,
+  makeSelectCategory,
   makeSelectSearchTarget
 } from './selectors';
 import reducer from './reducer';
@@ -24,6 +29,9 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeCountry: (country) => {
     dispatch(changeCountry(country));
   },
+  onChangeCategory: (category) => {
+    dispatch(changeCategory(category));
+  },
   onChangeTarget: (target) => {
     dispatch(changeTarget(target));
   }
@@ -33,6 +41,7 @@ const mapStateToProps = createStructuredSelector({
   advanced: makeSelectSearchType(),
   useSources: makeSelectUseSources(),
   country: makeSelectCountry(),
+  category: makeSelectCategory(),
   target: makeSelectSearchTarget()
 });
 

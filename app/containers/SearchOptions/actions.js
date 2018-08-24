@@ -3,7 +3,13 @@
  *
  */
 
-import { CHANGE_TARGET, CHANGE_COUNTRY, CHANGE_SEARCH_TYPE, CHANGE_USE_SOURCES } from './constants';
+import {
+  CHANGE_TARGET,
+  CHANGE_COUNTRY,
+  CHANGE_SEARCH_TYPE,
+  CHANGE_CATEGORY,
+  CHANGE_USE_SOURCES
+} from './constants';
 
 /**
  * Changes the input field of the form
@@ -30,6 +36,14 @@ export function changeCountry(country) {
     country
   };
 }
+
+export function changeCategory(category) {
+  return {
+    type: CHANGE_CATEGORY,
+    category
+  };
+}
+
 export function changeTarget(target) {
   return {
     type: CHANGE_TARGET,

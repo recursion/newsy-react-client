@@ -7,6 +7,8 @@ const SpecialOptions = ({
   target,
   country,
   onChangeCountry,
+  category,
+  onChangeCategory,
   toggleUseSources
 }) => (
   <div>
@@ -27,7 +29,10 @@ const SpecialOptions = ({
           country={country}
           onChangeCountry={onChangeCountry}
         />
-        <CategoryOptions />
+        <CategoryOptions
+          category={category}
+          onChangeCategory={onChangeCategory}
+        />
       </div> :
       ''
     }
@@ -43,6 +48,11 @@ SpecialOptions.propTypes = {
     PropTypes.bool,
     PropTypes.string
   ]),
+  category: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ]),
+  onChangeCategory: PropTypes.func,
   onChangeCountry: PropTypes.func,
   toggleUseSources: PropTypes.func
 };
