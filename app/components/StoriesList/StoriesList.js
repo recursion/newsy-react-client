@@ -33,6 +33,8 @@ const StoryList = ({
     // when stories is unpopulated it is an immutable object
     // so convert it to js first otherwise leave it.
     // TODO: this is a bit hackish and needs a better solution.
+    // TODO: This probably needs to be converted to immutable (fromJS) in the reducer
+    // but in the interest of not breaking anything else.... ill keep it for now.
     if (stories.toJS) {
       stories = stories.toJS();
     }

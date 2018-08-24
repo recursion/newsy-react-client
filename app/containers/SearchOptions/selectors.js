@@ -36,8 +36,14 @@ const makeSelectSearchTarget = () => createSelector(
   (searchState) => searchState.get('target')
 );
 
+const makeSelectAdvanced = () => createSelector(
+  selectSearchOptions,
+  (searchState) => searchState.get('advanced')
+);
+
 export {
   selectSearchOptions,
+  makeSelectAdvanced,
   makeSelectSearchType,
   makeSelectUseSources,
   makeSelectSearchTarget,

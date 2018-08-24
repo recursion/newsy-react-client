@@ -4,7 +4,8 @@
 
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
 import { makeSelectQuery, makeSelectGetPage } from 'containers/SearchPage/selectors';
-import { makeSelectCountry } from 'containers/SearchOptions/selectors';
+import { makeSelectCountry, makeSelectAdvanced } from 'containers/SearchOptions/selectors';
+import { makeSelectSelected, makeSelectSources } from 'containers/SourceOptions/selectors';
 import request from 'utils/request';
 
 import { LOAD_HEADLINES, LOAD_STORIES, CHANGE_PAGE } from './constants';
@@ -19,8 +20,20 @@ const requestURL = 'http://localhost:3000/v1';
 export function* getStories() {
   // Select username from store
   const query = yield select(makeSelectQuery());
+  const advancedSearch = yield select(makeSelectAdvanced());
+  const selectedSources = yield select(makeSelectSelected());
+  const allSources = yield select(makeSelectSources());
+
   const withQuery = `${requestURL}/news/search?q=${query}`;
-  const finalUrl = withQuery;
+
+  let withAdvancedOptions = '';
+  if (advancedSearch) {
+    if (selectedSources.toJS().length !== allSources.length) {
+      withAdvancedOptions = `&sources=${selectedSources.toJS().join(',')}`;
+    }
+  }
+
+  const finalUrl = withQuery + withAdvancedOptions;
 
   try {
     if (query === '') {
