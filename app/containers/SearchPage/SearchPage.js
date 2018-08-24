@@ -66,7 +66,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
                 />
               </div>
               <div className="control">
-                <button className="button is-info">Submit</button>
+                <button className="button is-info">Search</button>
               </div>
             </div>
           </form>
