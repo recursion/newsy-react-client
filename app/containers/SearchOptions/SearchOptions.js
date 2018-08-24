@@ -28,7 +28,7 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
                 &lt;&lt; Switch to Simple Search
               </button>
               <button
-                className="button is-pulled-right is-small is-outlined"
+                className="button is-pulled-right is-small is-primary is-inverted"
                 onClick={this.props.toggleHideAdvanced}
               >
                 Hide Advanced Options
@@ -59,24 +59,24 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
     if (this.props.hideAdvanced) {
       return (
         <div className="field">
-          <div className="control">
-            <div className="button is-small is-danger is-inverted is-static">
-              Using Advanced Settings
-            </div>
+          <div className="control has-text-centered">
             <button
-              className="button is-small is-primary is-inverted"
-              onClick={this.props.toggleHideAdvanced}
-            >
-                Show
-            </button>
-            <button
-              className="button is-pulled-right is-small is-primary is-inverted"
+              className="button is-small is-primary is-inverted is-pulled-left"
               onClick={() => {
                 this.props.toggleHideAdvanced();
                 this.props.toggleSearchType();
               }}
             >
-              Switch To Simple Search
+              &lt;&lt;Simple Search
+            </button>
+            <div className="button is-small is-danger is-inverted is-static">
+              Using Advanced Settings
+            </div>
+            <button
+              className="button is-small is-primary is-inverted is-pulled-right"
+              onClick={this.props.toggleHideAdvanced}
+            >
+                Show Advanced
             </button>
           </div>
         </div>
