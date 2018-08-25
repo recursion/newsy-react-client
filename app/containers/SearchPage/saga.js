@@ -13,7 +13,7 @@ import {
 import {
   makeSelectSelected,
   makeSelectSources
-} from 'containers/SourceOptions/selectors';
+} from 'containers/SourcesSelector/selectors';
 import request from 'utils/request';
 
 import { LOAD_STORIES, CHANGE_PAGE } from './constants';
@@ -98,7 +98,7 @@ export function* getStories() {
   const country = yield getCountry();
   const category = yield getCategory();
   const nextPage = yield select(makeSelectGetPage());
-  const page = `page=${nextPage}`;
+  const page = (nextPage !== 1) ? `page=${nextPage}` : '';
   const q = (query) ? `q=${query}` : '';
 
   // build our url + queryString
@@ -118,6 +118,10 @@ export function* getStories() {
         }
       }
     });
+    // make sure a country is attached if searching top-headlines
+    if (target === 'top-headlines' && country === '') {
+      url += (firstOptionUsed) ? '&country=us' : '?country=us';
+    }
     return url;
   };
 
