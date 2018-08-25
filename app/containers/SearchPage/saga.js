@@ -61,6 +61,10 @@ function* addSources() {
  */
 export function* getTarget() {
   const target = yield select(makeSelectSearchTarget());
+  // TODO: change this value, AND server route to 'everything'
+  // in order to match the actual api - this way the client
+  // will be compatible with searchs directly to the actual newsapi.org
+  // api if we ever want that.
   let searchTarget = 'search';
 
   if (target === 'top-headlines') {
