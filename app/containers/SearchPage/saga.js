@@ -13,7 +13,7 @@ import {
 import { makeSelectSelected, makeSelectSources } from 'containers/SourceOptions/selectors';
 import request from 'utils/request';
 
-import { LOAD_HEADLINES, LOAD_STORIES, CHANGE_PAGE } from './constants';
+import { LOAD_STORIES, CHANGE_PAGE } from './constants';
 import { resetSearch, storiesLoaded, storiesLoadingError, pageChangeLoaded } from './actions';
 
 
@@ -130,23 +130,6 @@ export function* getStories() {
   }
 }
 
-/*
- * Get headlines
- */
-export function* getHeadlines() {
-  const country = yield select(makeSelectCountry());
-  const url = `${requestURL}/news/headlines`;
-  const withCountry = (country) ? `&country=${country}` : '';
-  const finalUrl = url + withCountry;
-
-  try {
-    // Call our request helper (see 'utils/request')
-    const stories = yield call(request, finalUrl);
-    yield put(storiesLoaded(stories));
-  } catch (err) {
-    yield put(storiesLoadingError(err));
-  }
-}
 
 /*
  * Get a specific page based on our current query
@@ -178,6 +161,5 @@ export default function* watchAll() {
   yield all([
     takeLatest(LOAD_STORIES, getStories),
     takeLatest(CHANGE_PAGE, getPage),
-    takeLatest(LOAD_HEADLINES, getHeadlines)
   ]);
 }

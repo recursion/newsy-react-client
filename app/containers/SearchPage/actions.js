@@ -22,7 +22,6 @@ import {
   LOAD_STORIES,
   LOAD_STORIES_SUCCESS,
   RESET,
-  LOAD_HEADLINES,
   LOAD_STORIES_ERROR
 } from './constants';
 
@@ -37,12 +36,6 @@ export function changeSearchTerms(query) {
   return {
     type: CHANGE_QUERY,
     query
-  };
-}
-
-export function loadHeadlines() {
-  return {
-    type: LOAD_HEADLINES
   };
 }
 
