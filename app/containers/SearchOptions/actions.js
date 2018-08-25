@@ -9,6 +9,7 @@ import {
   CHANGE_SEARCH_TYPE,
   CHANGE_CATEGORY,
   CHANGE_USE_SOURCES,
+  CHANGE_LANGUAGE,
   TOGGLE_HIDE_ADVANCED
 } from './constants';
 
@@ -22,6 +23,12 @@ import {
 export function changeSearchType() {
   return {
     type: CHANGE_SEARCH_TYPE,
+  };
+}
+export function changeLanguage(language) {
+  return {
+    type: CHANGE_LANGUAGE,
+    language
   };
 }
 export function toggleHideAdvanced() {

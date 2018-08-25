@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TargetOptions from './TargetOptions';
 import SourceOptions from './SourceOptions';
+import LanguageOptions from './LanguageOptions';
 import SpecialOptions from './SpecialOptions';
 import './style.scss';
 
@@ -32,6 +33,7 @@ export default class AdvancedOptions extends React.PureComponent { // eslint-dis
             target={this.props.target}
             onChangeTarget={this.props.onChangeTarget}
           />
+          <LanguageOptions language={this.props.language} onChangeLanguage={this.props.onChangeLanguage} />
           {(this.props.useSources) ?
             <SourceOptions
               target={this.props.target}
@@ -57,12 +59,18 @@ AdvancedOptions.propTypes = {
   toggleSearchType: PropTypes.func,
   useSources: PropTypes.bool,
   toggleUseSources: PropTypes.func,
+  onChangeLanguage: PropTypes.func,
+  language: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ]),
   country: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string
   ]),
   category: PropTypes.oneOfType([
     PropTypes.bool,
+
     PropTypes.string
   ]),
   target: PropTypes.string,

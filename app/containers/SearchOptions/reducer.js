@@ -10,6 +10,7 @@ import {
   CHANGE_USE_SOURCES,
   CHANGE_SEARCH_TYPE,
   CHANGE_CATEGORY,
+  CHANGE_LANGUAGE,
   TOGGLE_HIDE_ADVANCED
 } from './constants';
 
@@ -20,6 +21,7 @@ const initialState = fromJS({
   target: 'everything', // everything or headlines
   useSources: true, // we can only use country/category OR sources - not both.
   country: false, // all or a selected country code
+  language: false, // language code - or all by default
   category: false, // all or a selected category
   dateState: false, // date to start the search
   dateEnd: false // date to end the search
@@ -28,6 +30,9 @@ const initialState = fromJS({
 
 function searchOptionsReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_LANGUAGE:
+      return state
+        .set('language', action.language);
     case TOGGLE_HIDE_ADVANCED:
       return state
         .set('hideAdvanced', !state.get('hideAdvanced'));

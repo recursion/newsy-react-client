@@ -9,6 +9,7 @@ import {
   makeSelectAdvanced,
   makeSelectSearchTarget,
   makeSelectUseSources,
+  makeSelectLanguage,
   makeSelectCategory
 } from 'containers/SearchOptions/selectors';
 import {
@@ -93,6 +94,14 @@ export function* getCategory() {
   return '';
 }
 
+export function* getLanguage() {
+  const language = yield select(makeSelectLanguage());
+  if (language) {
+    return `language=${language}`;
+  }
+  return '';
+}
+
 /**
  * build the appropriate query and make a request using it.
  */
@@ -104,6 +113,7 @@ export function* getStories() {
   const sources = yield addSources();
   const country = yield getCountry();
   const category = yield getCategory();
+  const language = yield getLanguage();
   const nextPage = yield select(makeSelectGetPage());
   const page = (nextPage !== 1) ? `page=${nextPage}` : '';
   const q = (query) ? `q=${query}` : '';
@@ -124,7 +134,7 @@ export function* getStories() {
   // making sure we use ? for the first option
   // and & for the rest of the options
   const buildUrl = () => {
-    const options = [...sourcesOrCountryAndCategory(), page];
+    const options = [...sourcesOrCountryAndCategory(), page, language];
     let url = `${requestURL}${(advanced) ? target : 'search'}`;
     let firstOptionUsed = false;
 

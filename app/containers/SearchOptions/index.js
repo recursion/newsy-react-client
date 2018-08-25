@@ -8,7 +8,8 @@ import {
   changeSearchType,
   changeUseSources,
   changeCategory,
-  changeCountry
+  changeCountry,
+  changeLanguage
 } from './actions';
 import {
   makeSelectSearchType,
@@ -16,6 +17,7 @@ import {
   makeSelectUseSources,
   makeSelectCategory,
   makeSelectHideAdvanced,
+  makeSelectLanguage,
   makeSelectSearchTarget
 } from './selectors';
 import reducer from './reducer';
@@ -39,6 +41,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   toggleHideAdvanced: () => {
     dispatch(toggleHideAdvanced());
+  },
+  onChangeLanguage: (lang) => {
+    dispatch(changeLanguage(lang));
   }
 });
 
@@ -48,6 +53,7 @@ const mapStateToProps = createStructuredSelector({
   useSources: makeSelectUseSources(),
   country: makeSelectCountry(),
   category: makeSelectCategory(),
+  language: makeSelectLanguage(),
   target: makeSelectSearchTarget()
 });
 

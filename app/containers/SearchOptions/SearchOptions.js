@@ -22,6 +22,8 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       country,
       category,
       target,
+      language,
+      onChangeLanguage,
       onChangeCountry,
       onChangeCategory,
       onChangeTarget
@@ -35,6 +37,8 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       country,
       category,
       target,
+      language,
+      onChangeLanguage,
       onChangeCountry,
       onChangeCategory,
       onChangeTarget
@@ -77,6 +81,11 @@ SearchOptions.propTypes = {
   toggleSearchType: PropTypes.func,
   useSources: PropTypes.bool,
   toggleUseSources: PropTypes.func,
+  onChangeLanguage: PropTypes.func,
+  language: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ]),
   country: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string
