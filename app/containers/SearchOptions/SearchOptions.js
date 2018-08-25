@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import {} from './constants';
 import './style.scss';
 import AdvancedOptions from './AdvancedOptions';
+import AdvancedOptionsNav from './AdvancedOptionsNav';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -40,6 +41,11 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       onChangeTarget
     };
 
+    const advancedOptionsNavProps = {
+      toggleHideAdvanced,
+      toggleSearchType,
+    };
+
     if (this.props.advanced && !this.props.hideAdvanced) {
       return (
         <AdvancedOptions {...advancedOptionProps} />
@@ -47,28 +53,7 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
     }
     if (this.props.hideAdvanced) {
       return (
-        <div className="field">
-          <div className="control has-text-centered">
-            <button
-              className="button is-small is-primary is-inverted is-pulled-left"
-              onClick={() => {
-                this.props.toggleHideAdvanced();
-                this.props.toggleSearchType();
-              }}
-            >
-              &lt;&lt;Simple Search
-            </button>
-            <div className="button is-small is-danger is-inverted is-static">
-              Using Advanced Settings
-            </div>
-            <button
-              className="button is-small is-primary is-inverted is-pulled-right"
-              onClick={this.props.toggleHideAdvanced}
-            >
-                Show Advanced
-            </button>
-          </div>
-        </div>
+        <AdvancedOptionsNav {...advancedOptionsNavProps} />
       );
     }
     return (
