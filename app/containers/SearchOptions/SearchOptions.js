@@ -10,50 +10,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {} from './constants';
 import './style.scss';
-import TargetOptions from './TargetOptions';
-import SourceOptions from './SourceOptions';
-import SpecialOptions from './SpecialOptions';
+import AdvancedOptions from './AdvancedOptions';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
+    const {
+      toggleHideAdvanced,
+      toggleSearchType,
+      useSources,
+      toggleUseSources,
+      country,
+      category,
+      target,
+      onChangeCountry,
+      onChangeCategory,
+      onChangeTarget
+    } = this.props;
+
+    const advancedOptionProps = {
+      toggleHideAdvanced,
+      toggleSearchType,
+      useSources,
+      toggleUseSources,
+      country,
+      category,
+      target,
+      onChangeCountry,
+      onChangeCategory,
+      onChangeTarget
+    };
+
     if (this.props.advanced && !this.props.hideAdvanced) {
       return (
-        <section className="">
-          <div className="field">
-            <div className="control">
-              <button
-                className="button is-small is-primary is-inverted"
-                onClick={this.props.toggleSearchType}
-              >
-                &lt;&lt; Switch to Simple Search
-              </button>
-              <button
-                className="button is-pulled-right is-small is-primary is-inverted"
-                onClick={this.props.toggleHideAdvanced}
-              >
-                Hide Advanced Options
-              </button>
-            </div>
-          </div>
-          <TargetOptions
-            target={this.props.target}
-            onChangeTarget={this.props.onChangeTarget}
-          />
-          {(this.props.useSources) ?
-            <SourceOptions
-              target={this.props.target}
-              toggleUseSources={this.props.toggleUseSources}
-            /> :
-            <SpecialOptions
-              target={this.props.target}
-              country={this.props.country}
-              onChangeCountry={this.props.onChangeCountry}
-              category={this.props.category}
-              onChangeCategory={this.props.onChangeCategory}
-              toggleUseSources={this.props.toggleUseSources}
-            />
-          }
-        </section>
+        <AdvancedOptions {...advancedOptionProps} />
       );
     }
     if (this.props.hideAdvanced) {
