@@ -49,7 +49,7 @@ function* addSources() {
  *  addTarget
  *
  *  If we have set the target, then create a query for it.
- *  returns a string.
+ *  returns a string - either search or top-headlines.
  */
 export function* getTarget() {
   const target = yield select(makeSelectSearchTarget());
@@ -70,11 +70,13 @@ export function* getStories() {
   const target = yield getTarget();
   const sources = yield addSources();
 
-  const withQuery = `${requestURL}/news/${target}?q=${query}`;
+  const buildQuery = () => ((query) ? `?q=${query}` : '');
+
+  const withQuery = `${requestURL}/news/${target}${buildQuery()}`;
   const finalUrl = `${withQuery}${sources}`;
 
   try {
-    if (query === '') {
+    if ((query === false && target === 'search') || query === '') {
       yield put(resetSearch());
     } else {
       // Call our request helper (see 'utils/request')
