@@ -4,7 +4,7 @@
 
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
 import { makeSelectQuery, makeSelectGetPage } from 'containers/SearchPage/selectors';
-import { makeSelectCountry, makeSelectAdvanced } from 'containers/SearchOptions/selectors';
+import { makeSelectCountry, makeSelectAdvanced, makeSelectSearchTarget } from 'containers/SearchOptions/selectors';
 import { makeSelectSelected, makeSelectSources } from 'containers/SourceOptions/selectors';
 import request from 'utils/request';
 
@@ -46,14 +46,31 @@ function* addSources() {
 }
 
 /**
+ *  addTarget
+ *
+ *  If we have set the target, then create a query for it.
+ *  returns a string.
+ */
+export function* getTarget() {
+  const target = yield select(makeSelectSearchTarget());
+  let searchTarget = 'search';
+
+  if (target === 'top-headlines') {
+    searchTarget = target;
+  }
+
+  return searchTarget;
+}
+
+/**
  * Get stories based on search query
  */
 export function* getStories() {
-  // Select username from store
   const query = yield select(makeSelectQuery());
-  const withQuery = `${requestURL}/news/search?q=${query}`;
+  const target = yield getTarget();
   const sources = yield addSources();
 
+  const withQuery = `${requestURL}/news/${target}?q=${query}`;
   const finalUrl = `${withQuery}${sources}`;
 
   try {

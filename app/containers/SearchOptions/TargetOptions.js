@@ -11,7 +11,7 @@ const TargetOption = ({ target, onChangeTarget }) => (
         onChange={(e) => onChangeTarget(e.target.value)}
       >
         <option value="everything" defaultValue>Everything</option>
-        <option value="headlines">Breaking News</option>
+        <option value="top-headlines">Top Headlines</option>
       </select>
     </div>
   </div>
