@@ -118,7 +118,7 @@ export function* getStories() {
         }
       }
     });
-    // make sure a country is attached if searching top-headlines
+    // make sure a country is attached if searching top-headlines without one.
     if (target === 'top-headlines' && country === '') {
       url += (firstOptionUsed) ? '&country=us' : '?country=us';
     }
