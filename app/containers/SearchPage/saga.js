@@ -39,7 +39,7 @@ function* addSources() {
     allSources = yield select(makeSelectSources());
     if (advancedSearch) {
       if (selectedSources.toJS().length !== allSources.length) {
-        withAdvancedOptions = `&sources=${selectedSources.toJS().join(',')}`;
+        withAdvancedOptions = `sources=${selectedSources.toJS().join(',')}`;
       }
     }
     return withAdvancedOptions;
