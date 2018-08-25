@@ -7,3 +7,11 @@
   }
 }
 
+
+@media only screen and (min-width: 768px) {
+  .search-options {
+    &__special {
+      width: 310px;
+    }
+  }
+}
