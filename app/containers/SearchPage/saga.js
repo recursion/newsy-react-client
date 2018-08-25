@@ -10,7 +10,10 @@ import {
   makeSelectSearchTarget,
   makeSelectCategory
 } from 'containers/SearchOptions/selectors';
-import { makeSelectSelected, makeSelectSources } from 'containers/SourceOptions/selectors';
+import {
+  makeSelectSelected,
+  makeSelectSources
+} from 'containers/SourceOptions/selectors';
 import request from 'utils/request';
 
 import { LOAD_STORIES, CHANGE_PAGE } from './constants';
@@ -94,13 +97,15 @@ export function* getStories() {
   const sources = yield addSources();
   const country = yield getCountry();
   const category = yield getCategory();
+  const nextPage = yield select(makeSelectGetPage());
+  const page = `page=${nextPage}`;
   const q = (query) ? `q=${query}` : '';
 
   // build our url + queryString
   // making sure we use ? for the first option
   // and & for the rest
   const buildUrl = () => {
-    const options = [q, sources, country, category];
+    const options = [q, sources, country, category, page];
     let url = `${requestURL}${target}`;
     let firstOptionUsed = false;
     options.forEach((option) => {
@@ -123,33 +128,17 @@ export function* getStories() {
     } else {
       // Call our request helper (see 'utils/request')
       const stories = yield call(request, buildUrl());
-      yield put(storiesLoaded(stories));
+      if (nextPage > 1) {
+        yield put(pageChangeLoaded(stories));
+      } else {
+        yield put(storiesLoaded(stories));
+      }
     }
   } catch (err) {
     yield put(storiesLoadingError(err));
   }
 }
 
-
-/*
- * Get a specific page based on our current query
- */
-export function* getPage() {
-  // Select username from store
-  const query = yield select(makeSelectQuery());
-  const page = yield select(makeSelectGetPage());
-  const sources = yield addSources();
-
-  const urlWithQuery = `${requestURL}/news/search?q=${query}&page=${page}${sources}`;
-
-  try {
-    // Call our request helper (see 'utils/request')
-    const stories = yield call(request, urlWithQuery);
-    yield put(pageChangeLoaded(stories));
-  } catch (err) {
-    yield put(storiesLoadingError(err));
-  }
-}
 /**
  * Root saga manages watcher lifecycle
  */
@@ -160,6 +149,6 @@ export default function* watchAll() {
   // It will be cancelled automatically on component unmount
   yield all([
     takeLatest(LOAD_STORIES, getStories),
-    takeLatest(CHANGE_PAGE, getPage),
+    takeLatest(CHANGE_PAGE, getStories),
   ]);
 }
