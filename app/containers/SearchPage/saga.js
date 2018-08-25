@@ -139,6 +139,11 @@ export function* getStories() {
       }
     };
 
+    // add the query if there is one
+    if (q !== '') {
+      addQuerySymbol(q);
+    }
+
     // add advanced options if they exist
     if (advanced) {
       options.forEach((option) => {
@@ -150,11 +155,6 @@ export function* getStories() {
       if (target === 'top-headlines' && country === '') {
         addQuerySymbol('country=us');
       }
-    }
-
-    // add the query if there is one
-    if (q !== '') {
-      addQuerySymbol(q);
     }
     return url;
   };
