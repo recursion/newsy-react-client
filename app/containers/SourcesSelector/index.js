@@ -10,7 +10,7 @@ import { makeSelectSources, makeSelectSelected, makeSelectLoading } from './sele
 
 import reducer from './reducer';
 import saga from './saga';
-import SourceOptions from './SourceOptions';
+import SourcesSelector from './SourcesSelector';
 
 const mapDispatchToProps = (dispatch) => ({
   loadSources: () => dispatch(loadSources()),
@@ -28,6 +28,6 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'sources', reducer });
 const withSaga = injectSaga({ key: 'sources', saga });
 
-export default compose(withReducer, withSaga, withConnect)(SourceOptions);
+export default compose(withReducer, withSaga, withConnect)(SourcesSelector);
 export { mapDispatchToProps };
 

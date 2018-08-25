@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StatefulMultiSelect from 'containers/SourceOptions';
+import SourcesSelector from 'containers/SourcesSelector';
 
 const SourceOptions = ({ target, toggleUseSources }) => (
   <div className="field">
@@ -20,7 +20,7 @@ const SourceOptions = ({ target, toggleUseSources }) => (
     }
     <div className="control">
       <label className="label">Sources</label>
-      <StatefulMultiSelect />
+      <SourcesSelector />
     </div>
   </div>
 );

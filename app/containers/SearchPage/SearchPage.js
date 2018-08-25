@@ -118,6 +118,7 @@ SearchPage.propTypes = {
     PropTypes.bool,
   ]),
   onSubmitForm: PropTypes.func,
+  onGetPage: PropTypes.func,
   query: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool

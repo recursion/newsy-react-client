@@ -11,7 +11,7 @@ import './style.scss';
  * or all choices.
  *
  * */
-class StatefulMultiSelect extends Component {
+export default class SourcesSelector extends Component {
   componentDidMount() {
     if (this.props.sources.size === 0) {
       this.props.loadSources();
@@ -62,7 +62,7 @@ class StatefulMultiSelect extends Component {
   }
 }
 
-StatefulMultiSelect.propTypes = {
+SourcesSelector.propTypes = {
   sources: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array
@@ -76,5 +76,3 @@ StatefulMultiSelect.propTypes = {
   disabled: PropTypes.bool,
   disableSearch: PropTypes.bool
 };
-
-export default StatefulMultiSelect;
