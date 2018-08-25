@@ -16,4 +16,9 @@ const makeSelectSelected = () => createSelector(
   (sourceState) => sourceState.get('selected')
 );
 
-export { makeSelectSources, selectSources, makeSelectSelected };
+const makeSelectLoading = () => createSelector(
+  selectSources,
+  (sourceState) => sourceState.get('loading')
+);
+
+export { makeSelectSources, selectSources, makeSelectLoading, makeSelectSelected };

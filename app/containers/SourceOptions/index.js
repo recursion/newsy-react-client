@@ -6,7 +6,7 @@ import injectSaga from 'utils/injectSaga';
 
 import { loadSources, changeSelection } from './actions';
 
-import { makeSelectSources, makeSelectSelected } from './selectors';
+import { makeSelectSources, makeSelectSelected, makeSelectLoading } from './selectors';
 
 import reducer from './reducer';
 import saga from './saga';
@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = createStructuredSelector({
   sources: makeSelectSources(),
-  selected: makeSelectSelected()
+  selected: makeSelectSelected(),
+  isLoading: makeSelectLoading()
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

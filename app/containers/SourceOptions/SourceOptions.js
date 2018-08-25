@@ -38,6 +38,13 @@ class StatefulMultiSelect extends Component {
       onChangeSelection
     } = this.props;
 
+    if (isLoading) {
+      return (
+        <div className="control is-loading">
+          <input className="input is-loading" placeholder="Sources" />
+        </div>
+      );
+    }
     return (
       <MultiSelect
         options={sources}

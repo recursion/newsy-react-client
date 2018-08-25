@@ -4,7 +4,12 @@
 
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
 import { makeSelectQuery, makeSelectGetPage } from 'containers/SearchPage/selectors';
-import { makeSelectCountry, makeSelectAdvanced, makeSelectSearchTarget } from 'containers/SearchOptions/selectors';
+import {
+  makeSelectCountry,
+  makeSelectAdvanced,
+  makeSelectSearchTarget,
+  makeSelectCategory
+} from 'containers/SearchOptions/selectors';
 import { makeSelectSelected, makeSelectSources } from 'containers/SourceOptions/selectors';
 import request from 'utils/request';
 
@@ -12,7 +17,7 @@ import { LOAD_HEADLINES, LOAD_STORIES, CHANGE_PAGE } from './constants';
 import { resetSearch, storiesLoaded, storiesLoadingError, pageChangeLoaded } from './actions';
 
 
-const requestURL = 'http://localhost:3000/v1';
+const requestURL = 'http://localhost:3000/v1/news/';
 
 /**
  * Creates an &sources=sources string from seleted sources
@@ -62,6 +67,24 @@ export function* getTarget() {
   return searchTarget;
 }
 
+export function* getCountry() {
+  const country = yield select(makeSelectCountry());
+
+  if (country) {
+    return `country=${country}`;
+  }
+  return '';
+}
+
+export function* getCategory() {
+  const category = yield select(makeSelectCategory());
+
+  if (category) {
+    return `category=${category}`;
+  }
+  return '';
+}
+
 /**
  * Get stories based on search query
  */
@@ -69,18 +92,37 @@ export function* getStories() {
   const query = yield select(makeSelectQuery());
   const target = yield getTarget();
   const sources = yield addSources();
+  const country = yield getCountry();
+  const category = yield getCategory();
+  const q = (query) ? `q=${query}` : '';
 
-  const buildQuery = () => ((query) ? `?q=${query}` : '');
+  // build our url + queryString
+  // making sure we use ? for the first option
+  // and & for the rest
+  const buildUrl = () => {
+    const options = [q, sources, country, category];
+    let url = `${requestURL}${target}`;
+    let firstOptionUsed = false;
+    options.forEach((option) => {
+      if (option !== '') {
+        if (!firstOptionUsed) {
+          url += `?${option}`;
+          firstOptionUsed = true;
+        } else {
+          url += `&${option}&sortBy=publishedAt`;
+        }
+      }
+    });
+    return url;
+  };
 
-  const withQuery = `${requestURL}/news/${target}${buildQuery()}`;
-  const finalUrl = `${withQuery}${sources}`;
 
   try {
     if ((query === false && target === 'search') || query === '') {
       yield put(resetSearch());
     } else {
       // Call our request helper (see 'utils/request')
-      const stories = yield call(request, finalUrl);
+      const stories = yield call(request, buildUrl());
       yield put(storiesLoaded(stories));
     }
   } catch (err) {
