@@ -20,6 +20,10 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       loading,
       error,
       stories,
+      loaded,
+      onSubmitForm,
+      query,
+      onChangeSearchTerms,
       onGetPage
     } = this.props;
 
@@ -32,16 +36,18 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       onGetPage
     };
 
+    const totalStories = stories.get('totalResults');
+
     const resultsCounterProps = {
       page: stories.get('page'),
-      totalStories: stories.get('totalResults'),
+      totalStories,
       numStories: stories.get('articles').length,
     };
 
     const renderTipsOrNoResultsMsg = () => {
       if (loading) {
         return '';
-      } else if (this.props.loaded && resultsCounterProps.totalStories === 0) {
+      } else if (loaded && totalStories === 0) {
         return (
           <div className="has-text-centered">
             <div className="title">
@@ -62,7 +68,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
      *  renders the resultsCounter if there are results
      *  or displays UsageTips, or a message stating no results found
      */
-    const resultsCounter = (resultsCounterProps.totalStories > 0) ?
+    const resultsCounter = (totalStories > 0) ?
       <ResultsCounter {...resultsCounterProps} /> :
       renderTipsOrNoResultsMsg();
 
@@ -73,7 +79,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
           <meta name="description" content="An easy way to search multiple news outlets for similar stories." />
         </Helmet>
         <section className="search-page">
-          <form onSubmit={this.props.onSubmitForm}>
+          <form onSubmit={onSubmitForm}>
             <div className="field has-addons">
               <div className="control is-expanded">
                 <input
@@ -81,13 +87,13 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
                   id="query"
                   type="text"
                   placeholder="Enter search terms or headlines here."
-                  value={this.props.query || ''}
-                  onChange={this.props.onChangeSearchTerms}
+                  value={query || ''}
+                  onChange={onChangeSearchTerms}
                   autoComplete="off"
                 />
               </div>
               <div className="control">
-                <button className="button is-info" onClick={this.props.onSubmitForm}>Search</button>
+                <button className="button is-info" onClick={onSubmitForm}>Search</button>
               </div>
             </div>
           </form>
