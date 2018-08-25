@@ -93,6 +93,7 @@ export function* getCategory() {
  */
 export function* getStories() {
   const query = yield select(makeSelectQuery());
+  const advanced = yield select(makeSelectAdvanced());
   const target = yield getTarget();
   const sources = yield addSources();
   const country = yield getCountry();
@@ -106,28 +107,32 @@ export function* getStories() {
   // and & for the rest
   const buildUrl = () => {
     const options = [q, sources, country, category, page];
-    let url = `${requestURL}${target}`;
+    let url = `${requestURL}${(advanced) ? target : 'search'}`;
     let firstOptionUsed = false;
-    options.forEach((option) => {
-      if (option !== '') {
-        if (!firstOptionUsed) {
-          url += `?${option}`;
-          firstOptionUsed = true;
-        } else {
-          url += `&${option}`;
+    if (advanced) {
+      options.forEach((option) => {
+        if (option !== '') {
+          if (!firstOptionUsed) {
+            url += `?${option}`;
+            firstOptionUsed = true;
+          } else {
+            url += `&${option}`;
+          }
         }
+      });
+      // make sure a country is attached if searching top-headlines without one.
+      if (target === 'top-headlines' && country === '') {
+        url += (firstOptionUsed) ? '&country=us' : '?country=us';
       }
-    });
-    // make sure a country is attached if searching top-headlines without one.
-    if (target === 'top-headlines' && country === '') {
-      url += (firstOptionUsed) ? '&country=us' : '?country=us';
     }
+
     return url;
   };
 
+  const queryEmpty = (query === false || query === '');
 
   try {
-    if ((query === false && target === 'search') || query === '') {
+    if ((queryEmpty && advanced === false) || (queryEmpty && target === 'search')) {
       yield put(resetSearch());
     } else {
       // Call our request helper (see 'utils/request')
