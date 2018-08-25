@@ -109,7 +109,7 @@ export function* getStories() {
           url += `?${option}`;
           firstOptionUsed = true;
         } else {
-          url += `&${option}&sortBy=publishedAt`;
+          url += `&${option}`;
         }
       }
     });
