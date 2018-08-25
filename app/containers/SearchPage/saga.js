@@ -8,6 +8,7 @@ import {
   makeSelectCountry,
   makeSelectAdvanced,
   makeSelectSearchTarget,
+  makeSelectUseSources,
   makeSelectCategory
 } from 'containers/SearchOptions/selectors';
 import {
@@ -93,10 +94,11 @@ export function* getCategory() {
 }
 
 /**
- * Get stories based on search query
+ * build the appropriate query and make a request using it.
  */
 export function* getStories() {
   const query = yield select(makeSelectQuery());
+  const useSources = yield select(makeSelectUseSources());
   const advanced = yield select(makeSelectAdvanced());
   const target = yield getTarget();
   const sources = yield addSources();
@@ -106,34 +108,56 @@ export function* getStories() {
   const page = (nextPage !== 1) ? `page=${nextPage}` : '';
   const q = (query) ? `q=${query}` : '';
 
+  // determine if we are using sources
+  // and return an array with either sources, or country and category
+  const sourcesOrCountryAndCategory = () => {
+    if (useSources) {
+      return [sources];
+    }
+    return [country, category];
+  };
+
+  // returns true if the query is empty or false
+  const queryEmpty = (query === false || query === '');
+
   // build our url + queryString
   // making sure we use ? for the first option
-  // and & for the rest
+  // and & for the rest of the options
   const buildUrl = () => {
-    const options = [q, sources, country, category, page];
+    const options = [...sourcesOrCountryAndCategory(), page];
     let url = `${requestURL}${(advanced) ? target : 'search'}`;
     let firstOptionUsed = false;
+
+    // when adding an option to the string
+    // make sure we are using the proper symbol (? or &)
+    const addQuerySymbol = (option) => {
+      if (!firstOptionUsed) {
+        url += `?${option}`;
+        firstOptionUsed = true;
+      } else {
+        url += `&${option}`;
+      }
+    };
+
+    // add advanced options if they exist
     if (advanced) {
       options.forEach((option) => {
         if (option !== '') {
-          if (!firstOptionUsed) {
-            url += `?${option}`;
-            firstOptionUsed = true;
-          } else {
-            url += `&${option}`;
-          }
+          addQuerySymbol(option);
         }
       });
       // make sure a country is attached if searching top-headlines without one.
       if (target === 'top-headlines' && country === '') {
-        url += (firstOptionUsed) ? '&country=us' : '?country=us';
+        addQuerySymbol('country=us');
       }
     }
 
+    // add the query if there is one
+    if (q !== '') {
+      addQuerySymbol(q);
+    }
     return url;
   };
-
-  const queryEmpty = (query === false || query === '');
 
   try {
     if ((queryEmpty && advanced === false) || (queryEmpty && target === 'search')) {
