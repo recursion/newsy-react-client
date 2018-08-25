@@ -3,14 +3,14 @@
  */
 
 /**
- * compileSources
+ * getSourceNames
  *
  * Returns an array of the currently selected sources in a prettified format.
  * @param {array} selected
  * @param {array} options
  * @returns {array<string>}
  */
-const compileSources = (selected, options) => selected.map((source) => {
+const getSourceNames = (selected, options) => selected.map((source) => {
   let label;
   options.forEach((option) => {
     if (option.value === source) {
@@ -25,11 +25,11 @@ const renderUsedSources = (selected, options) => {
     case 0:
       return 'All';
     case 1:
-      return `${compileSources(selected, options)[0]}`;
+      return `${getSourceNames(selected, options)[0]}`;
     case 2:
-      return `${compileSources(selected, options)[0]} and ${compileSources(selected, options)[1]}.`;
+      return `${getSourceNames(selected, options)[0]} and ${getSourceNames(selected, options)[1]}.`;
     default:
-      return `${compileSources(selected, options)[0]} and ${selected.length - 1} more.`;
+      return `${getSourceNames(selected, options)[0]} and ${selected.length - 1} more.`;
   }
 };
 
