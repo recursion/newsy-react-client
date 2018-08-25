@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { countryCodes } from './countryCodes';
+import { countryCodes } from 'containers/SearchOptions/countryCodes';
 
 const buildCountryOption = (country) => (
   <option
