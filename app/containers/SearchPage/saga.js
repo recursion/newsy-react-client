@@ -130,7 +130,7 @@ export function* getStories() {
 
     // when adding an option to the string
     // make sure we are using the proper symbol (? or &)
-    const addQuerySymbol = (option) => {
+    const addQueryToUrl = (option) => {
       if (!firstOptionUsed) {
         url += `?${option}`;
         firstOptionUsed = true;
@@ -141,19 +141,19 @@ export function* getStories() {
 
     // add the query if there is one
     if (q !== '') {
-      addQuerySymbol(q);
+      addQueryToUrl(q);
     }
 
     // add advanced options if they exist
     if (advanced) {
       options.forEach((option) => {
         if (option !== '') {
-          addQuerySymbol(option);
+          addQueryToUrl(option);
         }
       });
       // make sure a country is attached if searching top-headlines without one.
       if (target === 'top-headlines' && country === '') {
-        addQuerySymbol('country=us');
+        addQueryToUrl('country=us');
       }
     }
     return url;
