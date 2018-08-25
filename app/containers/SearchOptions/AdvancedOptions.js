@@ -7,41 +7,45 @@ import SpecialOptions from './SpecialOptions';
 export default class AdvancedOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <section>
-        <div className="field">
-          <div className="control">
-            <button
-              className="button is-small is-primary is-inverted"
-              onClick={this.props.toggleSearchType}
-            >
-              &lt;&lt; Switch to Simple Search
-            </button>
-            <button
-              className="button is-pulled-right is-small is-primary is-inverted"
-              onClick={this.props.toggleHideAdvanced}
-            >
-              Hide Advanced Options
-            </button>
+      <section className="search-options__advanced">
+        <div className="search-options__nav">
+          <div className="field">
+            <div className="control">
+              <button
+                className="button is-small is-primary is-inverted"
+                onClick={this.props.toggleSearchType}
+              >
+                &lt;&lt; Switch to Simple Search
+              </button>
+              <button
+                className="button is-pulled-right is-small is-primary is-inverted"
+                onClick={this.props.toggleHideAdvanced}
+              >
+                Hide Advanced Options
+              </button>
+            </div>
           </div>
         </div>
-        <TargetOptions
-          target={this.props.target}
-          onChangeTarget={this.props.onChangeTarget}
-        />
-        {(this.props.useSources) ?
-          <SourceOptions
+        <div className="search-options__options">
+          <TargetOptions
             target={this.props.target}
-            toggleUseSources={this.props.toggleUseSources}
-          /> :
-          <SpecialOptions
-            target={this.props.target}
-            country={this.props.country}
-            onChangeCountry={this.props.onChangeCountry}
-            category={this.props.category}
-            onChangeCategory={this.props.onChangeCategory}
-            toggleUseSources={this.props.toggleUseSources}
+            onChangeTarget={this.props.onChangeTarget}
           />
-        }
+          {(this.props.useSources) ?
+            <SourceOptions
+              target={this.props.target}
+              toggleUseSources={this.props.toggleUseSources}
+            /> :
+            <SpecialOptions
+              target={this.props.target}
+              country={this.props.country}
+              onChangeCountry={this.props.onChangeCountry}
+              category={this.props.category}
+              onChangeCategory={this.props.onChangeCategory}
+              toggleUseSources={this.props.toggleUseSources}
+            />
+          }
+        </div>
       </section>
     );
   }

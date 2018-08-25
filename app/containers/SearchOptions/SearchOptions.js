@@ -48,22 +48,28 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
 
     if (this.props.advanced && !this.props.hideAdvanced) {
       return (
-        <AdvancedOptions {...advancedOptionProps} />
+        <div className="search-options">
+          <AdvancedOptions {...advancedOptionProps} />
+        </div>
       );
     } else if (this.props.hideAdvanced) {
       return (
-        <AdvancedOptionsNav {...advancedOptionsNavProps} />
+        <div className="search-options">
+          <AdvancedOptionsNav {...advancedOptionsNavProps} />
+        </div>
       );
     }
     return (
-      <div className="field">
-        <div className="control">
-          <button
-            className="button is-small is-primary is-inverted"
-            onClick={this.props.toggleSearchType}
-          >
-              Advanced Settings
-          </button>
+      <div className="search-options">
+        <div className="field">
+          <div className="control">
+            <button
+              className="button is-small is-primary is-inverted"
+              onClick={this.props.toggleSearchType}
+            >
+                Advanced Settings
+            </button>
+          </div>
         </div>
       </div>
     );

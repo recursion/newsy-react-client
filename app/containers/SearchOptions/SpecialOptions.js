@@ -11,15 +11,20 @@ const SpecialOptions = ({
   onChangeCategory,
   toggleUseSources
 }) => (
-  <div>
+  <div className="search-options__special">
     {(target !== 'everything') ?
-      <div className="has-text-centered">
-        <button
-          className="button is-small is-primary"
-          onClick={toggleUseSources}
-        >
-            Switch to Sources
-        </button>
+      <div className="field">
+        <div className="has-text-danger is-size-7-mobile">
+          Currently Searching By Country and Category
+        </div>
+        <div className="control">
+          <button
+            className="button is-small"
+            onClick={toggleUseSources}
+          >
+              Switch to Sources
+          </button>
+        </div>
       </div> :
       ''
     }

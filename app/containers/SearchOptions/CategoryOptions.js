@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const CategoryOptions = ({ category, onChangeCategory }) => (
   <div className="field">
-    <label className="label" htmlFor="category">Category:</label>
+    <label className="label" htmlFor="category">Category</label>
     <div className="select">
       <select
         name="category"
