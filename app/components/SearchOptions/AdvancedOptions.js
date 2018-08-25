@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TargetOptions from './TargetOptions';
 import SourceOptions from './SourceOptions';
 import SpecialOptions from './SpecialOptions';
+import './style.scss';
 
 export default class AdvancedOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {

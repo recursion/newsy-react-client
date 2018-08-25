@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import AdvancedOptions from 'components/SearchOptions/AdvancedOptions';
 import AdvancedOptionsNav from 'components/SearchOptions/AdvancedOptionsNav';
 import {} from './constants';
-import './style.scss';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
