@@ -5,26 +5,29 @@ export default class AdvancedOptionsNav extends React.PureComponent { // eslint-
   render() {
     return (
       <div className="field">
-        <div className="control has-text-centered">
+        <div className="control">
+          <div className="button is-small is-danger is-inverted is-static">
+            Using Advanced Options
+          </div>
           <button
-            className="button is-small is-primary is-inverted is-pulled-left"
+            className="button is-small is-primary is-inverted"
+            onClick={this.props.toggleHideAdvanced}
+          >
+              Show
+          </button>
+        </div>
+        <div className="control">
+          <button
+            className="button is-small is-primary is-inverted"
             onClick={() => {
               this.props.toggleHideAdvanced();
               this.props.toggleSearchType();
             }}
           >
-            &lt;&lt;Simple Search
-          </button>
-          <div className="button is-small is-danger is-inverted is-static">
-            Using Advanced Settings
-          </div>
-          <button
-            className="button is-small is-primary is-inverted is-pulled-right"
-            onClick={this.props.toggleHideAdvanced}
-          >
-              Show Advanced
+            &lt;&lt; Use Simple Search
           </button>
         </div>
+
       </div>
     );
   }

@@ -26,7 +26,7 @@ export default class AdvancedOptions extends React.PureComponent { // eslint-dis
             </div>
           </div>
         </div>
-        <div className="search-options__options">
+        <div className="search-options">
           <TargetOptions
             target={this.props.target}
             onChangeTarget={this.props.onChangeTarget}
