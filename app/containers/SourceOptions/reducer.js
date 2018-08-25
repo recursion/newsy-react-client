@@ -18,6 +18,7 @@ const initialState = fromJS({
 });
 
 const reMapSources = (source) => Object.assign({}, { value: source.id, label: source.name }, source);
+const addId = (source) => source.id;
 
 function sourcesReducer(state = initialState, action) {
   switch (action.type) {
@@ -31,6 +32,7 @@ function sourcesReducer(state = initialState, action) {
     case LOAD_SOURCES_SUCCESS:
       return state
         .set('sources', action.sources.map(reMapSources))
+        .set('selected', fromJS(action.sources.map(addId)))
         .set('loading', false);
     case LOAD_SOURCES_ERROR:
       return state
