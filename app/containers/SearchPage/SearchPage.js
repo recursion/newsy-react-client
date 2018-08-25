@@ -83,7 +83,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
             <div className="field has-addons">
               <div className="control is-expanded">
                 <input
-                  className="input has-text-centered"
+                  className="input has-text-centered is-radiusless"
                   id="query"
                   type="text"
                   placeholder="Enter search terms or headlines here."
@@ -93,7 +93,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
                 />
               </div>
               <div className="control">
-                <button className="button is-info" onClick={onSubmitForm}>Search</button>
+                <button className="button is-info is-radiusless" onClick={onSubmitForm}>Search</button>
               </div>
             </div>
           </form>
