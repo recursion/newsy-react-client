@@ -50,8 +50,7 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       return (
         <AdvancedOptions {...advancedOptionProps} />
       );
-    }
-    if (this.props.hideAdvanced) {
+    } else if (this.props.hideAdvanced) {
       return (
         <AdvancedOptionsNav {...advancedOptionsNavProps} />
       );
