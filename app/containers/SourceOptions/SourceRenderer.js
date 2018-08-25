@@ -18,7 +18,20 @@ const compileSources = (selected, options) => selected.map((source) => {
     }
   });
   return label;
-}).join(', ');
+});
+
+const renderUsedSources = (selected, options) => {
+  switch (selected.length) {
+    case 0:
+      return 'All';
+    case 1:
+      return `${compileSources(selected, options)[0]}`;
+    case 2:
+      return `${compileSources(selected, options)[0]} and ${compileSources(selected, options)[1]}.`;
+    default:
+      return `${compileSources(selected, options)[0]} and ${selected.length - 1} more.`;
+  }
+};
 
 /**
  * renderSources
@@ -28,8 +41,8 @@ const compileSources = (selected, options) => selected.map((source) => {
  */
 const renderSources = (selected, options) => (
   (selected.length === options.length) ?
-    'Sources: All' :
-    `Sources: ${compileSources(selected, options)}`
+    'All' :
+    renderUsedSources(selected, options)
 );
 
 /**
@@ -38,11 +51,7 @@ const renderSources = (selected, options) => (
  * @param {array} options
  * @returns {string}
  */
-const sourceRenderer = (selected, options) => (
-  (selected.length === 0) ?
-    'Sources' :
-    renderSources(selected, options)
-);
+const sourceRenderer = (selected, options) => renderSources(selected, options);
 
 export default sourceRenderer;
 
