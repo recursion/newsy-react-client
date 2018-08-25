@@ -5,7 +5,6 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
   changeSearchTerms,
-  loadHeadlines,
   loadStories,
   getPage
 } from './actions';
@@ -29,8 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(loadStories());
     }
   },
-  onGetPage: (page) => dispatch(getPage(page)),
-  loadHeadlines: () => dispatch(loadHeadlines())
+  onGetPage: (page) => dispatch(getPage(page))
 });
 
 const mapStateToProps = createStructuredSelector({
