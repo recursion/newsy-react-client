@@ -63,7 +63,7 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
             className="button is-small is-primary is-inverted"
             onClick={this.props.toggleSearchType}
           >
-              Advanced Settings
+              Advanced Options
           </button>
         </div>
       </div>
