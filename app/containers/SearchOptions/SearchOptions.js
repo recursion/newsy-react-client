@@ -8,13 +8,18 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import PropTypes from 'prop-types';
-import AdvancedOptions from 'components/SearchOptions/AdvancedOptions';
+import AdvancedOptionsHiddenNav from 'components/SearchOptions/AdvancedOptionsHiddenNav';
+import TargetOptions from 'components/SearchOptions/TargetOptions';
+import SourceOptions from 'components/SearchOptions/SourceOptions';
+import LanguageOptions from 'components/SearchOptions/LanguageOptions';
+import CountryAndCategory from 'components/SearchOptions/CountryAndCategory';
 import AdvancedOptionsNav from 'components/SearchOptions/AdvancedOptionsNav';
-import {} from './constants';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const {
+      advanced,
+      hideAdvanced,
       toggleHideAdvanced,
       toggleSearchType,
       useSources,
@@ -29,34 +34,43 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       onChangeTarget
     } = this.props;
 
-    const advancedOptionProps = {
-      toggleHideAdvanced,
-      toggleSearchType,
-      useSources,
-      toggleUseSources,
-      country,
-      category,
-      target,
-      language,
-      onChangeLanguage,
-      onChangeCountry,
-      onChangeCategory,
-      onChangeTarget
-    };
 
-    const advancedOptionsNavProps = {
+    const AdvancedOptionsNavProps = {
       toggleHideAdvanced,
       toggleSearchType,
     };
 
-    if (this.props.advanced) {
-      if (!this.props.hideAdvanced) {
+    if (advanced) {
+      if (!hideAdvanced) {
         return (
-          <AdvancedOptions {...advancedOptionProps} />
+          <section className="search-options__advanced">
+            <AdvancedOptionsNav {...AdvancedOptionsNavProps} />
+            <div className="search-options">
+              <TargetOptions
+                target={target}
+                onChangeTarget={onChangeTarget}
+              />
+              <LanguageOptions language={language} onChangeLanguage={onChangeLanguage} />
+              {(useSources) ?
+                <SourceOptions
+                  target={target}
+                  toggleUseSources={toggleUseSources}
+                /> :
+                <CountryAndCategory
+                  target={target}
+                  country={country}
+                  onChangeCountry={onChangeCountry}
+                  category={category}
+                  onChangeCategory={onChangeCategory}
+                  toggleUseSources={toggleUseSources}
+                />
+              }
+            </div>
+          </section>
         );
       }
       return (
-        <AdvancedOptionsNav {...advancedOptionsNavProps} />
+        <AdvancedOptionsHiddenNav {...AdvancedOptionsNavProps} />
       );
     }
     return (
@@ -64,7 +78,7 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
         <div className="control">
           <button
             className="button is-small is-primary is-inverted"
-            onClick={this.props.toggleSearchType}
+            onClick={toggleSearchType}
           >
               Advanced Options
           </button>

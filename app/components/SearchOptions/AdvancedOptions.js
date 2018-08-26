@@ -4,30 +4,24 @@ import TargetOptions from './TargetOptions';
 import SourceOptions from './SourceOptions';
 import LanguageOptions from './LanguageOptions';
 import CountryAndCategory from './CountryAndCategory';
+import AdvancedOptionsNav from './AdvancedOptionsNav';
 import './style.scss';
 
 export default class AdvancedOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
+    const {
+      toggleHideAdvanced,
+      toggleSearchType,
+    } = this.props;
+
+    const AdvancedOptionsNavProps = {
+      toggleHideAdvanced,
+      toggleSearchType
+    };
+
     return (
       <section className="search-options__advanced">
-        <div className="search-options__nav">
-          <div className="field">
-            <div className="control">
-              <button
-                className="button is-small is-primary is-inverted"
-                onClick={this.props.toggleSearchType}
-              >
-                &lt;&lt; Switch to Simple Search
-              </button>
-              <button
-                className="button is-pulled-right is-small is-primary is-inverted"
-                onClick={this.props.toggleHideAdvanced}
-              >
-                Hide Advanced Options
-              </button>
-            </div>
-          </div>
-        </div>
+        <AdvancedOptionsNav {...AdvancedOptionsNavProps} />
         <div className="search-options">
           <TargetOptions
             target={this.props.target}
