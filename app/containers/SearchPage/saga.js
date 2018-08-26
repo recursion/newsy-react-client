@@ -25,7 +25,7 @@ import { resetSearch, storiesLoaded, storiesLoadingError, pageChangeLoaded } fro
 const requestURL = 'http://localhost:3000/v1/news/';
 
 /**
- * Creates an &sources=sources string from seleted sources
+ * Creates an sources=sources string from seleted sources
  * where sources is a comma seperated string
  * if All sources are selected, then an empty string is returned
  * since the api just assumes all sources if none are sent.
@@ -55,6 +55,8 @@ function* addSources() {
   }
 }
 
+// Get country and return a query string
+// or empty if no country is selected
 export function* getCountry() {
   const country = yield select(makeSelectCountry());
 
@@ -64,6 +66,8 @@ export function* getCountry() {
   return '';
 }
 
+// Get category and return a query string
+// or empty if none is selected
 export function* getCategory() {
   const category = yield select(makeSelectCategory());
 
@@ -73,6 +77,8 @@ export function* getCategory() {
   return '';
 }
 
+// Get language and return a query string
+// or empty if none is selected
 export function* getLanguage() {
   const language = yield select(makeSelectLanguage());
   if (language) {
