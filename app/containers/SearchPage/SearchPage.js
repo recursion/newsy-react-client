@@ -49,7 +49,7 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
         return '';
       } else if (loaded && totalStories === 0) {
         return (
-          <div className="has-text-centered">
+          <div className="box has-text-centered">
             <div className="title">
               0 Results found.
             </div>
