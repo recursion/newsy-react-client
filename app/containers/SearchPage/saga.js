@@ -134,7 +134,7 @@ export function* getStories() {
   // making sure we use ? for the first option
   // and & for the rest of the options
   const buildUrl = () => {
-    const options = [...sourcesOrCountryAndCategory(), page, language];
+    const options = [...sourcesOrCountryAndCategory(), page];
     let url = `${requestURL}${(advanced) ? target : 'search'}`;
     let firstOptionUsed = false;
 
@@ -161,6 +161,13 @@ export function* getStories() {
           addQueryToUrl(option);
         }
       });
+
+      // use language option if it exists
+      // and we are searching everything
+      if (target !== 'top-headlines' && language !== '') {
+        addQueryToUrl(`language=${language}`);
+      }
+
       // make sure a country is attached if searching top-headlines without one.
       if (target === 'top-headlines' && country === '') {
         addQueryToUrl('country=us');

@@ -50,7 +50,12 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
                 target={target}
                 onChangeTarget={onChangeTarget}
               />
-              <LanguageOptions language={language} onChangeLanguage={onChangeLanguage} />
+              {(target === 'everything') ?
+                <LanguageOptions
+                  language={language}
+                  onChangeLanguage={onChangeLanguage}
+                /> : ''
+              }
               {(useSources) ?
                 <SourceOptions
                   target={target}
