@@ -55,27 +55,6 @@ function* addSources() {
   }
 }
 
-/**
- *  addTarget
- *
- *  If we have set the target, then create a query for it.
- *  returns a string - either search or top-headlines.
- */
-export function* getTarget() {
-  const target = yield select(makeSelectSearchTarget());
-  // TODO: change this value, AND server route to 'everything'
-  // in order to match the actual api - this way the client
-  // will be compatible with searchs directly to the actual newsapi.org
-  // api if we ever want that.
-  let searchTarget = 'search';
-
-  if (target === 'top-headlines') {
-    searchTarget = target;
-  }
-
-  return searchTarget;
-}
-
 export function* getCountry() {
   const country = yield select(makeSelectCountry());
 
@@ -106,10 +85,10 @@ export function* getLanguage() {
  * build the appropriate query and make a request using it.
  */
 export function* getStories() {
+  const target = yield select(makeSelectSearchTarget());
   const query = yield select(makeSelectQuery());
   const useSources = yield select(makeSelectUseSources());
   const advanced = yield select(makeSelectAdvanced());
-  const target = yield getTarget();
   const sources = yield addSources();
   const country = yield getCountry();
   const category = yield getCategory();
@@ -135,7 +114,7 @@ export function* getStories() {
   // and & for the rest of the options
   const buildUrl = () => {
     const options = [...sourcesOrCountryAndCategory(), page];
-    let url = `${requestURL}${(advanced) ? target : 'search'}`;
+    let url = `${requestURL}${target}`;
     let firstOptionUsed = false;
 
     // when adding an option to the string
