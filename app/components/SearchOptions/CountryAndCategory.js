@@ -4,7 +4,7 @@ import CountryOptions from './CountryOptions';
 import CategoryOptions from './CategoryOptions';
 import './style.scss';
 
-const SpecialOptions = ({
+const CountryAndCategory = ({
   target,
   country,
   onChangeCountry,
@@ -45,7 +45,7 @@ const SpecialOptions = ({
   </div>
 );
 
-SpecialOptions.propTypes = {
+CountryAndCategory.propTypes = {
   target: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string
@@ -63,4 +63,4 @@ SpecialOptions.propTypes = {
   toggleUseSources: PropTypes.func
 };
 
-export default SpecialOptions;
+export default CountryAndCategory;

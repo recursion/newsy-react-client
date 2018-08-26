@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TargetOptions from './TargetOptions';
 import SourceOptions from './SourceOptions';
 import LanguageOptions from './LanguageOptions';
-import SpecialOptions from './SpecialOptions';
+import CountryAndCategory from './CountryAndCategory';
 import './style.scss';
 
 export default class AdvancedOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -39,7 +39,7 @@ export default class AdvancedOptions extends React.PureComponent { // eslint-dis
               target={this.props.target}
               toggleUseSources={this.props.toggleUseSources}
             /> :
-            <SpecialOptions
+            <CountryAndCategory
               target={this.props.target}
               country={this.props.country}
               onChangeCountry={this.props.onChangeCountry}
