@@ -16,7 +16,11 @@ import {
   CHANGE_TO_DATE
 } from './constants';
 
+// get the current date and set it to a proper "yyyy-mm-dd" string
 const now = new Date(Date.now()).toISOString().split('T')[0];
+
+// regex for validating string is in 'yyyy-mm-dd' format
+const dateValidator = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
 
 // The initial state of the App
 const initialState = fromJS({
@@ -35,11 +39,17 @@ const initialState = fromJS({
 function searchOptionsReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_TO_DATE:
-      return state
-        .set('toDate', action.date);
+      if (action.date.match(dateValidator)) {
+        return state
+          .set('toDate', action.date);
+      }
+      return state;
     case CHANGE_FROM_DATE:
-      return state
-        .set('fromDate', action.date);
+      if (action.date.match(dateValidator)) {
+        return state
+          .set('fromDate', action.date);
+      }
+      return state;
     case CHANGE_LANGUAGE:
       return state
         .set('language', action.language);

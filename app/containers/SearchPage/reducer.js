@@ -28,7 +28,6 @@ const initialState = fromJS({
   }
 });
 
-
 function searchReducer(state = initialState, action) {
   switch (action.type) {
     case RESET:
