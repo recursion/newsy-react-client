@@ -10,7 +10,9 @@ import {
   makeSelectSearchTarget,
   makeSelectUseSources,
   makeSelectLanguage,
-  makeSelectCategory
+  makeSelectCategory,
+  makeSelectToDate,
+  makeSelectFromDate
 } from 'containers/SearchOptions/selectors';
 import {
   makeSelectSelected,
@@ -87,6 +89,16 @@ export function* getLanguage() {
   return '';
 }
 
+export function* getToDate() {
+  const toDate = yield select(makeSelectToDate());
+  return `toDate=${toDate}`;
+}
+
+export function* getFromDate() {
+  const fromDate = yield select(makeSelectFromDate());
+  return `fromDate=${fromDate}`;
+}
+
 /**
  * build the appropriate query and make a request using it.
  */
@@ -100,6 +112,8 @@ export function* getStories() {
   const category = yield getCategory();
   const language = yield getLanguage();
   const nextPage = yield select(makeSelectGetPage());
+  const fromDate = yield getFromDate();
+  const toDate = yield getToDate();
   const page = (nextPage !== 1) ? `page=${nextPage}` : '';
   const q = (query) ? `q=${query}` : '';
 
@@ -149,8 +163,12 @@ export function* getStories() {
 
       // use language option if it exists
       // and we are searching everything
-      if (target !== 'top-headlines' && language !== '') {
-        addQueryToUrl(`language=${language}`);
+      if (target !== 'top-headlines') {
+        if (language !== '') {
+          addQueryToUrl(language);
+        }
+        addQueryToUrl(fromDate);
+        addQueryToUrl(toDate);
       }
 
       // make sure a country is attached if searching top-headlines without one.
