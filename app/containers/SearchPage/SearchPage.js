@@ -27,23 +27,28 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       onGetPage
     } = this.props;
 
+    const totalStories = stories.get('totalResults');
+
     const storiesListProps = {
       loading,
       error,
       stories: stories.get('articles'),
       page: stories.get('page'),
-      totalStories: stories.get('totalResults'),
+      totalStories,
       onGetPage
     };
-
-    const totalStories = stories.get('totalResults');
 
     const resultsCounterProps = {
       page: stories.get('page'),
       totalStories,
-      numStories: stories.get('articles').length,
+      numStories: stories.get('articles').length
     };
 
+    /**
+     * Returns empty if we are currently loading,
+     * a 0 results message if no results were returned
+     * or Usage tips if no search has yet been performed.
+     */
     const renderTipsOrNoResultsMsg = () => {
       if (loading) {
         return '';
