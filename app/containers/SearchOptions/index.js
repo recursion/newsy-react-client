@@ -9,7 +9,9 @@ import {
   changeUseSources,
   changeCategory,
   changeCountry,
-  changeLanguage
+  changeLanguage,
+  changeFromDate,
+  changeToDate
 } from './actions';
 import {
   makeSelectSearchType,
@@ -18,7 +20,9 @@ import {
   makeSelectCategory,
   makeSelectHideAdvanced,
   makeSelectLanguage,
-  makeSelectSearchTarget
+  makeSelectSearchTarget,
+  makeSelectToDate,
+  makeSelectFromDate
 } from './selectors';
 import reducer from './reducer';
 import SearchOptions from './SearchOptions';
@@ -44,6 +48,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onChangeLanguage: (lang) => {
     dispatch(changeLanguage(lang));
+  },
+  onChangeFromDate: (date) => {
+    dispatch(changeFromDate(date));
+  },
+  onChangeToDate: (date) => {
+    dispatch(changeToDate(date));
   }
 });
 
@@ -54,7 +64,9 @@ const mapStateToProps = createStructuredSelector({
   country: makeSelectCountry(),
   category: makeSelectCategory(),
   language: makeSelectLanguage(),
-  target: makeSelectSearchTarget()
+  target: makeSelectSearchTarget(),
+  fromDate: makeSelectFromDate(),
+  toDate: makeSelectToDate()
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -14,6 +14,7 @@ import SourceOptions from 'components/SearchOptions/SourceOptions';
 import LanguageOptions from 'components/SearchOptions/LanguageOptions';
 import CountryAndCategory from 'components/SearchOptions/CountryAndCategory';
 import AdvancedOptionsNav from 'components/SearchOptions/AdvancedOptionsNav';
+import DateOptions from 'components/SearchOptions/DateOptions';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -31,7 +32,11 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       onChangeLanguage,
       onChangeCountry,
       onChangeCategory,
-      onChangeTarget
+      onChangeTarget,
+      fromDate,
+      toDate,
+      onChangeFromDate,
+      onChangeToDate
     } = this.props;
 
 
@@ -49,6 +54,12 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
               <TargetOptions
                 target={target}
                 onChangeTarget={onChangeTarget}
+              />
+              <DateOptions
+                fromDate={fromDate}
+                toDate={toDate}
+                onChangeFromDate={onChangeFromDate}
+                onChangeToDate={onChangeToDate}
               />
               {(target === 'everything') ?
                 <LanguageOptions
@@ -116,5 +127,9 @@ SearchOptions.propTypes = {
   target: PropTypes.string,
   onChangeCountry: PropTypes.func,
   onChangeCategory: PropTypes.func,
-  onChangeTarget: PropTypes.func
+  onChangeTarget: PropTypes.func,
+  fromDate: PropTypes.string,
+  toDate: PropTypes.string,
+  onChangeFromDate: PropTypes.func,
+  onChangeToDate: PropTypes.func
 };

@@ -10,7 +10,9 @@ import {
   CHANGE_CATEGORY,
   CHANGE_USE_SOURCES,
   CHANGE_LANGUAGE,
-  TOGGLE_HIDE_ADVANCED
+  TOGGLE_HIDE_ADVANCED,
+  CHANGE_FROM_DATE,
+  CHANGE_TO_DATE
 } from './constants';
 
 /**
@@ -25,6 +27,21 @@ export function changeSearchType() {
     type: CHANGE_SEARCH_TYPE,
   };
 }
+
+export function changeFromDate(date) {
+  return {
+    type: CHANGE_FROM_DATE,
+    date
+  };
+}
+
+export function changeToDate(date) {
+  return {
+    type: CHANGE_TO_DATE,
+    date
+  };
+}
+
 export function changeLanguage(language) {
   return {
     type: CHANGE_LANGUAGE,

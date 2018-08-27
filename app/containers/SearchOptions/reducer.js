@@ -11,8 +11,12 @@ import {
   CHANGE_SEARCH_TYPE,
   CHANGE_CATEGORY,
   CHANGE_LANGUAGE,
-  TOGGLE_HIDE_ADVANCED
+  TOGGLE_HIDE_ADVANCED,
+  CHANGE_FROM_DATE,
+  CHANGE_TO_DATE
 } from './constants';
+
+const now = new Date(Date.now()).toISOString().split('T')[0];
 
 // The initial state of the App
 const initialState = fromJS({
@@ -23,13 +27,19 @@ const initialState = fromJS({
   country: false, // all or a selected country code
   language: false, // language code - or all by default
   category: false, // all or a selected category
-  dateState: false, // date to start the search
-  dateEnd: false // date to end the search
+  fromDate: '2012-01-01', // date to start the search
+  toDate: now // date to end the search
 });
 
 
 function searchOptionsReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_TO_DATE:
+      return state
+        .set('toDate', action.date);
+    case CHANGE_FROM_DATE:
+      return state
+        .set('fromDate', action.date);
     case CHANGE_LANGUAGE:
       return state
         .set('language', action.language);

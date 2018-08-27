@@ -51,6 +51,16 @@ const makeSelectHideAdvanced = () => createSelector(
   (searchState) => searchState.get('hideAdvanced')
 );
 
+const makeSelectFromDate = () => createSelector(
+  selectSearchOptions,
+  (searchState) => searchState.get('fromDate')
+);
+
+const makeSelectToDate = () => createSelector(
+  selectSearchOptions,
+  (searchState) => searchState.get('toDate')
+);
+
 export {
   selectSearchOptions,
   makeSelectAdvanced,
@@ -62,4 +72,6 @@ export {
   makeSelectCategory,
   makeSelectLanguage,
   makeSelectHideAdvanced,
+  makeSelectFromDate,
+  makeSelectToDate,
 };
