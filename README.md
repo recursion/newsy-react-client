@@ -43,15 +43,16 @@ Allows users to easily search a plethora of news sites using a simple keyword se
 1. Clone this repo using `git clone https://github.com/recursion/newsy-react-client`
 2. Move to the appropriate directory: `cd newsy-react-client`.<br />
 3. Run `yarn` or `npm install` to install dependencies.<br />
-4. Run `npm start` to see the example app at `http://localhost:3333`.
+4. Run `npm start` to see the example app at `http://localhost:3333`. Without a server to connect to, this will not return requests...
+5. Install the newsy api server locally (instructions below) or set your dev url (in config.js) to the actual newsy api server (not the newsapi.org server - as this will not work without also attaching an api key to your request. Newsy url to be provided when it's up, which it currently is not.)
 
 ## Quick start - with newsy api server
 
 1. Clone the server repo using `git clone https://github.com/recursion/newsy-server`
 2. Clone this repo using `git clone https://github.com/recursion/newsy-react-client`
 3. Drop the client package into `server/src/client`
-4. Build the client `npm run build`
-5. From the server root directory - `npm run start`
+4. Build the client `npm run build` from the client directory.
+5. From the server root directory - `npm run dev`
 
 ## License
 
