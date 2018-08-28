@@ -21,9 +21,11 @@ const SourceOptions = ({ target, toggleUseSources }) => (
       </div> :
       ''
     }
-    <div className="control">
-      <label className="label">Sources</label>
-      <SourcesSelector />
+    <div className="field sources">
+      <div className="control">
+        <label className="label">Sources</label>
+        <SourcesSelector />
+      </div>
     </div>
   </div>
 );
