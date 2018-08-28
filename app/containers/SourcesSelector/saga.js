@@ -7,16 +7,15 @@ import request from 'utils/request';
 
 import { LOAD_SOURCES } from './constants';
 import { sourcesLoaded, sourcesLoadingError } from './actions';
+import config from '../../config';
 
-
-const requestURL = 'http://localhost:3000/v1';
 
 /**
  * Get stories based on search query
  */
 export function* getSources() {
   // Select username from store
-  const finalUrl = `${requestURL}/news/sources`;
+  const finalUrl = `${config.url}/news/sources`;
 
   try {
     // Call our request helper (see 'utils/request')

@@ -20,8 +20,7 @@ import {
   makeSelectSelected,
   makeSelectSources
 } from 'containers/SourcesSelector/selectors';
-
-const requestURL = 'http://localhost:3000/v1/news/';
+import config from '../../config';
 
 /**
  * Creates an sources=sources string from seleted sources
@@ -131,7 +130,7 @@ export default function* buildQueryUrl() {
   const page = (nextPage !== 1) ? `page=${nextPage}` : '';
   const q = (query) ? `q=${query}` : '';
 
-  let url = `${requestURL}${target}`;
+  let url = `${config.url}/news/${target}`;
   let firstOptionUsed = false;
 
   // when adding an option to the string
