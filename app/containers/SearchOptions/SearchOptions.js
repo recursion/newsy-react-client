@@ -59,20 +59,18 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
                 onChangeTarget={onChangeTarget}
               />
               <SortByOptions sortBy={sortBy} onChangeSortBy={onChangeSortBy} />
-              {(target === 'everything') ?
-                <div>
-                  <DateOptions
-                    fromDate={fromDate}
-                    toDate={toDate}
-                    onChangeFromDate={onChangeFromDate}
-                    onChangeToDate={onChangeToDate}
-                  />
-                  <LanguageOptions
-                    language={language}
-                    onChangeLanguage={onChangeLanguage}
-                  />
-                </div> : ''
-              }
+              <DateOptions
+                fromDate={fromDate}
+                toDate={toDate}
+                target={target}
+                onChangeFromDate={onChangeFromDate}
+                onChangeToDate={onChangeToDate}
+              />
+              <LanguageOptions
+                language={language}
+                target={target}
+                onChangeLanguage={onChangeLanguage}
+              />
               {(useSources) ?
                 <SourceOptions
                   target={target}

@@ -14,46 +14,52 @@ const yesterday = () => {
 };
 
 const DateOptions = ({
-  fromDate, toDate, onChangeFromDate, onChangeToDate
-}) => (
-  <div className="date-options">
-    <div className="field">
-      <label htmlFor="fromDate" className="label">From Date</label>
-      <div className="control">
-        <input
-          onChange={(e) => onChangeFromDate(e.target.value)}
-          type="date"
-          id="fromDate"
-          name="fromDate"
-          value={fromDate}
-          min="2012-01-01"
-          max={yesterday()}
-          required
-        />
+  target, fromDate, toDate, onChangeFromDate, onChangeToDate
+}) => {
+  if (target === 'everthing') {
+    return (
+      <div className="date-options">
+        <div className="field">
+          <label htmlFor="fromDate" className="label">From Date</label>
+          <div className="control">
+            <input
+              onChange={(e) => onChangeFromDate(e.target.value)}
+              type="date"
+              id="fromDate"
+              name="fromDate"
+              value={fromDate}
+              min="2012-01-01"
+              max={yesterday()}
+              required
+            />
+          </div>
+        </div>
+        <div className="field">
+          <label htmlFor="toDate" className="label">To Date</label>
+          <div className="control">
+            <input
+              type="date"
+              id="toDate"
+              name="toDate"
+              value={toDate}
+              min="2012-01-02"
+              max={now()}
+              onChange={(e) => onChangeToDate(e.target.value)}
+              required
+            />
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="field">
-      <label htmlFor="toDate" className="label">To Date</label>
-      <div className="control">
-        <input
-          type="date"
-          id="toDate"
-          name="toDate"
-          value={toDate}
-          min="2012-01-02"
-          max={now()}
-          onChange={(e) => onChangeToDate(e.target.value)}
-          required
-        />
-      </div>
-    </div>
-  </div>
-);
+    );
+  }
+  return '';
+};
 
 
 DateOptions.propTypes = {
   fromDate: PropTypes.string,
   toDate: PropTypes.string,
+  target: PropTypes.string,
   onChangeFromDate: PropTypes.func,
   onChangeToDate: PropTypes.func
 };
