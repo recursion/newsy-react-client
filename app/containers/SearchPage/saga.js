@@ -133,7 +133,7 @@ export function* getStories() {
   // making sure we use ? for the first option
   // and & for the rest of the options
   const buildUrl = () => {
-    const options = [...sourcesOrCountryAndCategory(), page];
+    const options = [...sourcesOrCountryAndCategory()];
     let url = `${requestURL}${target}`;
     let firstOptionUsed = false;
 
@@ -151,6 +151,11 @@ export function* getStories() {
     // add the query if there is one
     if (q !== '') {
       addQueryToUrl(q);
+    }
+
+    // add a page if one exists
+    if (page !== '') {
+      addQueryToUrl(page);
     }
 
     // add advanced options if they exist
@@ -176,6 +181,7 @@ export function* getStories() {
         addQueryToUrl('country=us');
       }
     }
+    // console.log('Built: ', url);
     return url;
   };
 
