@@ -12,6 +12,7 @@ import {
   CHANGE_LANGUAGE,
   TOGGLE_HIDE_ADVANCED,
   CHANGE_FROM_DATE,
+  CHANGE_SORTBY,
   CHANGE_TO_DATE
 } from './constants';
 
@@ -39,6 +40,13 @@ export function changeToDate(date) {
   return {
     type: CHANGE_TO_DATE,
     date
+  };
+}
+
+export function changeSortBy(sortBy) {
+  return {
+    type: CHANGE_SORTBY,
+    sortBy
   };
 }
 

@@ -8,4 +8,5 @@ export const TOGGLE_HIDE_ADVANCED = 'newsy/SearchOptions/TOGGLE_HIDE_ADVANCED';
 export const CHANGE_LANGUAGE = 'newsy/SearchOptions/CHANGE_LANGUAGE';
 export const CHANGE_FROM_DATE = 'newsy/SearchOptions/CHANGE_TO_DATE';
 export const CHANGE_TO_DATE = 'newsy/SearchOptions/CHANGE_FROM_DATE';
+export const CHANGE_SORTBY = 'newsy/SearchOptions/CHANGE_SORTBY';
 

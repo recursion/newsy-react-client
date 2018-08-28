@@ -1,8 +1,9 @@
 .search-options {
   padding: 5px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-evenly;
+  margin: auto;
   .field {
     margin-bottom: 10px;
     border: 1px solid grey;
@@ -18,7 +19,7 @@
   .sources {
     width: 310px;
   }
-  .target-container {
+  .target-container, .sort-by-container {
     max-height: 100px;
   }
 }

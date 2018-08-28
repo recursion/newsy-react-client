@@ -15,6 +15,7 @@ import LanguageOptions from 'components/SearchOptions/LanguageOptions';
 import CountryAndCategory from 'components/SearchOptions/CountryAndCategory';
 import AdvancedOptionsNav from 'components/SearchOptions/AdvancedOptionsNav';
 import DateOptions from 'components/SearchOptions/DateOptions';
+import SortByOptions from 'components/SearchOptions/SortByOptions';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -35,6 +36,8 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       onChangeTarget,
       fromDate,
       toDate,
+      sortBy,
+      onChangeSortBy,
       onChangeFromDate,
       onChangeToDate
     } = this.props;
@@ -55,6 +58,7 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
                 target={target}
                 onChangeTarget={onChangeTarget}
               />
+              <SortByOptions sortBy={sortBy} onChangeSortBy={onChangeSortBy} />
               {(target === 'everything') ?
                 <div>
                   <DateOptions
@@ -126,12 +130,14 @@ SearchOptions.propTypes = {
     PropTypes.bool,
     PropTypes.string
   ]),
+  sortBy: PropTypes.string,
   target: PropTypes.string,
   onChangeCountry: PropTypes.func,
   onChangeCategory: PropTypes.func,
   onChangeTarget: PropTypes.func,
   fromDate: PropTypes.string,
   toDate: PropTypes.string,
+  onChangeSortBy: PropTypes.func,
   onChangeFromDate: PropTypes.func,
   onChangeToDate: PropTypes.func
 };

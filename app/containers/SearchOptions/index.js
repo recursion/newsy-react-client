@@ -11,6 +11,7 @@ import {
   changeCountry,
   changeLanguage,
   changeFromDate,
+  changeSortBy,
   changeToDate
 } from './actions';
 import {
@@ -22,6 +23,7 @@ import {
   makeSelectLanguage,
   makeSelectSearchTarget,
   makeSelectToDate,
+  makeSelectSortBy,
   makeSelectFromDate
 } from './selectors';
 import reducer from './reducer';
@@ -54,6 +56,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onChangeToDate: (date) => {
     dispatch(changeToDate(date));
+  },
+  onChangeSortBy: (sortBy) => {
+    dispatch(changeSortBy(sortBy));
   }
 });
 
@@ -66,7 +71,8 @@ const mapStateToProps = createStructuredSelector({
   language: makeSelectLanguage(),
   target: makeSelectSearchTarget(),
   fromDate: makeSelectFromDate(),
-  toDate: makeSelectToDate()
+  toDate: makeSelectToDate(),
+  sortBy: makeSelectSortBy()
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

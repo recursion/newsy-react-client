@@ -61,8 +61,14 @@ const makeSelectToDate = () => createSelector(
   (searchState) => searchState.get('toDate')
 );
 
+const makeSelectSortBy = () => createSelector(
+  selectSearchOptions,
+  (searchState) => searchState.get('sortBy')
+);
+
 export {
   selectSearchOptions,
+  makeSelectSortBy,
   makeSelectAdvanced,
   makeSelectSearchType,
   makeSelectUseSources,

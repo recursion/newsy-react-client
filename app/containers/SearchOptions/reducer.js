@@ -13,6 +13,7 @@ import {
   CHANGE_LANGUAGE,
   TOGGLE_HIDE_ADVANCED,
   CHANGE_FROM_DATE,
+  CHANGE_SORTBY,
   CHANGE_TO_DATE
 } from './constants';
 
@@ -32,12 +33,16 @@ const initialState = fromJS({
   language: false, // language code - or all by default
   category: false, // all or a selected category
   fromDate: '2012-01-01', // date to start the search
-  toDate: now // date to end the search
+  toDate: now, // date to end the search
+  sortBy: 'publishedAt'
 });
 
 
 function searchOptionsReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_SORTBY:
+      return state
+        .set('sortBy', action.sortBy);
     case CHANGE_TO_DATE:
       if (action.date.match(dateValidator)) {
         return state
