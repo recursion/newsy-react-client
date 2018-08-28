@@ -33,7 +33,7 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
 
     // create the storylist item content
     const content = (
-      <div className="story-list-item">
+      <div className="story-list-item box">
         <StoryImage {...imageProps} />
         <div className="story-list-item__content">
           <a className="story-list-item__title" href={item.url}>{item.title}</a>
