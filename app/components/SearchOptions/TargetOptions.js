@@ -2,17 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TargetOption = ({ target, onChangeTarget }) => (
-  <div className="field">
-    <label className="label" htmlFor="target">Target</label>
-    <div className="select">
-      <select
-        name="target"
-        value={target}
-        onChange={(e) => onChangeTarget(e.target.value)}
-      >
-        <option value="everything" defaultValue>Everything</option>
-        <option value="top-headlines">Top Headlines</option>
-      </select>
+  <div className="field target-container">
+    <label className="label">Search Target</label>
+    <div className="radio">
+      <label className="label" htmlFor="everything">
+        <input
+          type="radio"
+          name="target"
+          value="everything"
+          checked={target === 'everything'}
+          onChange={(e) => onChangeTarget(e.target.value)}
+        />
+        Everything
+      </label>
+      <label className="label" htmlFor="top-headlines">
+        <input
+          type="radio"
+          name="target"
+          value="top-headlines"
+          checked={target === 'top-headlines'}
+          onChange={(e) => onChangeTarget(e.target.value)}
+        />
+        Top-headlines
+      </label>
     </div>
   </div>
 );

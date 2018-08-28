@@ -9,9 +9,17 @@
     border-radius: 5px;
     padding: 5px;
     width: 250px;
+    .radio {
+      input {
+        margin-right: 10px;
+      }
+    }
   }
   .sources {
     width: 310px;
+  }
+  .target-container {
+    max-height: 100px;
   }
 }
 
