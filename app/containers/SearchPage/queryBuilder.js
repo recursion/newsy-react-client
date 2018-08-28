@@ -13,6 +13,7 @@ import {
   makeSelectLanguage,
   makeSelectCategory,
   makeSelectToDate,
+  makeSelectSortBy,
   makeSelectFromDate
 } from 'containers/SearchOptions/selectors';
 import {
@@ -75,6 +76,11 @@ function* getCategory() {
   return '';
 }
 
+function* getSortBy() {
+  const sortBy = yield select(makeSelectSortBy());
+  return `sortBy=${sortBy}`;
+}
+
 // Get language and return a query string
 // or empty if none is selected
 function* getLanguage() {
@@ -121,6 +127,7 @@ export default function* buildQueryUrl() {
   const language = yield getLanguage();
   const fromDate = yield getFromDate();
   const toDate = yield getToDate();
+  const sortBy = yield getSortBy();
   const page = (nextPage !== 1) ? `page=${nextPage}` : '';
   const q = (query) ? `q=${query}` : '';
 
@@ -165,12 +172,13 @@ export default function* buildQueryUrl() {
       if (language !== '') {
         addQueryToUrl(language);
       }
+      addQueryToUrl(sortBy);
       addQueryToUrl(fromDate);
       addQueryToUrl(toDate);
     }
 
     // make sure a country is attached if searching top-headlines without one.
-    if (target === 'top-headlines' && country === '') {
+    if (target === 'top-headlines' && country === '' && !useSources) {
       addQueryToUrl('country=us');
     }
   }

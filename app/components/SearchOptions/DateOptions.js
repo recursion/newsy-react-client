@@ -16,7 +16,7 @@ const yesterday = () => {
 const DateOptions = ({
   target, fromDate, toDate, onChangeFromDate, onChangeToDate
 }) => {
-  if (target === 'everthing') {
+  if (target === 'everything') {
     return (
       <div className="date-options">
         <div className="field">

@@ -58,7 +58,11 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
                 target={target}
                 onChangeTarget={onChangeTarget}
               />
-              <SortByOptions sortBy={sortBy} onChangeSortBy={onChangeSortBy} />
+              <SortByOptions
+                sortBy={sortBy}
+                onChangeSortBy={onChangeSortBy}
+                target={target}
+              />
               <DateOptions
                 fromDate={fromDate}
                 toDate={toDate}
