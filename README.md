@@ -36,6 +36,7 @@ Allows users to easily search a plethora of news sites using a simple keyword se
 - A possible design choice that could be made is to have a 'top-headlines' and a 'everything' page. So that for searching those targets, there is a link to click on instead of a radio button. This would allow for displaying only the options available to those targets, instead of having to use logic to decide which options to show.
 - There are a few remaining api features that could be added.
 - Styling/UI/UX improvements. Currently this is super simple and has room for improvements such as a [sliding panel](https://www.npmjs.com/package/react-sliding-pane) for advanced options.
+- When the image failes to load or can't be found, attempt to load a logo image for the source instead of just a white filler.
 
 ## Quick start for client development
 
