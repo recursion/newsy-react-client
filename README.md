@@ -1,6 +1,6 @@
 ## Newsy
 
-A simple web client for searching the newsapi.org api build using react/redux. Newsy makes using the variety of newsapi.org search options easy and accessible.
+A simple web client for searching the newsapi.org api built using react/redux. Newsy makes using the variety of newsapi.org search options easy and accessible.
 
 Newsy currently proxy's requests through a private express.js server so no additional api key is needed. Advanced features may be added to the server in the future, but for now, it simply attaches an api key and passes query's through to newsapi.org, returning the results to the client. 
 
