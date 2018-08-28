@@ -180,7 +180,7 @@ export function* getStories() {
   };
 
   try {
-    if ((queryEmpty && advanced === false) || (queryEmpty && target === 'search')) {
+    if ((queryEmpty && advanced === false) || (queryEmpty && target === 'everything')) {
       yield put(resetSearch());
     } else {
       // Call our request helper (see 'utils/request')
