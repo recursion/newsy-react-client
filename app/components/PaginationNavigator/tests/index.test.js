@@ -39,10 +39,10 @@ describe('<PaginationNavigator {...props}/>', () => {
       expect(renderedComponent.find('button.pagination-nav__control').length).toBe(7);
     });
 
-    it('should render 9 buttons and 1 span when there are 175 total results, and we are on page 1', () => {
+    it('should render 10 buttons and 1 span when there are 165 total results, and we are on page 1', () => {
       const PNprops = {
         page: 1,
-        totalStories: 175,
+        totalStories: 165,
         onGetPage: () => {}
       };
       const renderedComponent = shallow(<PaginationNavigator {...PNprops} />);
