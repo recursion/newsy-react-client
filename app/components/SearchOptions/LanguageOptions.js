@@ -30,7 +30,10 @@ const LanguageOptions = ({ language, onChangeLanguage }) => (
 );
 
 LanguageOptions.propTypes = {
-  language: PropTypes.string,
+  language: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool
+  ]),
   onChangeLanguage: PropTypes.func
 };
 
