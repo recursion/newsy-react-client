@@ -1,4 +1,4 @@
-## Why? [![start with why]
+## Newsy
 
 A simple web client for searching the newsapi.org api build using react/redux. Newsy makes using the variety of newsapi.org search options easy and accessible.
 
@@ -18,7 +18,7 @@ Allows users to easily search a plethora of news sites using a simple keyword se
 - [x] Search 'Top Headlines'
   - [x] Query Strings (or empty query's)
   - [x] Sources or Country and Category.
-  - [] pageSize -- currently we only ever use the default of 20
+  - [ ] pageSize -- currently we only ever use the default of 20
 
 - Search 'Everything'
   - [x] Query Strings (no empty queries)
@@ -27,9 +27,9 @@ Allows users to easily search a plethora of news sites using a simple keyword se
   - [x] SortBy
   - [x] From Date
   - [x] To Date
-  - [] Domains
-  - [] exclude domains
-  - [] pageSize -- currently we only ever use the default of 20
+  - [ ] Domains
+  - [ ] exclude domains
+  - [ ] pageSize -- currently we only ever use the default of 20
 
 ## TODO
 - Lots of testing that could/should be done here. Since it was a prototype, only a few tests were written during development. The queryBuilder in particular would be a good target for testing, as well as all components dependant on certain variables for thier display.
