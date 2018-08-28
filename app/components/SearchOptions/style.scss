@@ -12,16 +12,27 @@
     padding: 5px;
     width: 250px;
     .radio {
+      label {
+        background-color: white;
+        color: black;
+      }
       input {
         margin-right: 10px;
       }
+    }
+    .label {
+      text-indent: 5px;
+      background-color: darkblue;
+      color: white;
+      padding: 2px;
+      border-radius: 5px;
     }
   }
   .sources {
     width: 310px;
   }
   .target-container, .sort-by-container {
-    max-height: 100px;
+    max-height: 115px;
   }
 }
 
