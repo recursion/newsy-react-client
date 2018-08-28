@@ -2,10 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-let now = new Date(Date.now());
-let yesterday = now.setDate(now.getDate() - 1);
-[yesterday] = now.toISOString().split('T');
-[now] = now.toISOString().split('T');
+const now = () => {
+  const d = new Date(Date.now());
+  return d.toISOString().split('T')[0];
+};
+
+const yesterday = () => {
+  const d = new Date(Date.now());
+  const y = new Date(d.setDate(d.getDate() - 1));
+  return y.toISOString().split('T')[0];
+};
 
 const DateOptions = ({
   fromDate, toDate, onChangeFromDate, onChangeToDate
@@ -20,8 +26,9 @@ const DateOptions = ({
           id="fromDate"
           name="fromDate"
           value={fromDate}
-          min="2012-01-02"
-          max={yesterday}
+          min="2012-01-01"
+          max={yesterday()}
+          required
         />
       </div>
     </div>
@@ -34,8 +41,9 @@ const DateOptions = ({
           name="toDate"
           value={toDate}
           min="2012-01-02"
-          max={now}
+          max={now()}
           onChange={(e) => onChangeToDate(e.target.value)}
+          required
         />
       </div>
     </div>

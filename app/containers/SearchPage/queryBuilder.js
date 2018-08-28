@@ -87,12 +87,12 @@ function* getLanguage() {
 
 function* getToDate() {
   const toDate = yield select(makeSelectToDate());
-  return `toDate=${toDate}`;
+  return `to=${toDate}`;
 }
 
 function* getFromDate() {
   const fromDate = yield select(makeSelectFromDate());
-  return `fromDate=${fromDate}`;
+  return `from=${fromDate}`;
 }
 
 // determine if we are using sources
