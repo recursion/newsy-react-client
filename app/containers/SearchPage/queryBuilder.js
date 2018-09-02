@@ -45,6 +45,7 @@ function* addSources() {
         withAdvancedOptions = `sources=${selectedSources.toJS().join(',')}`;
       }
     }
+    console.log('Using sources: ', withAdvancedOptions);
     return withAdvancedOptions;
   } catch (err) {
     // Most likely because sources hasnt been loaded
