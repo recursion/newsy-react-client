@@ -32,8 +32,7 @@ import config from '../../config';
  * being preset. So - if we dont find the sources store, we just send
  * back an empty string.
  */
-function* addSources() {
-  const advancedSearch = yield select(makeSelectAdvanced());
+function* addSources(advancedSearch) {
   let selectedSources;
   let allSources;
   let withAdvancedOptions = '';
@@ -120,7 +119,7 @@ export default function* buildQueryUrl() {
   const advanced = yield select(makeSelectAdvanced());
   const nextPage = yield select(makeSelectGetPage());
   const useSources = yield select(makeSelectUseSources());
-  const sources = yield addSources();
+  const sources = yield addSources(advanced);
   const country = yield getCountry();
   const category = yield getCategory();
   const language = yield getLanguage();
