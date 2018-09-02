@@ -1,6 +1,6 @@
 
 const devURL = 'http://localhost:3000/v1';
-const prodURL = 'https://myserver.com/v1';
+const prodURL = 'https://newsy.recursionslaboratory.com/v1';
 
 const config = {
   // this should be changed to wherever the newsy api server is running
