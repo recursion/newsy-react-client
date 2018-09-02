@@ -177,7 +177,7 @@ export default function* buildQueryUrl() {
     }
 
     // make sure a country is attached if searching top-headlines without one.
-    if (target === 'top-headlines' && country === '' && !useSources) {
+    if (target === 'top-headlines' && country === '' && (!useSources || sources === '')) {
       addQueryToUrl('country=us');
     }
   }
