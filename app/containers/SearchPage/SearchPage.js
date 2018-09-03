@@ -7,10 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import SearchForm from 'components/SearchForm';
 import StoriesList from 'components/StoriesList';
 import SearchOptions from 'containers/SearchOptions';
 import ResultsCounter from 'components/ResultsCounter';
-import UsageTips from 'containers/UsageTips';
 
 import './style.scss';
 
@@ -29,6 +29,12 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
 
     const totalStories = stories.get('totalResults');
 
+    const searchFromProps = {
+      onSubmitForm,
+      query,
+      onChangeSearchTerms,
+    };
+
     const storiesListProps = {
       loading,
       error,
@@ -41,41 +47,10 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
     const resultsCounterProps = {
       page: stories.get('page'),
       totalStories,
+      loading,
+      loaded,
       numStories: stories.get('articles').length
     };
-
-    /**
-     * Returns empty if we are currently loading,
-     * a 0 results message if no results were returned
-     * or Usage tips if no search has yet been performed.
-     */
-    const renderTipsOrNoResultsMsg = () => {
-      if (loading) {
-        return '';
-      } else if (loaded && totalStories === 0) {
-        return (
-          <div className="box has-text-centered">
-            <div className="title">
-              0 Results found.
-            </div>
-            <div className="subtitle">
-              Try less specific search terms.
-            </div>
-          </div>
-        );
-      }
-      return <UsageTips />;
-    };
-
-    /**
-     *  resultsCounter
-     *
-     *  renders the resultsCounter if there are results
-     *  or displays UsageTips, or a message stating no results found
-     */
-    const resultsCounter = (totalStories > 0) ?
-      <ResultsCounter {...resultsCounterProps} /> :
-      renderTipsOrNoResultsMsg();
 
     return (
       <article>
@@ -84,26 +59,9 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
           <meta name="description" content="An easy way to search multiple news outlets for similar stories." />
         </Helmet>
         <section className="search-page">
-          <form onSubmit={onSubmitForm}>
-            <div className="field has-addons">
-              <div className="control is-expanded">
-                <input
-                  className="input has-text-centered is-radiusless"
-                  id="query"
-                  type="text"
-                  placeholder="Enter search terms or headlines here."
-                  value={query || ''}
-                  onChange={onChangeSearchTerms}
-                  autoComplete="off"
-                />
-              </div>
-              <div className="control">
-                <button className="button is-info is-radiusless" onClick={onSubmitForm}>Search</button>
-              </div>
-            </div>
-          </form>
+          <SearchForm {...searchFromProps} />
           <SearchOptions />
-          { resultsCounter }
+          <ResultsCounter {...resultsCounterProps} />
           <StoriesList {...storiesListProps} />
         </section>
       </article>
