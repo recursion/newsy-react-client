@@ -6,7 +6,7 @@ Newsy currently proxy's requests through a private express.js server so no addit
 
 Easily convertible to something that stores and uses your own api key from the client, and calls direct to the newsapi.org api - this may be added as a base option in the future.
 
-Project starter cloned from the react-redux boilerplate: https://github.com/flexdinesh/react-redux-boilerplate.git
+Project starter cloned from this react-redux boilerplate: https://github.com/flexdinesh/react-redux-boilerplate.git
 
 ## Features
 Allows users to easily search a plethora of news sites using a simple keyword search or a variety of advanced options.
