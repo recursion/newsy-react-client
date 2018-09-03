@@ -13,7 +13,7 @@ Allows users to easily search a plethora of news sites using a simple keyword se
 
 - Mobile First, Responsive design.
 - Advanced and/or Simple search options.
-Demo: [https://newsy.recursionslaboratory.com](Newsy Site)
+Demo: (https://newsy.recursionslaboratory.com)[Newsy Site]
 
 ### Implemented API:
 - [x] Search 'Top Headlines'
