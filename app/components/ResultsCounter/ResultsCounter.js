@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import UsageTips from 'containers/UsageTips';
 
 import './style.scss';
 
@@ -18,16 +19,47 @@ const calcResultsDisplayed = (page, numStories) => {
   return `${start}-${(start + numStories) - 1}`;
 };
 
-const ResultsCounter = ({ page, numStories, totalStories }) => (
-  <div className="results-counter">
-    Showing {calcResultsDisplayed(page, numStories)} of {totalStories} Results
-  </div>
-);
+const ResultsCounter = ({
+  loading,
+  loaded,
+  page,
+  numStories,
+  totalStories
+}) => {
+  if (loading) {
+    return '';
+  }
+
+  if (totalStories > 0) {
+    return (
+      <div className="results-counter">
+          Showing {calcResultsDisplayed(page, numStories)} of {totalStories} Results
+      </div>
+    );
+  }
+
+  if (loaded && totalStories === 0) {
+    return (
+      <div className="box has-text-centered">
+        <div className="title">
+            0 Results found.
+        </div>
+        <div className="subtitle">
+            Try less specific search terms.
+        </div>
+      </div>
+    );
+  }
+
+  return <UsageTips />;
+};
 
 ResultsCounter.propTypes = {
   page: PropTypes.number,
   numStories: PropTypes.number,
-  totalStories: PropTypes.number
+  totalStories: PropTypes.number,
+  loading: PropTypes.bool,
+  loaded: PropTypes.bool
 };
 
 export default ResultsCounter;
