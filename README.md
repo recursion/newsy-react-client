@@ -38,7 +38,8 @@ Demo: https://newsy.recursionslaboratory.com
 
 [ ] Move options state into global store / reducer - since there are times where it needs to be accessed before the component loads, it may make more sense to just keep all of this state in the global store. This would allow our query builder function to be a little simpler.
 [ ] Tests and cleanup for query builder. It is currently pretty ad-hoc - but since the focus was getting something up and running quickly, it made the most sense at the time.
-[ ] Lots of testing that could/should be done here. Since it was a prototype, only a few tests were written during development. The queryBuilder in particular would be a good target for testing, as well as all components dependant on certain variables for thier display.
+[ ] Lots of testing that could/should be done here. Since it was a prototype, only a few tests were written during development. 
+[ ] .toJS() calls should all be made from selectors where applicable. There are multiple places where I made the .toJS() calls in the wrong place, and these all need to be fixed.
 [ ] A possible design choice that could be made is to have a 'top-headlines' and a 'everything' page. So that for searching those targets, there is a link to click on instead of a radio button. This would allow for displaying only the options available to those targets, instead of having to use logic to decide which options to show.
 [ ] There are a few remaining api features that could be added.
 [x] Styling/UI/UX improvements. Currently this is super simple and has lots of room for improvements such as a [sliding panel](https://www.npmjs.com/package/react-sliding-pane) for advanced options.
