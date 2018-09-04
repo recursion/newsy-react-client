@@ -8,6 +8,8 @@ Easily convertible to something that stores and uses your own api key from the c
 
 Project starter cloned from this react-redux boilerplate: https://github.com/flexdinesh/react-redux-boilerplate.git
 
+[Demo] (https://newsy.recursionslaboratory.com)
+
 ## Features
 Allows users to easily search a plethora of news sites using a simple keyword search or a variety of advanced options.
 
