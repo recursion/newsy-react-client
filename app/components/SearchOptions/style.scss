@@ -1,12 +1,9 @@
 .search-options {
-  padding: 5px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   .field {
-    margin-bottom: 10px;
     border: 1px solid grey;
     border-radius: 5px;
     padding: 5px;
@@ -27,16 +24,33 @@
       padding: 2px;
       border-radius: 5px;
     }
+    .control {
+      padding: 0.5rem;
+    }
   }
   .sources {
-    width: 310px;
+    width: 300px;
   }
   .target-container, .sort-by-container {
     max-height: 115px;
   }
+
+  &__special {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 }
 
-
+.show-options-btn {
+  margin-left: 20px;
+}
+.advanced-notice {
+  height: 40px;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
 @media only screen and (min-width: 768px) {
   .search-options {
     &__special {

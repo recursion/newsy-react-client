@@ -8,22 +8,16 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import PropTypes from 'prop-types';
-import AdvancedOptionsHiddenNav from 'components/SearchOptions/AdvancedOptionsHiddenNav';
 import TargetOptions from 'components/SearchOptions/TargetOptions';
 import SourceOptions from 'components/SearchOptions/SourceOptions';
 import LanguageOptions from 'components/SearchOptions/LanguageOptions';
 import CountryAndCategory from 'components/SearchOptions/CountryAndCategory';
-import AdvancedOptionsNav from 'components/SearchOptions/AdvancedOptionsNav';
 import DateOptions from 'components/SearchOptions/DateOptions';
 import SortByOptions from 'components/SearchOptions/SortByOptions';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const {
-      advanced,
-      hideAdvanced,
-      toggleHideAdvanced,
-      toggleSearchType,
       useSources,
       toggleUseSources,
       country,
@@ -42,81 +36,51 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
       onChangeToDate
     } = this.props;
 
-
-    const AdvancedOptionsNavProps = {
-      toggleHideAdvanced,
-      toggleSearchType,
-    };
-
-    if (advanced) {
-      if (!hideAdvanced) {
-        return (
-          <section className="search-options__advanced">
-            <AdvancedOptionsNav {...AdvancedOptionsNavProps} />
-            <div className="search-options">
-              <TargetOptions
-                target={target}
-                onChangeTarget={onChangeTarget}
-              />
-              <SortByOptions
-                sortBy={sortBy}
-                onChangeSortBy={onChangeSortBy}
-                target={target}
-              />
-              <DateOptions
-                fromDate={fromDate}
-                toDate={toDate}
-                target={target}
-                onChangeFromDate={onChangeFromDate}
-                onChangeToDate={onChangeToDate}
-              />
-              <LanguageOptions
-                language={language}
-                target={target}
-                onChangeLanguage={onChangeLanguage}
-              />
-              {(useSources) ?
-                <SourceOptions
-                  target={target}
-                  toggleUseSources={toggleUseSources}
-                /> :
-                <CountryAndCategory
-                  target={target}
-                  country={country}
-                  onChangeCountry={onChangeCountry}
-                  category={category}
-                  onChangeCategory={onChangeCategory}
-                  toggleUseSources={toggleUseSources}
-                />
-              }
-            </div>
-          </section>
-        );
-      }
-      return (
-        <AdvancedOptionsHiddenNav {...AdvancedOptionsNavProps} />
-      );
-    }
     return (
-      <div className="field">
-        <div className="control">
-          <button
-            className="button is-small is-primary is-inverted"
-            onClick={toggleSearchType}
-          >
-              Advanced Options
-          </button>
+      <section className="search-options__advanced">
+        <div className="search-options">
+          <TargetOptions
+            target={target}
+            onChangeTarget={onChangeTarget}
+          />
+          <SortByOptions
+            sortBy={sortBy}
+            onChangeSortBy={onChangeSortBy}
+            target={target}
+          />
+          <DateOptions
+            fromDate={fromDate}
+            toDate={toDate}
+            target={target}
+            onChangeFromDate={onChangeFromDate}
+            onChangeToDate={onChangeToDate}
+          />
+          <LanguageOptions
+            language={language}
+            target={target}
+            onChangeLanguage={onChangeLanguage}
+          />
+          {(useSources) ?
+            <SourceOptions
+              target={target}
+              toggleUseSources={toggleUseSources}
+            /> :
+            <CountryAndCategory
+              target={target}
+              country={country}
+              onChangeCountry={onChangeCountry}
+              category={category}
+              onChangeCategory={onChangeCategory}
+              toggleUseSources={toggleUseSources}
+            />
+          }
         </div>
-      </div>
+      </section>
     );
   }
 }
 
 SearchOptions.propTypes = {
-  advanced: PropTypes.bool,
-  hideAdvanced: PropTypes.bool,
-  toggleHideAdvanced: PropTypes.func,
-  toggleSearchType: PropTypes.func,
   useSources: PropTypes.bool,
   toggleUseSources: PropTypes.func,
   onChangeLanguage: PropTypes.func,

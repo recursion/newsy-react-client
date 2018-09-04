@@ -4,10 +4,9 @@
  * Builds a url + query string using the users selected options and query
  */
 import { select } from 'redux-saga/effects';
-import { makeSelectQuery, makeSelectGetPage } from 'containers/SearchPage/selectors';
+import { makeSelectQuery, makeSelectGetPage, makeSelectSearchType } from 'containers/SearchPage/selectors';
 import {
   makeSelectCountry,
-  makeSelectAdvanced,
   makeSelectSearchTarget,
   makeSelectUseSources,
   makeSelectLanguage,
@@ -114,24 +113,40 @@ const sourcesOrCountryAndCategory = ({
 // making sure we use ? for the first option
 // and & for the rest of the options
 export default function* buildQueryUrl() {
-  const target = yield select(makeSelectSearchTarget());
   const query = yield select(makeSelectQuery());
-  const advanced = yield select(makeSelectAdvanced());
+  const advanced = yield select(makeSelectSearchType());
   const nextPage = yield select(makeSelectGetPage());
-  const useSources = yield select(makeSelectUseSources());
-  const sources = yield addSources(advanced);
-  const country = yield getCountry();
-  const category = yield getCategory();
-  const language = yield getLanguage();
-  const fromDate = yield getFromDate();
-  const toDate = yield getToDate();
-  const sortBy = yield getSortBy();
   const page = (nextPage !== 1) ? `page=${nextPage}` : '';
   const q = (query) ? `q=${query}` : '';
 
-  let url = `${config.url}/news/${target}`;
-  let firstOptionUsed = false;
+  // these will not be available if options has not loaded yet
+  let target;
+  let useSources;
+  let sources;
+  let country;
+  let category;
+  let language;
+  let fromDate;
+  let toDate;
+  let sortBy;
 
+  try {
+    target = yield select(makeSelectSearchTarget());
+    useSources = yield select(makeSelectUseSources());
+    sources = yield addSources(advanced);
+    country = yield getCountry();
+    category = yield getCategory();
+    language = yield getLanguage();
+    fromDate = yield getFromDate();
+    toDate = yield getToDate();
+    sortBy = yield getSortBy();
+  } catch (e) {
+    target = 'everything';
+  }
+
+  let url = `${config.url}/news/${target}`;
+
+  let firstOptionUsed = false;
   // when adding an option to the string
   // make sure we are using the proper symbol (? or &)
   const addQueryToUrl = (option) => {

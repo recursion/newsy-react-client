@@ -6,28 +6,14 @@
 import {
   CHANGE_TARGET,
   CHANGE_COUNTRY,
-  CHANGE_SEARCH_TYPE,
   CHANGE_CATEGORY,
   CHANGE_USE_SOURCES,
   CHANGE_LANGUAGE,
-  TOGGLE_HIDE_ADVANCED,
   CHANGE_FROM_DATE,
   CHANGE_SORTBY,
   CHANGE_TO_DATE
 } from './constants';
 
-/**
- * Changes the input field of the form
- *
- * @param  {string} searchType The new type of search type.
- *
- * @return {object}    An action object with a type of CHANGE_USERNAME
- */
-export function changeSearchType() {
-  return {
-    type: CHANGE_SEARCH_TYPE,
-  };
-}
 
 export function changeFromDate(date) {
   return {
@@ -56,11 +42,7 @@ export function changeLanguage(language) {
     language
   };
 }
-export function toggleHideAdvanced() {
-  return {
-    type: TOGGLE_HIDE_ADVANCED
-  };
-}
+
 export function changeUseSources() {
   return {
     type: CHANGE_USE_SOURCES,

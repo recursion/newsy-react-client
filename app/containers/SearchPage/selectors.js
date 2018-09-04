@@ -36,8 +36,14 @@ const makeSelectLoaded = () => createSelector(
   (searchState) => searchState.get('loaded')
 );
 
+const makeSelectSearchType = () => createSelector(
+  selectSearch,
+  (searchState) => searchState.get('advanced')
+);
+
 export {
   selectSearch,
+  makeSelectSearchType,
   makeSelectLoaded,
   makeSelectQuery,
   makeSelectStories,

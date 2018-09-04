@@ -22,6 +22,7 @@ import {
   LOAD_STORIES,
   LOAD_STORIES_SUCCESS,
   RESET,
+  CHANGE_SEARCH_TYPE,
   LOAD_STORIES_ERROR
 } from './constants';
 
@@ -42,6 +43,19 @@ export function changeSearchTerms(query) {
 export function resetSearch() {
   return {
     type: RESET
+  };
+}
+
+/**
+ * Changes the input field of the form
+ *
+ * @param  {string} searchType The new type of search type.
+ *
+ * @return {object}    An action object with a type of CHANGE_USERNAME
+ */
+export function changeSearchType() {
+  return {
+    type: CHANGE_SEARCH_TYPE,
   };
 }
 

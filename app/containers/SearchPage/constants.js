@@ -16,3 +16,4 @@ export const LOAD_STORIES_ERROR = 'newsy/Search/LOAD_STORIES_ERROR';
 export const CHANGE_PAGE = 'newsy/Search/CHANGE_PAGE';
 export const CHANGE_PAGE_SUCCESS = 'newsy/Search/CHANGE_PAGE_SUCCESS';
 export const RESET = 'newsy/Search/RESET';
+export const CHANGE_SEARCH_TYPE = 'newsy/Search/CHANGE_SEARCH_TYPE';
