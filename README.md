@@ -34,12 +34,12 @@ Demo: https://newsy.recursionslaboratory.com
 
 ## TODO
 
-- Lots of testing that could/should be done here. Since it was a prototype, only a few tests were written during development. The queryBuilder in particular would be a good target for testing, as well as all components dependant on certain variables for thier display.
-- A possible design choice that could be made is to have a 'top-headlines' and a 'everything' page. So that for searching those targets, there is a link to click on instead of a radio button. This would allow for displaying only the options available to those targets, instead of having to use logic to decide which options to show.
-- There are a few remaining api features that could be added.
-- Styling/UI/UX improvements. Currently this is super simple and has lots of room for improvements such as a [sliding panel](https://www.npmjs.com/package/react-sliding-pane) for advanced options.
-- When the image fails to load or can't be found, attempt to load a logo image for the source instead of just a white filler.
-- Client side santizing of all search results. - Currently we are treating the results as being from a trusted third party, but best practice would have us sanitize all results before using them.
+[ ] Lots of testing that could/should be done here. Since it was a prototype, only a few tests were written during development. The queryBuilder in particular would be a good target for testing, as well as all components dependant on certain variables for thier display.
+[ ] A possible design choice that could be made is to have a 'top-headlines' and a 'everything' page. So that for searching those targets, there is a link to click on instead of a radio button. This would allow for displaying only the options available to those targets, instead of having to use logic to decide which options to show.
+[ ] There are a few remaining api features that could be added.
+[x] Styling/UI/UX improvements. Currently this is super simple and has lots of room for improvements such as a [sliding panel](https://www.npmjs.com/package/react-sliding-pane) for advanced options.
+[ ] When the image fails to load or can't be found, attempt to load a logo image for the source instead of just a white filler.
+[ ] Client side santizing of all search results. - Currently we are treating the results as being from a trusted third party, but best practice would have us sanitize all results before using them.
 
 ## Quick start for client development
 
