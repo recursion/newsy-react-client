@@ -6,11 +6,6 @@ import { createSelector } from 'reselect';
 
 const selectSearchOptions = (state) => state.get('searchOptions');
 
-const makeSelectSearchType = () => createSelector(
-  selectSearchOptions,
-  (searchState) => searchState.get('advanced')
-);
-
 const makeSelectUseSources = () => createSelector(
   selectSearchOptions,
   (searchState) => searchState.get('useSources')
@@ -41,16 +36,6 @@ const makeSelectSearchTarget = () => createSelector(
   (searchState) => searchState.get('target')
 );
 
-const makeSelectAdvanced = () => createSelector(
-  selectSearchOptions,
-  (searchState) => searchState.get('advanced')
-);
-
-const makeSelectHideAdvanced = () => createSelector(
-  selectSearchOptions,
-  (searchState) => searchState.get('hideAdvanced')
-);
-
 const makeSelectFromDate = () => createSelector(
   selectSearchOptions,
   (searchState) => searchState.get('fromDate')
@@ -69,15 +54,12 @@ const makeSelectSortBy = () => createSelector(
 export {
   selectSearchOptions,
   makeSelectSortBy,
-  makeSelectAdvanced,
-  makeSelectSearchType,
   makeSelectUseSources,
   makeSelectSearchTarget,
   makeSelectCountry,
   makeSelectSources,
   makeSelectCategory,
   makeSelectLanguage,
-  makeSelectHideAdvanced,
   makeSelectFromDate,
   makeSelectToDate,
 };

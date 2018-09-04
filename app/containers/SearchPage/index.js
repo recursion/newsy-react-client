@@ -5,6 +5,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
   changeSearchTerms,
+  changeSearchType,
   loadStories,
   getPage
 } from './actions';
@@ -13,6 +14,7 @@ import {
   makeSelectStories,
   makeSelectLoading,
   makeSelectLoaded,
+  makeSelectSearchType,
   makeSelectError
 } from './selectors';
 import reducer from './reducer';
@@ -20,6 +22,9 @@ import saga from './saga';
 import SearchPage from './SearchPage';
 
 const mapDispatchToProps = (dispatch) => ({
+  toggleSearchType: () => {
+    dispatch(changeSearchType());
+  },
   onChangeSearchTerms: (evt) => dispatch(changeSearchTerms(evt.target.value)),
   onSubmitForm: (evt) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
@@ -32,6 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
+  advanced: makeSelectSearchType(),
   stories: makeSelectStories(),
   query: makeSelectQuery(),
   loading: makeSelectLoading(),

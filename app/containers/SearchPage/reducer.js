@@ -11,11 +11,13 @@ import {
   CHANGE_PAGE_SUCCESS,
   LOAD_STORIES,
   LOAD_STORIES_SUCCESS,
-  LOAD_STORIES_ERROR
+  LOAD_STORIES_ERROR,
+  CHANGE_SEARCH_TYPE
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
+  advanced: false,
   loading: false,
   error: false,
   query: false,
@@ -59,6 +61,9 @@ function searchReducer(state = initialState, action) {
       return state
         .set('error', action.error)
         .set('loading', false);
+    case CHANGE_SEARCH_TYPE:
+      return state
+        .set('advanced', !state.get('advanced'));
     default:
       return state;
   }

@@ -7,16 +7,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import OptionsPanel from 'containers/OptionsPanel';
 import SearchForm from 'components/SearchForm';
 import StoriesList from 'components/StoriesList';
-import SearchOptions from 'containers/SearchOptions';
 import ResultsCounter from 'components/ResultsCounter';
+import AdvancedOptionsNav from 'components/SearchOptions/AdvancedOptionsNav';
 
 import './style.scss';
 
 export default class SearchPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+    this.state = { showAdvanced: false };
+    this.toggleShowAdvanced = this.toggleShowAdvanced.bind(this);
+  }
+
+  toggleShowAdvanced() {
+    this.setState(() => ({
+      showAdvanced: !this.state.showAdvanced
+    }));
+  }
+
   render() {
     const {
+      advanced,
+      toggleSearchType,
       loading,
       error,
       stories,
@@ -52,6 +67,19 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       numStories: stories.get('articles').length
     };
 
+    const advancedOptionsNavProps = {
+      advanced,
+      toggleSearchType,
+      toggleShowAdvanced: this.toggleShowAdvanced
+    };
+
+    const panelProps = {
+      advanced,
+      toggleSearchType,
+      toggleShowAdvanced: this.toggleShowAdvanced,
+      showAdvanced: this.state.showAdvanced
+    };
+
     return (
       <article>
         <Helmet>
@@ -60,7 +88,8 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
         </Helmet>
         <section className="search-page">
           <SearchForm {...searchFromProps} />
-          <SearchOptions />
+          <OptionsPanel {...panelProps} />
+          <AdvancedOptionsNav {...advancedOptionsNavProps} />
           <ResultsCounter {...resultsCounterProps} />
           <StoriesList {...storiesListProps} />
         </section>
@@ -70,6 +99,8 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
 }
 
 SearchPage.propTypes = {
+  advanced: PropTypes.bool,
+  toggleSearchType: PropTypes.func,
   loading: PropTypes.bool,
   loaded: PropTypes.bool,
   error: PropTypes.oneOfType([

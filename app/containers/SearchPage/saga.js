@@ -3,11 +3,12 @@
  */
 
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
-import { makeSelectQuery, makeSelectGetPage } from 'containers/SearchPage/selectors';
 import {
-  makeSelectAdvanced,
-  makeSelectSearchTarget
-} from 'containers/SearchOptions/selectors';
+  makeSelectQuery,
+  makeSelectGetPage,
+  makeSelectSearchType
+} from 'containers/SearchPage/selectors';
+import { makeSelectSearchTarget } from 'containers/SearchOptions/selectors';
 import request from 'utils/request';
 import buildQueryUrl from './queryBuilder';
 
@@ -17,10 +18,18 @@ import { resetSearch, storiesLoaded, storiesLoadingError, pageChangeLoaded } fro
 const isQueryEmpty = (query) => (query === false || query === '');
 
 export function* getStories() {
-  const target = yield select(makeSelectSearchTarget());
   const query = yield select(makeSelectQuery());
-  const advanced = yield select(makeSelectAdvanced());
+  const advanced = yield select(makeSelectSearchType());
   const nextPage = yield select(makeSelectGetPage());
+
+  // target may not be available.
+  let target;
+  try {
+    target = yield select(makeSelectSearchTarget());
+  } catch (e) {
+    // if it wasnt available yet, just set to the default 'everything'
+    target = 'everything';
+  }
 
   try {
     if ((isQueryEmpty(query) && advanced === false) || (isQueryEmpty(query) && target === 'everything')) {

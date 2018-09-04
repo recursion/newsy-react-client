@@ -8,10 +8,8 @@ import {
   CHANGE_TARGET,
   CHANGE_COUNTRY,
   CHANGE_USE_SOURCES,
-  CHANGE_SEARCH_TYPE,
   CHANGE_CATEGORY,
   CHANGE_LANGUAGE,
-  TOGGLE_HIDE_ADVANCED,
   CHANGE_FROM_DATE,
   CHANGE_SORTBY,
   CHANGE_TO_DATE
@@ -25,8 +23,6 @@ const dateValidator = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|
 
 // The initial state of the App
 const initialState = fromJS({
-  advanced: false, // simple or advanced
-  hideAdvanced: false, // use advanced search, but hide the form.
   target: 'everything', // everything or headlines
   useSources: true, // we can only use country/category OR sources - not both.
   country: false, // all or a selected country code
@@ -58,9 +54,6 @@ function searchOptionsReducer(state = initialState, action) {
     case CHANGE_LANGUAGE:
       return state
         .set('language', action.language);
-    case TOGGLE_HIDE_ADVANCED:
-      return state
-        .set('hideAdvanced', !state.get('hideAdvanced'));
     case CHANGE_TARGET:
       if (action.target === 'everything') {
         return state
@@ -69,9 +62,6 @@ function searchOptionsReducer(state = initialState, action) {
       }
       return state
         .set('target', action.target);
-    case CHANGE_SEARCH_TYPE:
-      return state
-        .set('advanced', !state.get('advanced'));
     case CHANGE_USE_SOURCES:
       return state
         .set('useSources', !state.get('useSources'));
