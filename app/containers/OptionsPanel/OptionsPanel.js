@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import SearchOptions from 'containers/SearchOptions';
 import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
+import './style.scss';
 
 export default class OptionsPanel extends Component {
   constructor(props) {
@@ -59,16 +60,21 @@ export default class OptionsPanel extends Component {
             this.props.closeAdvanced();
           }}
         >
-          <div className="field">
+          <div className="field has-text-centered">
+            <label className="mode-switch" htmlFor="switchRoundedDefault">
+              Simple
+            </label>
             <input
               id="switchRoundedDefault"
               type="checkbox"
-              name="switchRoundedDefault"
-              className="switch is-rounded"
+              name="switchRoundedSuccess"
+              className="switch is-rounded is-success"
               checked={this.props.advanced}
               onChange={this.props.toggleSearchType}
             />
-            <label htmlFor="switchRoundedDefault">Use Advanced Options</label>
+            <label htmlFor="switchRoundedDefault">
+              Advanced
+            </label>
           </div>
           {(this.props.advanced) ?
             <SearchOptions /> :
