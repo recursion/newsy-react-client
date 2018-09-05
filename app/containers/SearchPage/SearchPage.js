@@ -20,11 +20,18 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
     super(props);
     this.state = { showAdvanced: false };
     this.toggleShowAdvanced = this.toggleShowAdvanced.bind(this);
+    this.closeAdvanced = this.closeAdvanced.bind(this);
   }
 
   toggleShowAdvanced() {
     this.setState(() => ({
       showAdvanced: !this.state.showAdvanced
+    }));
+  }
+
+  closeAdvanced() {
+    this.setState(() => ({
+      showAdvanced: false
     }));
   }
 
@@ -76,7 +83,8 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
       advanced,
       toggleSearchType,
       toggleShowAdvanced: this.toggleShowAdvanced,
-      showAdvanced: this.state.showAdvanced
+      showAdvanced: this.state.showAdvanced,
+      closeAdvanced: this.closeAdvanced
     };
 
     return (

@@ -56,7 +56,7 @@ export default class OptionsPanel extends Component {
           width="310px"
           onRequestClose={() => {
             this.setState({ isPaneOpenLeft: false });
-            this.props.toggleShowAdvanced();
+            this.props.closeAdvanced();
           }}
         >
           <div className="field">
@@ -83,5 +83,6 @@ export default class OptionsPanel extends Component {
 OptionsPanel.propTypes = {
   advanced: PropTypes.bool,
   toggleSearchType: PropTypes.func,
-  toggleShowAdvanced: PropTypes.func
+  toggleShowAdvanced: PropTypes.func,
+  closeAdvanced: PropTypes.func
 };
