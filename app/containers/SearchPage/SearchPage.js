@@ -52,7 +52,6 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
 
     const storiesListProps = {
       loading,
-      error,
       stories: stories.get('articles'),
       page: stories.get('page'),
       totalStories,
@@ -90,8 +89,16 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
           <SearchForm {...searchFromProps} />
           <OptionsPanel {...panelProps} />
           <AdvancedOptionsNav {...advancedOptionsNavProps} />
-          <ResultsCounter {...resultsCounterProps} />
-          <StoriesList {...storiesListProps} />
+          {(error) ?
+            <div className="container is-fluid has-text-centered">
+              <div className="title">Something went wrong. Please try again.</div>
+              <br />
+            </div> :
+            <div>
+              <ResultsCounter {...resultsCounterProps} />
+              <StoriesList {...storiesListProps} />
+            </div>
+          }
         </section>
       </article>
     );

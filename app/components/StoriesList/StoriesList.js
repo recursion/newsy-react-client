@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import List from 'components/List';
-import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 import StoryListItem from 'containers/StoryListItem';
 import PaginationNavigator from 'components/PaginationNavigator';
@@ -12,7 +11,6 @@ import './style.scss';
 
 const StoryList = ({
   loading,
-  error,
   stories,
   page,
   totalStories,
@@ -20,13 +18,6 @@ const StoryList = ({
 }) => {
   if (loading) {
     return <List component={LoadingIndicator} />;
-  }
-
-  if (error !== false) {
-    const ErrorComponent = () => (
-      <ListItem item={'Something went wrong, please try again!'} />
-    );
-    return <List component={ErrorComponent} />;
   }
 
   if (stories.length !== 0) {
@@ -59,7 +50,6 @@ const StoryList = ({
 
 StoryList.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.any,
   stories: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array
