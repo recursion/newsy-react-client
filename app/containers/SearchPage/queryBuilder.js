@@ -109,10 +109,7 @@ const sourcesOrCountryAndCategory = ({
   return [country, category];
 };
 
-// build our url + queryString
-// making sure we use ? for the first option
-// and & for the rest of the options
-export default function* buildQueryUrl() {
+export function* pullData() {
   const query = yield select(makeSelectQuery());
   const advanced = yield select(makeSelectSearchType());
   const nextPage = yield select(makeSelectGetPage());
@@ -143,6 +140,37 @@ export default function* buildQueryUrl() {
   } catch (e) {
     target = 'everything';
   }
+  return {
+    advanced,
+    page,
+    q,
+    target,
+    useSources,
+    sources,
+    country,
+    category,
+    language,
+    fromDate,
+    toDate,
+    sortBy
+  };
+}
+
+export function buildUrl(options) {
+  const {
+    advanced,
+    page,
+    q,
+    target,
+    useSources,
+    sources,
+    country,
+    category,
+    language,
+    fromDate,
+    toDate,
+    sortBy
+  } = options;
 
   let url = `${config.url}/news/${target}`;
 
@@ -170,10 +198,10 @@ export default function* buildQueryUrl() {
 
   // add advanced options if they exist
   if (advanced) {
-    const options = [...sourcesOrCountryAndCategory({
+    const opts = [...sourcesOrCountryAndCategory({
       sources, useSources, country, category
     })];
-    options.forEach((option) => {
+    opts.forEach((option) => {
       if (option !== '') {
         addQueryToUrl(option);
       }
@@ -195,6 +223,15 @@ export default function* buildQueryUrl() {
       addQueryToUrl('country=us');
     }
   }
+  return url;
+}
+
+// build our url + queryString
+// making sure we use ? for the first option
+// and & for the rest of the options
+export default function* buildQueryUrl() {
+  const options = yield pullData();
+  const url = buildUrl(options);
   // console.log('Built: ', url);
   return url;
 }
