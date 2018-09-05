@@ -7,16 +7,18 @@ const SortByOptions = ({ sortBy, onChangeSortBy, target }) => {
     return (
       <div className="field sort-by-container">
         <label htmlFor="sortBy" className="label">Sort By</label>
-        <div className="select">
-          <select
-            name="sortBy"
-            value={sortBy}
-            onChange={(e) => onChangeSortBy(e.target.value)}
-          >
-            <option value="publishedAt" defaultValue>Published Date</option>
-            <option value="relevancy">Relevance</option>
-            <option value="popularity">Popularity</option>
-          </select>
+        <div className="control">
+          <div className="select">
+            <select
+              name="sortBy"
+              value={sortBy}
+              onChange={(e) => onChangeSortBy(e.target.value)}
+            >
+              <option value="publishedAt" defaultValue>Published Date</option>
+              <option value="relevancy">Relevance</option>
+              <option value="popularity">Popularity</option>
+            </select>
+          </div>
         </div>
       </div>
     );

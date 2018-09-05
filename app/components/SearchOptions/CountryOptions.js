@@ -14,15 +14,17 @@ const buildCountryOption = (country) => (
 const CountryOptions = ({ country, onChangeCountry }) => (
   <div className="field">
     <label className="label" htmlFor="country">Country</label>
-    <div className="select">
-      <select
-        name="country"
-        value={country || 'all'}
-        onChange={(e) => onChangeCountry(e.target.value)}
-      >
-        <option value="all" defaultValue>All</option>
-        { countryCodes.map((c) => buildCountryOption(c)) }
-      </select>
+    <div className="control">
+      <div className="select">
+        <select
+          name="country"
+          value={country || 'all'}
+          onChange={(e) => onChangeCountry(e.target.value)}
+        >
+          <option value="all" defaultValue>All</option>
+          { countryCodes.map((c) => buildCountryOption(c)) }
+        </select>
+      </div>
     </div>
   </div>
 );

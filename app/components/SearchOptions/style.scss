@@ -6,8 +6,7 @@
   .field {
     border: 1px solid grey;
     border-radius: 5px;
-    padding: 5px;
-    width: 250px;
+    width: 300px;
     .radio {
       label {
         background-color: white;
@@ -22,23 +21,19 @@
       background-color: darkblue;
       color: white;
       padding: 2px;
-      border-radius: 5px;
+      border-radius: 5px 5px 0 0;
     }
     .control {
       padding: 0.5rem;
     }
   }
-  .sources {
-    width: 300px;
-  }
+
   .target-container, .sort-by-container {
     max-height: 115px;
   }
 
-  &__special {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .date-options {
+    margin-bottom: 10px;
   }
 
 }
@@ -46,15 +41,9 @@
 .show-options-btn {
   margin-left: 20px;
 }
+
 .advanced-notice {
   height: 40px;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
-}
-@media only screen and (min-width: 768px) {
-  .search-options {
-    &__special {
-      width: 310px;
-    }
-  }
 }
