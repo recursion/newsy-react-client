@@ -37,7 +37,7 @@ export default class OptionsPanel extends Component {
     return (
       <div ref={(ref) => this.setElementReference(ref)}>
         <div style={{ marginTop: '' }}>
-          {(!this.props.advanced) ?
+          {(!this.props.advanced) &&
             <button
               className="button is-primary is-inverted is-size-7-mobile"
               onClick={() => {
@@ -46,8 +46,7 @@ export default class OptionsPanel extends Component {
               }}
             >
               Advanced Options
-            </button> :
-            ''
+            </button>
           }
         </div>
         <SlidingPane
@@ -78,7 +77,9 @@ export default class OptionsPanel extends Component {
           </div>
           {(this.props.advanced) ?
             <SearchOptions /> :
-            ''
+            <p>
+              Advanced options can significantly alter search results, and will be used for search as long as they are turned on. You can return to simple search at any time by clicking the &apos;Use simple search&apos; button on the main page, or by returning to the advanced options panel and sliding the the slider to simple.
+            </p>
           }
         </SlidingPane>
       </div>
