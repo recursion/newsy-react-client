@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AdvancedOptionsNav = ({ toggleSearchType, advanced, toggleShowAdvanced }) => (
-  (advanced) ?
+  (advanced) &&
     <div className="field">
       <div className="control">
         <div className="advanced-notice notification is-warning is-static">
@@ -27,8 +27,7 @@ const AdvancedOptionsNav = ({ toggleSearchType, advanced, toggleShowAdvanced }) 
           &lt;&lt; Use Simple Search
         </button>
       </div>
-    </div> :
-    ''
+    </div>
 );
 
 AdvancedOptionsNav.propTypes = {
