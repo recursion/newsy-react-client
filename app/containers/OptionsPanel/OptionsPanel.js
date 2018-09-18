@@ -7,6 +7,13 @@ import 'react-sliding-pane/dist/react-sliding-pane.css';
 import './style.scss';
 
 export default class OptionsPanel extends Component {
+  propTypes = {
+    advanced: PropTypes.bool,
+    toggleSearchType: PropTypes.func,
+    toggleShowAdvanced: PropTypes.func,
+    closeAdvanced: PropTypes.func
+  }
+
   constructor(props) {
     super(props);
     this.myRef = React.createRef();
@@ -39,7 +46,7 @@ export default class OptionsPanel extends Component {
         <div style={{ marginTop: '' }}>
           {(!this.props.advanced) &&
             <button
-              className="button is-primary is-inverted is-size-7-mobile"
+              className="advanced-button button is-primary is-inverted is-size-7-mobile"
               onClick={() => {
                 this.setState({ isPaneOpenLeft: true });
                 this.props.toggleShowAdvanced();
@@ -87,9 +94,3 @@ export default class OptionsPanel extends Component {
   }
 }
 
-OptionsPanel.propTypes = {
-  advanced: PropTypes.bool,
-  toggleSearchType: PropTypes.func,
-  toggleShowAdvanced: PropTypes.func,
-  closeAdvanced: PropTypes.func
-};
