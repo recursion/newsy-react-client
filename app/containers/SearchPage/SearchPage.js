@@ -16,7 +16,7 @@ import AdvancedOptionsNav from 'components/SearchOptions/AdvancedOptionsNav';
 import './style.scss';
 
 export default class SearchPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  propTypes = {
+  static propTypes = {
     advanced: PropTypes.bool,
     toggleSearchType: PropTypes.func,
     loading: PropTypes.bool,

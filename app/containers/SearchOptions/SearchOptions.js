@@ -16,7 +16,7 @@ import DateOptions from 'components/SearchOptions/DateOptions';
 import SortByOptions from 'components/SearchOptions/SortByOptions';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  propTypes = {
+  static propTypes = {
     useSources: PropTypes.bool,
     toggleUseSources: PropTypes.func,
     onChangeLanguage: PropTypes.func,

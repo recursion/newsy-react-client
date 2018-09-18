@@ -12,7 +12,7 @@ import StoryImage from 'components/StoryImage';
 import './style.scss';
 
 export default class StoryListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  propTypes = {
+  static propTypes = {
     item: PropTypes.object
   };
 

@@ -15,14 +15,21 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 export default class StoryImage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  static propTypes = {
+    urlImage: PropTypes.string,
+    item: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     this.state = { errored: false };
     this.handleError = this.handleError.bind(this);
   }
+
   handleError() {
     this.setState({ errored: true });
   }
+
   render() {
     return (
       <div className="story-image__container">
@@ -40,7 +47,3 @@ export default class StoryImage extends React.PureComponent { // eslint-disable-
   }
 }
 
-StoryImage.propTypes = {
-  urlImage: PropTypes.string,
-  item: PropTypes.object
-};

@@ -12,7 +12,7 @@ import './style.scss';
  *
  * */
 export default class SourcesSelector extends Component {
-  propTypes = {
+  static propTypes = {
     sources: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.array

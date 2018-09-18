@@ -7,7 +7,7 @@ import 'react-sliding-pane/dist/react-sliding-pane.css';
 import './style.scss';
 
 export default class OptionsPanel extends Component {
-  propTypes = {
+  static propTypes = {
     advanced: PropTypes.bool,
     toggleSearchType: PropTypes.func,
     toggleShowAdvanced: PropTypes.func,
