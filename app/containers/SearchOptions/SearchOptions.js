@@ -16,6 +16,33 @@ import DateOptions from 'components/SearchOptions/DateOptions';
 import SortByOptions from 'components/SearchOptions/SortByOptions';
 
 export default class SearchOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  propTypes = {
+    useSources: PropTypes.bool,
+    toggleUseSources: PropTypes.func,
+    onChangeLanguage: PropTypes.func,
+    language: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string
+    ]),
+    country: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string
+    ]),
+    category: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string
+    ]),
+    sortBy: PropTypes.string,
+    target: PropTypes.string,
+    onChangeCountry: PropTypes.func,
+    onChangeCategory: PropTypes.func,
+    onChangeTarget: PropTypes.func,
+    fromDate: PropTypes.string,
+    toDate: PropTypes.string,
+    onChangeSortBy: PropTypes.func,
+    onChangeFromDate: PropTypes.func,
+    onChangeToDate: PropTypes.func
+  };
   render() {
     const {
       useSources,
@@ -80,30 +107,3 @@ export default class SearchOptions extends React.PureComponent { // eslint-disab
   }
 }
 
-SearchOptions.propTypes = {
-  useSources: PropTypes.bool,
-  toggleUseSources: PropTypes.func,
-  onChangeLanguage: PropTypes.func,
-  language: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string
-  ]),
-  country: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string
-  ]),
-  category: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string
-  ]),
-  sortBy: PropTypes.string,
-  target: PropTypes.string,
-  onChangeCountry: PropTypes.func,
-  onChangeCategory: PropTypes.func,
-  onChangeTarget: PropTypes.func,
-  fromDate: PropTypes.string,
-  toDate: PropTypes.string,
-  onChangeSortBy: PropTypes.func,
-  onChangeFromDate: PropTypes.func,
-  onChangeToDate: PropTypes.func
-};

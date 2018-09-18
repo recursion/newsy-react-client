@@ -12,6 +12,10 @@ import StoryImage from 'components/StoryImage';
 import './style.scss';
 
 export default class StoryListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  propTypes = {
+    item: PropTypes.object
+  };
+
   render() {
     const { item } = this.props;
 
@@ -19,12 +23,6 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
     const d = new Date(item.publishedAt);
     const day = d.toLocaleDateString();
     const time = d.toLocaleTimeString();
-
-    // setup placeholder images for those that dont exist or dont load.
-    // TODO: Get a better placeholder image.
-    // const placeHolderImage = 'https://dummyimage.com/160x160/fff/fff';
-    // const urlImage = (!item.urlToImage) ? placeHolderImage : item.urlToImage;
-
 
     const imageProps = {
       urlImage: item.urlToImage,
@@ -57,6 +55,3 @@ export default class StoryListItem extends React.PureComponent { // eslint-disab
   }
 }
 
-StoryListItem.propTypes = {
-  item: PropTypes.object
-};

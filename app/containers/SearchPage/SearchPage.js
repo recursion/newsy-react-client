@@ -16,6 +16,28 @@ import AdvancedOptionsNav from 'components/SearchOptions/AdvancedOptionsNav';
 import './style.scss';
 
 export default class SearchPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  propTypes = {
+    advanced: PropTypes.bool,
+    toggleSearchType: PropTypes.func,
+    loading: PropTypes.bool,
+    loaded: PropTypes.bool,
+    error: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool,
+    ]),
+    stories: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool,
+    ]),
+    onSubmitForm: PropTypes.func,
+    onGetPage: PropTypes.func,
+    query: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool
+    ]),
+    onChangeSearchTerms: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
     this.state = { showAdvanced: false };
@@ -113,24 +135,3 @@ export default class SearchPage extends React.PureComponent { // eslint-disable-
   }
 }
 
-SearchPage.propTypes = {
-  advanced: PropTypes.bool,
-  toggleSearchType: PropTypes.func,
-  loading: PropTypes.bool,
-  loaded: PropTypes.bool,
-  error: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.bool,
-  ]),
-  stories: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.bool,
-  ]),
-  onSubmitForm: PropTypes.func,
-  onGetPage: PropTypes.func,
-  query: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool
-  ]),
-  onChangeSearchTerms: PropTypes.func,
-};

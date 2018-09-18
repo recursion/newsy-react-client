@@ -7,11 +7,26 @@ import './style.scss';
  *  StatefulMultiSelect
  *
  * Renders a searchable, multi-select form dropdown
- * that will enable uses to select from multiple choices.
+ * that will enable users to select from multiple choices.
  * or all choices.
  *
  * */
 export default class SourcesSelector extends Component {
+  propTypes = {
+    sources: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array
+    ]),
+    selected: PropTypes.object,
+    onChangeSelection: PropTypes.func,
+    loadSources: PropTypes.func,
+    ItemRenderer: PropTypes.func,
+    selectAllLabel: PropTypes.func,
+    isLoading: PropTypes.bool,
+    disabled: PropTypes.bool,
+    disableSearch: PropTypes.bool
+  };
+
   componentDidMount() {
     if (this.props.sources.size === 0) {
       this.props.loadSources();
@@ -61,18 +76,3 @@ export default class SourcesSelector extends Component {
     );
   }
 }
-
-SourcesSelector.propTypes = {
-  sources: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ]),
-  selected: PropTypes.object,
-  onChangeSelection: PropTypes.func,
-  loadSources: PropTypes.func,
-  ItemRenderer: PropTypes.func,
-  selectAllLabel: PropTypes.func,
-  isLoading: PropTypes.bool,
-  disabled: PropTypes.bool,
-  disableSearch: PropTypes.bool
-};
