@@ -20,6 +20,7 @@
       text-indent: 5px;
       background-color: darkblue;
       color: white;
+      letter-spacing: 0.15rem;
       padding: 2px;
       border-radius: 5px 5px 0 0;
     }
@@ -28,8 +29,17 @@
     }
   }
 
+  #toDate, #fromDate {
+    height: 2rem;
+    border: 1px solid lightgrey;
+  }
+
   .target-container, .sort-by-container {
     max-height: 115px;
+  }
+
+  .search-options__special > .field:first-of-type {
+    padding: 4px;
   }
 
   .date-options {
